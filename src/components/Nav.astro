@@ -1,9 +1,15 @@
 ---
+import '../styles/nav.css';
+
 interface Props {
   reserveHref?: string;
+  currentLang?: 'fr' | 'it' | 'en';
 }
 
-const { reserveHref = 'https://www.fpa2.org/fr/evenements/cena-a-palazzo-028' } = Astro.props;
+const {
+  reserveHref = 'https://www.fpa2.org/fr/evenements/cena-a-palazzo-028',
+  currentLang = 'fr',
+} = Astro.props;
 
 const links = [
   { href: '#evenement', label: "L'Événement" },
@@ -14,40 +20,52 @@ const links = [
 ];
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-ivoire/70 border-b border-orDore/30">
-  <div class="mx-auto max-w-contenu px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
-    <a href="/" class="font-serif text-xl md:text-2xl tracking-tightish text-encre">
-      Cena <span class="text-orDore">a</span> Palazzo
+<header data-nav-header-trigger="true" class="nav-header">
+
+  <!-- Bloc gauche · wordmark + ligne dorée + slogan -->
+  <div class="nav-brand">
+    <a href="/" aria-current="page" class="brand-logo-link">
+      <span class="logo-wordmark" aria-label="Cena a Palazzo">
+        <span class="logo-wordmark-line-1">Cena</span>
+        <span class="logo-wordmark-line-2">a Palazzo</span>
+      </span>
+      <span class="slogan-line" aria-hidden="true"></span>
+      <span class="slogan-text">
+        Dîner de bienfaisance · 22 juin 2026
+      </span>
     </a>
-
-    <nav class="hidden lg:flex items-center gap-8">
-      {links.map(({ href, label }) => (
-        <a
-          href={href}
-          class="font-sans text-[0.7rem] tracking-widest uppercase text-encre/80 hover:text-orDore transition-colors duration-300"
-        >
-          {label}
-        </a>
-      ))}
-    </nav>
-
-    <div class="flex items-center gap-4 md:gap-6">
-      <div class="hidden md:flex items-center gap-2 font-sans text-[0.7rem] tracking-widest uppercase text-encre/60">
-        <span aria-current="true" class="text-orDore">FR</span>
-        <span class="text-encre/30">·</span>
-        <a href="/it/" class="hover:text-orDore transition-colors duration-300">IT</a>
-        <span class="text-encre/30">·</span>
-        <a href="/en/" class="hover:text-orDore transition-colors duration-300">EN</a>
-      </div>
-
-      <a
-        href={reserveHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-sans text-[0.7rem] tracking-widest uppercase px-5 py-3 border border-orDore text-encre hover:bg-orDore hover:text-blanc transition-colors duration-500"
-      >
-        Réserver
-      </a>
-    </div>
   </div>
+
+  <!-- Bloc droit · liens + langues + CTA -->
+  <nav class="nav-links" aria-label="Navigation principale">
+    {links.map(({ href, label }) => (
+      <a href={href} class="nav-link">{label}</a>
+    ))}
+
+    <span class="nav-divider" aria-hidden="true"></span>
+
+    <span class="nav-lang" aria-label="Sélecteur de langue">
+      <span class={currentLang === 'fr' ? 'is-active' : ''}>
+        {currentLang === 'fr' ? <span>FR</span> : <a href="/">FR</a>}
+      </span>
+      <span class="nav-lang-sep">·</span>
+      <span class={currentLang === 'it' ? 'is-active' : ''}>
+        {currentLang === 'it' ? <span>IT</span> : <a href="/it/">IT</a>}
+      </span>
+      <span class="nav-lang-sep">·</span>
+      <span class={currentLang === 'en' ? 'is-active' : ''}>
+        {currentLang === 'en' ? <span>EN</span> : <a href="/en/">EN</a>}
+      </span>
+    </span>
+
+    <a
+      href={reserveHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="nav-reserve"
+    >
+      Réserver
+    </a>
+  </nav>
+
 </header>

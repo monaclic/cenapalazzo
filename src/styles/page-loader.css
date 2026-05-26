@@ -1,0 +1,118 @@
+/* ====================================================================
+   Page loader · welcome au chargement, structure Velour exacte,
+   palette et typo Féeline. Animations CSS pures, sans GSAP.
+   ==================================================================== */
+
+.page-load-animation {
+  z-index: 999;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100lvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: theme('colors.encre');
+}
+
+.page-load-animation.is-out {
+  animation: loader-fade-out 1.2s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes loader-fade-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30%); visibility: hidden; }
+}
+
+.preloader-title {
+  z-index: 20;
+  position: relative;
+  text-align: center;
+  width: 90%;
+}
+
+.preloader-text {
+  z-index: 10;
+  position: relative;
+  display: inline-block;
+  font-family: theme('fontFamily.serif');
+  color: theme('colors.ivoire');
+  text-transform: uppercase;
+  font-size: 10vw;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  animation: text-rise 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes text-rise {
+  from { opacity: 0; transform: translateY(35%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.preloader-image-size {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  height: 55%;
+  overflow: hidden;
+  animation: image-reveal 1.6s cubic-bezier(0.7, 0, 0.3, 1) 0.4s both;
+}
+
+@keyframes image-reveal {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+.preloader-image-trigger {
+  position: absolute;
+  inset: 0;
+}
+
+.preloader-image {
+  z-index: 5;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  animation: image-zoom 5s ease-out 0.4s both;
+}
+
+@keyframes image-zoom {
+  from { transform: scale(1.18); }
+  to   { transform: scale(1.04); }
+}
+
+.preloader-image-color {
+  z-index: 10;
+  position: absolute;
+  inset: 0;
+  background-color: rgb(42 42 42 / 0.5);
+}
+
+/* Verrouille le scroll pendant que le loader est affiché */
+html.is-page-loading,
+html.is-page-loading body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Tablette */
+@media (max-width: 991px) {
+  .preloader-text { font-size: 13vw; }
+  .preloader-image-size { width: 35vw; height: 50%; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .preloader-text { font-size: 15vw; }
+  .preloader-image-size { width: 60vw; max-width: 60vw; height: 50%; }
+}

@@ -1,0 +1,66 @@
+---
+import '../styles/page-loader.css';
+
+interface Props {
+  greeting?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  greeting = 'Cena a Palazzo',
+  imageSrc = '/assets/photos/sala-casino-02.jpg',
+  imageAlt = '',
+} = Astro.props;
+---
+
+<div class="page-load-animation" data-page-loader>
+  <div class="preloader-title">
+    <div class="preloader-text">{greeting}</div>
+  </div>
+  <div class="preloader-image-size">
+    <div class="preloader-image-trigger">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        class="preloader-image"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="preloader-image-color" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const loader = document.querySelector('[data-page-loader]');
+    if (!loader) return;
+
+    const root = document.documentElement;
+    root.classList.add('is-page-loading');
+
+    const HOLD_MS = 2400;
+
+    function dismiss() {
+      loader.classList.add('is-out');
+      // Une fois l'animation de sortie terminée, on retire le loader et
+      // on libère le scroll.
+      setTimeout(() => {
+        loader.style.display = 'none';
+        root.classList.remove('is-page-loading');
+      }, 1200);
+    }
+
+    function schedule() {
+      window.setTimeout(dismiss, HOLD_MS);
+    }
+
+    if (document.readyState === 'complete') {
+      schedule();
+    } else {
+      window.addEventListener('load', schedule, { once: true });
+    }
+  })();
+</script>

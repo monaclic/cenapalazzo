@@ -1,16 +1,19 @@
 ---
 import '../styles/global.css';
+import PageLoader from '../components/PageLoader.astro';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: 'fr' | 'it' | 'en';
+  showLoader?: boolean;
 }
 
 const {
   title = 'Cena a Palazzo · Casino di Sanremo · 22 juin 2026',
   description = "Dîner de bienfaisance sous la présidence de S.A.S. le Prince Albert II de Monaco, au profit de la Fondation Prince Albert II de Monaco. Casino di Sanremo, Salle Privée, le 22 juin 2026.",
   lang = 'fr',
+  showLoader = true,
 } = Astro.props;
 ---
 
@@ -41,6 +44,7 @@ const {
   </head>
 
   <body>
+    {showLoader && <PageLoader />}
     <slot />
   </body>
 </html>

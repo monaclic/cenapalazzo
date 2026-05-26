@@ -1,0 +1,254 @@
+/* ====================================================================
+   Nav · structure Velour exacte (grid logo + slogan + liens), palette
+   Féeline (ivoire translucide, encre, accents or doré).
+   ==================================================================== */
+
+.nav-header {
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 5rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-auto-columns: 1fr;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgb(247 245 238 / 0.7);
+  border-bottom: 1px solid rgb(212 175 55 / 0.25);
+}
+
+/* Bloc gauche · logo + ligne dorée + slogan */
+.nav-brand {
+  padding-right: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.brand-logo-link {
+  z-index: 50;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  color: theme('colors.encre');
+  text-decoration: none;
+}
+
+.brand-logo-link:hover {
+  text-decoration: none;
+}
+
+.logo-image {
+  display: block;
+  width: 6rem;
+  max-width: none;
+  height: 4rem;
+  object-fit: contain;
+  object-position: 0% 50%;
+}
+
+/* Wordmark texte en attendant le SVG du monogramme CP */
+.logo-wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: theme('fontFamily.serif');
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.95;
+  color: theme('colors.encre');
+}
+
+.logo-wordmark-line-1 {
+  font-size: 1.4rem;
+}
+
+.logo-wordmark-line-2 {
+  font-size: 1.4rem;
+  margin-top: 0.1rem;
+}
+
+.slogan-line {
+  width: 1px;
+  height: 1.7rem;
+  background-color: theme('colors.orDore');
+}
+
+.slogan-text {
+  max-width: 8rem;
+  color: theme('colors.orMetallise');
+  text-transform: uppercase;
+  font-family: theme('fontFamily.sans');
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+}
+
+/* Bloc droit · liens de navigation */
+.nav-links {
+  display: flex;
+  flex: 1;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  gap: 2.5vw;
+  width: 100%;
+  padding-right: 0;
+  position: relative;
+}
+
+.nav-link {
+  z-index: 10;
+  position: relative;
+  top: 1px;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  align-items: center;
+  padding: 0.5rem 0;
+  color: theme('colors.encre');
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: theme('fontFamily.sans');
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1.3;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.6s, opacity 0.2s;
+}
+
+.nav-link:hover {
+  color: theme('colors.orDore');
+  border-bottom-color: theme('colors.orDore');
+}
+
+.nav-link.is-current {
+  color: theme('colors.orDore');
+  border-bottom-color: theme('colors.orDore');
+}
+
+.nav-divider {
+  width: 1px;
+  height: 1rem;
+  margin: 0 0.5rem;
+  background-color: rgb(42 42 42 / 0.2);
+}
+
+.nav-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: theme('colors.encre');
+  font-family: theme('fontFamily.sans');
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nav-lang a {
+  color: theme('colors.encre');
+  opacity: 0.6;
+  text-decoration: none;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.nav-lang a:hover {
+  opacity: 1;
+  color: theme('colors.orDore');
+}
+
+.nav-lang .is-active {
+  color: theme('colors.orDore');
+  opacity: 1;
+}
+
+.nav-lang-sep {
+  opacity: 0.3;
+}
+
+/* CTA Réserver (bouton or doré) */
+.nav-reserve {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  margin-left: 0.5rem;
+  background-color: theme('colors.orDore');
+  color: theme('colors.encre');
+  font-family: theme('fontFamily.sans');
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.nav-reserve:hover {
+  background-color: theme('colors.orMetallise');
+  color: theme('colors.blanc');
+}
+
+/* Tablette */
+@media (max-width: 991px) {
+  .nav-header {
+    min-height: 4rem;
+    grid-template-columns: 1fr auto;
+    padding: 0 4vw;
+  }
+  .logo-image {
+    width: 5rem;
+    height: 3rem;
+  }
+  .slogan-text {
+    font-size: 0.6rem;
+  }
+  .nav-links {
+    gap: 1.6vw;
+  }
+  .nav-link {
+    font-size: 0.72rem;
+  }
+}
+
+/* Mobile · liens masqués, brand + bouton uniquement */
+@media (max-width: 767px) {
+  .nav-header {
+    min-height: 3.5rem;
+    padding: 0 5vw;
+  }
+  .nav-links {
+    display: none;
+  }
+  .logo-image {
+    width: 4rem;
+    height: 2.5rem;
+  }
+  .logo-wordmark-line-1,
+  .logo-wordmark-line-2 {
+    font-size: 1.15rem;
+  }
+  .slogan-text {
+    display: none;
+  }
+  .slogan-line {
+    display: none;
+  }
+  .nav-reserve {
+    padding: 0.55rem 1rem;
+    font-size: 0.62rem;
+  }
+}
