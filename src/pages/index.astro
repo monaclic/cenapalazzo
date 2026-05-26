@@ -26,13 +26,56 @@
       crossorigin="anonymous"
     />
 
+    <!-- ================================================================
+         SURCHARGE PALETTE ET TYPOGRAPHIE
+         Reskinne le template Veloura avec la charte Féeline (ivoire,
+         or doré, encre) et les typographies Cormorant Garamond et
+         Montserrat. Toutes les variables CSS Veloura sont redéfinies.
+         ================================================================ -->
+    <style>
+      :root {
+        /* Couleurs Féeline · remap des tokens Veloura */
+        --_colors---brand-main-color: #D4AF37;
+        --_colors---brand-dark-1: #BFA46A;
+        --_colors---brand-dark-2: #8A7530;
+        --_colors---brand-dark-3: #2A2A2A;
+        --_colors---brand-dark-4: #1F1F1F;
+        --_colors---brand-dark-5: #1A1A1A;
+        --_colors---brand-dark-6: #2A2A2A;
+        --_colors---brand-light-1: #FFFFFF;
+        --_colors---brand-light-2: #F7F5EE;
+        --_colors---brand-light-3: #EFE6D3;
+        --_colors---brand-light-4: #E6DCC3;
+        --_colors---brand-light-5: #EFE6D3;
+        --_colors---brand-light-6: #BFA46A;
+        --_colors---brand-color-10: rgba(212, 175, 55, 0.1);
+        --_colors---brand-color-20: rgba(212, 175, 55, 0.2);
+        --_colors---brand-color-40: rgba(212, 175, 55, 0.4);
+        --_colors---brand-color-light-20: rgba(247, 245, 238, 0.2);
+        --_colors---brand-color-light-70: rgba(247, 245, 238, 0.7);
+        --_colors---border-color: rgba(42, 42, 42, 0.1);
+        --_colors---white: #FFFFFF;
+
+        /* Tokens dérivés Veloura */
+        --body-bg: #F7F5EE;
+        --body-bg-dark: #2A2A2A;
+        --body-font: #2A2A2A;
+        --body-font-light: #F7F5EE;
+
+        /* Typographies Féeline · remap des familles Veloura */
+        --_typography---sans-font: "Montserrat", system-ui, sans-serif;
+        --_typography---display-font: "Cormorant Garamond", Georgia, serif;
+        --_typography---brand-font: "Cormorant Garamond", Georgia, serif;
+      }
+    </style>
+
     <style set:html={`html.w-mod-js:not(.w-mod-ix3) :is(.client-logos-track, .offer-bg, .offer-bg-position, [data-anim-title="true"], .image-reveal, .cover-image, .booking-line, .highlights-bg, .highlights-flex, .highlights-gradient, .v-hero-img, .menu, .menu-bg-color, .menu-bg-blur, .menu-wrapper, .menu-small-title, .menu-close, .menu-image-layout, .slider-bar-line, .slider-image-3, .slider-image-1, .slider-image-2, .collage-image-1, .collage-image-2, .collage-image-3, .collage-image-4, .heading.is-cta-collage-title, .cta-collage-desc, .button, .room-list-link, .room-button, .is-sticky-title, .images-in-circle, [content-on-scroll="true"], .sticky-side-image.is-1st, .sticky-side-image.is-2nd, .sticky-side-image.is-3rd, .footer-layout, .footer-text, .footer-link, .regular-link, .collage-hero-content, .collage-image, .collage-hero-image-1, .collage-hero-image-2, .collage-hero-image-3, .collage-hero-image-4, [data-parallax-small="true"], [data-parallax-medium="true"], [data-parallax-large="true"], .image-to-full-2-scale, .marquee-wrapper, .regular-link-icon, .regular-link-line, .fullscreen-to-row-2, .fullscreen-to-row-scale, .uppercase-text, .paragraph-medium, .card-text-block, .card-icon-2, .menu-burger-bg, .carousel-t-bg, .carousel-t-title, .carousel-t-button, .carousel-shadow-1, .carousel-shadow-2, .button-bg, .button-icon, .marquee-cover-image, .in-nutshell-image, .in-nutshell-p.is-1st, .in-nutshell-line.is-1st, .in-nutshell-p.is-2nd, .in-nutshell-line.is-2nd, .in-nutshell-p.is-3rd, .in-nutshell-line.is-3rd, .home-hero-image.is-2nd, .home-hero-image.is-3rd, .preloader-image-color, .preloader-image-trigger, .preloader-text, [data-nav-header-trigger="true"]) { visibility: hidden !important; }`} />
 
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript" is:inline></script>
-    <script type="text/javascript" is:inline>WebFont.load({ google: { families: ["Funnel Display:300,400,500,600,700","Funnel Sans:300,400,500,600,700"] } });</script>
+    <script type="text/javascript" is:inline>WebFont.load({ google: { families: ["Cormorant Garamond:300,400,500,600,700","Cormorant Garamond:ital,300,400,500,600,700","Montserrat:300,400,500,600,700"] } });</script>
     <script type="text/javascript" is:inline>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
 
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" />
