@@ -39,15 +39,22 @@
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" is:inline></script>
     <script is:inline>new Lenis({ autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true, naiveDimensions: true, stopInertiaOnNavigate: true });</script>
 
-    <!-- Cache le badge "Made in Webflow" injecté dynamiquement par les scripts Webflow -->
+    <!-- Cache le badge "Made in Webflow" injecté dynamiquement par les scripts Webflow.
+         Le lien cible https://webflow.com avec utm_campaign brandjs, on cible sur le href. -->
     <style>
+      a[href*="webflow.com?utm_campaign=brandjs"],
+      a[href^="https://webflow.com"],
       .w-webflow-badge,
-      a.w-webflow-badge,
       [class*="webflow-badge"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         pointer-events: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
       }
     </style>
   </head>
@@ -178,6 +185,24 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript" is:inline></script>
+
+    <!-- Filet de sécurité: retire physiquement le badge Webflow du DOM
+         s'il a réussi à se rendre malgré les règles CSS. On observe le
+         body avec un MutationObserver pour intercepter toute insertion
+         différée. -->
+    <script is:inline>
+      (function () {
+        function killBadges(root) {
+          var nodes = root.querySelectorAll('a[href^="https://webflow.com"], a[href*="utm_campaign=brandjs"], .w-webflow-badge');
+          nodes.forEach(function (n) { n.remove(); });
+        }
+        killBadges(document);
+        var mo = new MutationObserver(function () { killBadges(document); });
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+        // Arrêt après 15 secondes (les badges sont injectés au load)
+        setTimeout(function () { mo.disconnect(); }, 15000);
+      })();
+    </script>
 
   </body>
 </html>
