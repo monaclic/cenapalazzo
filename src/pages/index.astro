@@ -36,31 +36,31 @@
          ================================================================ -->
     <style>
       :root {
-        /* Tokens primaires Veloura remappés en palette Féeline · light */
-        --_colors---brand-main-color: #D4AF37;       /* or doré */
+        /* Tokens primaires Veloura remappés en palette Féeline · all white */
+        --_colors---brand-main-color: #D4AF37;       /* or doré · accents */
         --_colors---brand-dark-1:    #BFA46A;        /* or métallisé */
         --_colors---brand-dark-2:    #8A7530;        /* or assombri (hover) */
-        --_colors---brand-dark-3:    #F7F5EE;        /* hero bg · ivoire */
-        --_colors---brand-dark-4:    #EFE6D3;        /* champagne */
-        --_colors---brand-dark-5:    #E6DCC3;        /* beige sable */
-        --_colors---brand-dark-6:    #EFE6D3;        /* champagne (was deepest dark) */
+        --_colors---brand-dark-3:    #FFFFFF;        /* hero bg · blanc pur */
+        --_colors---brand-dark-4:    #FAFAFA;        /* blanc presque pur */
+        --_colors---brand-dark-5:    #F7F5EE;        /* ivoire (touche subtile) */
+        --_colors---brand-dark-6:    #FFFFFF;        /* blanc (was deepest dark) */
         --_colors---brand-light-1:   #FFFFFF;        /* blanc */
-        --_colors---brand-light-2:   #F7F5EE;        /* ivoire */
-        --_colors---brand-light-3:   #EFE6D3;        /* champagne */
-        --_colors---brand-light-4:   #E6DCC3;        /* beige sable */
-        --_colors---brand-light-5:   #EFE6D3;        /* champagne */
+        --_colors---brand-light-2:   #FFFFFF;        /* blanc */
+        --_colors---brand-light-3:   #FAFAFA;        /* blanc cassé */
+        --_colors---brand-light-4:   #F7F5EE;        /* ivoire */
+        --_colors---brand-light-5:   #FAFAFA;        /* blanc cassé */
         --_colors---brand-light-6:   #BFA46A;        /* or métallisé */
         --_colors---brand-color-10:  rgba(212, 175, 55, 0.10);
         --_colors---brand-color-20:  rgba(212, 175, 55, 0.20);
         --_colors---brand-color-40:  rgba(212, 175, 55, 0.40);
-        --_colors---brand-color-light-20: rgba(247, 245, 238, 0.20);
-        --_colors---brand-color-light-70: rgba(247, 245, 238, 0.70);
+        --_colors---brand-color-light-20: rgba(255, 255, 255, 0.20);
+        --_colors---brand-color-light-70: rgba(255, 255, 255, 0.70);
         --_colors---border-color:    rgba(212, 175, 55, 0.20);
         --_colors---white:           #FFFFFF;
 
-        /* Body tokens · light theme */
-        --body-bg:         #F7F5EE;   /* ivoire */
-        --body-bg-dark:    #EFE6D3;   /* sections "dark" Veloura = champagne */
+        /* Body tokens · all white */
+        --body-bg:         #FFFFFF;   /* blanc pur */
+        --body-bg-dark:    #FAFAFA;   /* sections alternées en blanc cassé */
         --body-font:       #2A2A2A;   /* encre · texte par défaut */
         --body-font-light: #BFA46A;   /* or métallisé · pour H1 hero, accents */
 
@@ -177,23 +177,23 @@
         display: none !important;
       }
 
-      /* Section "is-dark" Velour: bg champagne, texte encre */
+      /* Section "is-dark" Velour: bg blanc cassé, texte encre */
       .section.is-dark {
-        background-color: #EFE6D3;
+        background-color: #FAFAFA;
         color: #2A2A2A;
       }
       .section.is-dark *:not(.regular-link):not(.regular-link-line):not(.button):not(.dot):not(.dot-animation) {
         color: inherit;
       }
 
-      /* Section with-bg-gradient-3 · bg champagne uni */
+      /* Section with-bg-gradient-3 · bg blanc uni */
       .section.with-bg-gradient-3 {
-        background: #EFE6D3;
+        background: #FFFFFF;
       }
 
-      /* Footer · bg champagne clair, texte encre */
+      /* Footer · bg blanc, texte encre */
       .footer-cta {
-        background-color: #EFE6D3 !important;
+        background-color: #FFFFFF !important;
       }
       .footer-bg {
         background-color: transparent !important;
@@ -203,6 +203,14 @@
       }
       .footer-link:hover {
         color: #D4AF37;
+      }
+
+      /* Sections génériques · blanc pur partout */
+      .section {
+        background-color: #FFFFFF;
+      }
+      body, html, .page-wrapper {
+        background-color: #FFFFFF;
       }
     </style>
 
