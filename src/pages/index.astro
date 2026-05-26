@@ -70,38 +70,134 @@
         --_typography---brand-font:   "Cormorant Garamond", Georgia, serif;
       }
 
-      /* Quelques ajustements ciblés sur les éléments qui héritaient
-         d'une couleur claire (lisible sur fond sombre Veloura) et qui
-         doivent maintenant être lisibles sur fond clair Féeline. */
-      .nav-link {
+      /* ================================================================
+         OVERRIDES DE LISIBILITÉ
+         Velour utilisait du texte clair (brand-light-1 à 5) sur fonds
+         sombres. Passé en light theme, ces textes sont devenus invisibles.
+         On force du texte sombre (encre) sur les éléments concernés.
+         ================================================================ */
+      .nav-link,
+      .nav-small-link,
+      .brand-logo-link,
+      .brand-slogan,
+      .highlights-section,
+      .accomondation-wrapper,
+      .accommodation-hero,
+      .room-item,
+      .room-list-title,
+      .cta-content,
+      .rooms-detail,
+      .dining-offer,
+      .breadcrumb-link,
+      .is-light,
+      .regular-link,
+      .footer-text,
+      .footer-slogan,
+      .menu-link-text,
+      .menu-small-text,
+      .menu-address,
+      .menu-small-title,
+      .card-text-block,
+      .paragraph-medium,
+      .uppercase-text {
         color: #2A2A2A;
       }
-      .nav-link:hover {
+
+      .nav-link:hover,
+      .regular-link:hover,
+      .footer-link:hover {
         color: #D4AF37;
       }
-      .regular-link {
-        color: #2A2A2A;
-      }
-      .regular-link:hover {
-        color: #D4AF37;
-      }
+
+      /* Filets dorés (les regular-link-line étaient light-4 = beige) */
       .regular-link-line {
         background-color: #D4AF37;
       }
       .regular-link-icon {
-        filter: brightness(0) saturate(100%) invert(64%) sepia(78%) saturate(376%) hue-rotate(1deg) brightness(94%) contrast(86%);
+        filter: brightness(0) saturate(100%) invert(72%) sepia(38%) saturate(810%) hue-rotate(0deg) brightness(95%) contrast(92%);
       }
+
+      /* Boutons CTA · fond or doré et texte encre */
+      .button,
+      .form-submit-button {
+        background-color: #D4AF37;
+        color: #2A2A2A;
+        border-color: #D4AF37;
+      }
+      .button:hover,
+      .form-submit-button:hover {
+        background-color: #BFA46A;
+      }
+
       /* H1 du hero en or doré pour matcher les planches Féeline */
       .heading.is-home-hero-title {
         color: #BFA46A;
       }
-      /* "Welcome" du loader en or doré */
+
+      /* "Welcome" du loader en or doré sur fond ivoire */
       .preloader-text {
         color: #BFA46A;
       }
-      /* Slogan "Hotel Template" plus lisible (était brand-light-5) */
+      /* Le loader n'a plus besoin d'un overlay sombre · on l'allège */
+      .preloader-image-color {
+        background-color: rgba(247, 245, 238, 0.15);
+      }
+
+      /* Slogan "Hotel Template" plus lisible */
       .slogan-text {
         color: #8A7530;
+      }
+
+      /* Logo Velour SVG · teinté en gris foncé en attendant le remplacement */
+      .logo-image {
+        filter: brightness(0) saturate(100%) invert(11%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(85%);
+      }
+
+      /* Burger icon en encre */
+      .burger-icon-line {
+        background-color: #2A2A2A;
+      }
+
+      /* ================================================================
+         MESH GRADIENTS · les SVG Velour sont teintés pourpre/peach.
+         On les masque pour ne pas avoir de résidus de couleur étrangère.
+         L'ambiance est portée par la palette ivoire/or des sections.
+         ================================================================ */
+      .mesh-bg-1-center,
+      .mesh-bg-2-center,
+      .mesh-bg-3-left,
+      .mesh-bg-4-right,
+      .mesh-bg,
+      .mesh-bgs-wrapper {
+        display: none !important;
+      }
+
+      /* Section "is-dark" Velour: bg champagne, texte encre */
+      .section.is-dark {
+        background-color: #EFE6D3;
+        color: #2A2A2A;
+      }
+      .section.is-dark *:not(.regular-link):not(.regular-link-line):not(.button):not(.dot):not(.dot-animation) {
+        color: inherit;
+      }
+
+      /* Section with-bg-gradient-3 · bg champagne uni */
+      .section.with-bg-gradient-3 {
+        background: #EFE6D3;
+      }
+
+      /* Footer · bg champagne clair, texte encre */
+      .footer-cta {
+        background-color: #EFE6D3 !important;
+      }
+      .footer-bg {
+        background-color: transparent !important;
+      }
+      .footer-link {
+        color: #2A2A2A;
+      }
+      .footer-link:hover {
+        color: #D4AF37;
       }
     </style>
 
