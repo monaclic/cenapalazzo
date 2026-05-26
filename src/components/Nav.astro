@@ -1,0 +1,53 @@
+---
+interface Props {
+  reserveHref?: string;
+}
+
+const { reserveHref = 'https://www.fpa2.org/fr/evenements/cena-a-palazzo-028' } = Astro.props;
+
+const links = [
+  { href: '#evenement', label: "L'Événement" },
+  { href: '#diner', label: 'Le Dîner' },
+  { href: '#menu', label: 'Le Menu' },
+  { href: '#lieu', label: 'Le Lieu' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-ivoire/70 border-b border-orDore/30">
+  <div class="mx-auto max-w-contenu px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
+    <a href="/" class="font-serif text-xl md:text-2xl tracking-tightish text-encre">
+      Cena <span class="text-orDore">a</span> Palazzo
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class="font-sans text-[0.7rem] tracking-widest uppercase text-encre/80 hover:text-orDore transition-colors duration-300"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-4 md:gap-6">
+      <div class="hidden md:flex items-center gap-2 font-sans text-[0.7rem] tracking-widest uppercase text-encre/60">
+        <span aria-current="true" class="text-orDore">FR</span>
+        <span class="text-encre/30">·</span>
+        <a href="/it/" class="hover:text-orDore transition-colors duration-300">IT</a>
+        <span class="text-encre/30">·</span>
+        <a href="/en/" class="hover:text-orDore transition-colors duration-300">EN</a>
+      </div>
+
+      <a
+        href={reserveHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-sans text-[0.7rem] tracking-widest uppercase px-5 py-3 border border-orDore text-encre hover:bg-orDore hover:text-blanc transition-colors duration-500"
+      >
+        Réserver
+      </a>
+    </div>
+  </div>
+</header>
