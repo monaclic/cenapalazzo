@@ -74,19 +74,10 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript" is:inline></script>
 
-    <!-- Filet de sécurité: retire physiquement les badges et liens
-         promotionnels Webflow ou Velour du DOM s'ils sont injectés. -->
+    <!-- MutationObserver DÉSACTIVÉ temporairement pour diagnostic. Les
+         sections disparaissent du DOM, on isole la cause: MO ou Webflow JS. -->
     <script is:inline>
-      (function () {
-        function killBadges(root) {
-          var nodes = root.querySelectorAll('a[href^="https://webflow.com"], a[href*="utm_campaign=brandjs"], a[href*="webflow.com/templates"], a[href*="metrik.studio"], .w-webflow-badge, .important-link');
-          nodes.forEach(function (n) { n.remove(); });
-        }
-        killBadges(document);
-        var mo = new MutationObserver(function () { killBadges(document); });
-        mo.observe(document.documentElement, { childList: true, subtree: true });
-        setTimeout(function () { mo.disconnect(); }, 15000);
-      })();
+      console.log('[diagnostic] MO désactivé');
     </script>
 
   </body>
