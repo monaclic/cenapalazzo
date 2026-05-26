@@ -28,44 +28,80 @@
 
     <!-- ================================================================
          SURCHARGE PALETTE ET TYPOGRAPHIE
-         Reskinne le template Veloura avec la charte Féeline (ivoire,
-         or doré, encre) et les typographies Cormorant Garamond et
-         Montserrat. Toutes les variables CSS Veloura sont redéfinies.
+         Reskinne le template Veloura avec la charte Féeline officielle
+         (planches transmises par le client). Light theme partout: ivoire,
+         champagne, beige sable, or doré, or métallisé. Pas de sombre.
+         Typographies: Cormorant Garamond pour le display et le brand,
+         Montserrat pour le texte courant.
          ================================================================ -->
     <style>
       :root {
-        /* Couleurs Féeline · remap des tokens Veloura */
-        --_colors---brand-main-color: #D4AF37;
-        --_colors---brand-dark-1: #BFA46A;
-        --_colors---brand-dark-2: #8A7530;
-        --_colors---brand-dark-3: #2A2A2A;
-        --_colors---brand-dark-4: #1F1F1F;
-        --_colors---brand-dark-5: #1A1A1A;
-        --_colors---brand-dark-6: #2A2A2A;
-        --_colors---brand-light-1: #FFFFFF;
-        --_colors---brand-light-2: #F7F5EE;
-        --_colors---brand-light-3: #EFE6D3;
-        --_colors---brand-light-4: #E6DCC3;
-        --_colors---brand-light-5: #EFE6D3;
-        --_colors---brand-light-6: #BFA46A;
-        --_colors---brand-color-10: rgba(212, 175, 55, 0.1);
-        --_colors---brand-color-20: rgba(212, 175, 55, 0.2);
-        --_colors---brand-color-40: rgba(212, 175, 55, 0.4);
-        --_colors---brand-color-light-20: rgba(247, 245, 238, 0.2);
-        --_colors---brand-color-light-70: rgba(247, 245, 238, 0.7);
-        --_colors---border-color: rgba(42, 42, 42, 0.1);
-        --_colors---white: #FFFFFF;
+        /* Tokens primaires Veloura remappés en palette Féeline · light */
+        --_colors---brand-main-color: #D4AF37;       /* or doré */
+        --_colors---brand-dark-1:    #BFA46A;        /* or métallisé */
+        --_colors---brand-dark-2:    #8A7530;        /* or assombri (hover) */
+        --_colors---brand-dark-3:    #F7F5EE;        /* hero bg · ivoire */
+        --_colors---brand-dark-4:    #EFE6D3;        /* champagne */
+        --_colors---brand-dark-5:    #E6DCC3;        /* beige sable */
+        --_colors---brand-dark-6:    #EFE6D3;        /* champagne (was deepest dark) */
+        --_colors---brand-light-1:   #FFFFFF;        /* blanc */
+        --_colors---brand-light-2:   #F7F5EE;        /* ivoire */
+        --_colors---brand-light-3:   #EFE6D3;        /* champagne */
+        --_colors---brand-light-4:   #E6DCC3;        /* beige sable */
+        --_colors---brand-light-5:   #EFE6D3;        /* champagne */
+        --_colors---brand-light-6:   #BFA46A;        /* or métallisé */
+        --_colors---brand-color-10:  rgba(212, 175, 55, 0.10);
+        --_colors---brand-color-20:  rgba(212, 175, 55, 0.20);
+        --_colors---brand-color-40:  rgba(212, 175, 55, 0.40);
+        --_colors---brand-color-light-20: rgba(247, 245, 238, 0.20);
+        --_colors---brand-color-light-70: rgba(247, 245, 238, 0.70);
+        --_colors---border-color:    rgba(212, 175, 55, 0.20);
+        --_colors---white:           #FFFFFF;
 
-        /* Tokens dérivés Veloura */
-        --body-bg: #F7F5EE;
-        --body-bg-dark: #2A2A2A;
-        --body-font: #2A2A2A;
-        --body-font-light: #F7F5EE;
+        /* Body tokens · light theme */
+        --body-bg:         #F7F5EE;   /* ivoire */
+        --body-bg-dark:    #EFE6D3;   /* sections "dark" Veloura = champagne */
+        --body-font:       #2A2A2A;   /* encre · texte par défaut */
+        --body-font-light: #BFA46A;   /* or métallisé · pour H1 hero, accents */
 
-        /* Typographies Féeline · remap des familles Veloura */
-        --_typography---sans-font: "Montserrat", system-ui, sans-serif;
+        /* Typographies Féeline */
+        --_typography---sans-font:    "Montserrat", system-ui, sans-serif;
         --_typography---display-font: "Cormorant Garamond", Georgia, serif;
-        --_typography---brand-font: "Cormorant Garamond", Georgia, serif;
+        --_typography---brand-font:   "Cormorant Garamond", Georgia, serif;
+      }
+
+      /* Quelques ajustements ciblés sur les éléments qui héritaient
+         d'une couleur claire (lisible sur fond sombre Veloura) et qui
+         doivent maintenant être lisibles sur fond clair Féeline. */
+      .nav-link {
+        color: #2A2A2A;
+      }
+      .nav-link:hover {
+        color: #D4AF37;
+      }
+      .regular-link {
+        color: #2A2A2A;
+      }
+      .regular-link:hover {
+        color: #D4AF37;
+      }
+      .regular-link-line {
+        background-color: #D4AF37;
+      }
+      .regular-link-icon {
+        filter: brightness(0) saturate(100%) invert(64%) sepia(78%) saturate(376%) hue-rotate(1deg) brightness(94%) contrast(86%);
+      }
+      /* H1 du hero en or doré pour matcher les planches Féeline */
+      .heading.is-home-hero-title {
+        color: #BFA46A;
+      }
+      /* "Welcome" du loader en or doré */
+      .preloader-text {
+        color: #BFA46A;
+      }
+      /* Slogan "Hotel Template" plus lisible (était brand-light-5) */
+      .slogan-text {
+        color: #8A7530;
       }
     </style>
 
