@@ -159,16 +159,21 @@
       }
 
       /* ================================================================
-         MESH GRADIENTS · les SVG Velour sont teintés pourpre/peach.
-         On les masque pour ne pas avoir de résidus de couleur étrangère.
-         L'ambiance est portée par la palette ivoire/or des sections.
+         MESH GRADIENTS et BLURRY BACKGROUNDS · les SVG Velour
+         (bg-gradient-1.svg et bg-gradient-2.svg) sont teintés pourpre
+         et peach. On masque TOUS les éléments qui les utilisent. Sinon
+         l'ambiance Veloura contamine notre rendu Féeline.
          ================================================================ */
+      .mesh-bg,
+      .mesh-bgs-wrapper,
       .mesh-bg-1-center,
       .mesh-bg-2-center,
       .mesh-bg-3-left,
       .mesh-bg-4-right,
-      .mesh-bg,
-      .mesh-bgs-wrapper {
+      .room-blurry-bg,
+      .collage-blurry-bg,
+      [src*="bg-gradient-1"],
+      [src*="bg-gradient-2"] {
         display: none !important;
       }
 
