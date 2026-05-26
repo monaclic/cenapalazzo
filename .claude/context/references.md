@@ -2,6 +2,33 @@
 
 Ce document liste les références d'inspiration validées pour le site et précise ce qu'il faut emprunter à chacune. La charte graphique reste 100 % Féeline (voir `brand-guidelines.md`).
 
+## Référence d'identité principale · planches Féeline (validées client)
+
+Trois planches officielles Féeline Création ont été transmises par le client le 2026-05-26 et sont archivées dans `references-visuelles/`. Elles fixent l'identité visuelle de l'événement.
+
+* `references-visuelles/01-feeline-identite-visuelle.jpeg` · monogramme CP couronné, wax seal doré, wordmark CENA A PALAZZO, palette, tagline, livrables d'identité, logos institutionnels
+* `references-visuelles/02-feeline-charte-typo-reservation.jpeg` · charte typographique complète (Cormorant Garamond + Montserrat), univers visuel d'inspiration, mockups page de réservation FR/EN/IT
+* `references-visuelles/03-feeline-stationery-suite.jpeg` · suite stationery (menu de gala, plan de table, cartons), valeurs Prestige · Engagement · Excellence · Héritage · Philanthropie
+
+Le détail de chaque planche, y compris les **incohérences de date et de lieu à ignorer** (placeholders Féeline non actualisés), est consigné dans `references-visuelles/README.md`. Toujours lire ce README avant d'exploiter les planches comme source visuelle.
+
+Éléments graphiques signature à reproduire fidèlement côté web :
+
+* Monogramme **CP** couronné, en doré
+* Wax seal **CP** doré (ornement cérémoniel)
+* Wordmark **CENA A PALAZZO** en Cormorant Garamond
+* Filets dorés horizontaux fins
+* Palette officielle Féeline (déjà transposée dans `tailwind.config.mjs`)
+* Tagline cérémonielle (voir `content.md`)
+
+Logos institutionnels visibles sur les planches mais non fournis en fichiers isolés à ce jour :
+
+* Fondation Prince Albert II de Monaco
+* Association des Sites Historiques Grimaldi de Monaco
+* Casino di Sanremo · Comune di Sanremo · E20Sanremo · Féeline Création
+
+À demander en SVG ou PNG transparent haute définition à Féeline Création.
+
 ## Référence structurelle principale
 
 ### Veloura Hotel template (Webflow)

@@ -33,3 +33,15 @@ Thumbs.db
 # Cache
 .cache/
 .turbo/
+
+# Photos brutes haute définition fournies par le client
+# Trop volumineuses pour Git (15 à 33 MB chacune).
+# Conservées localement, à convertir en WebP optimisé dans public/assets/photos/.
+sources/photos/*.jpg
+sources/photos/*.jpeg
+sources/photos/*.png
+sources/photos/*.tif
+sources/photos/*.tiff
+sources/photos/*.heic
+sources/photos/*.raw
+!sources/photos/.gitkeep

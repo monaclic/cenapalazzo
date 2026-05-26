@@ -79,23 +79,29 @@ Branches :
 
 ```
 cenapalazzo/
-├── CLAUDE.md                  contexte maître (ce fichier)
-├── README.md                  documentation publique
-├── .claude/context/           dossier de contexte pour l'assistant
-│   ├── brand-guidelines.md    charte graphique Féeline complète
-│   ├── content.md             contenus de l'événement (FR référence)
-│   ├── references.md          inspirations visuelles et structurelles
-│   └── project-brief.md       brief business complet
+├── CLAUDE.md                          contexte maître (ce fichier)
+├── README.md                          documentation publique
+├── .claude/context/                   dossier de contexte pour l'assistant
+│   ├── brand-guidelines.md            charte graphique Féeline complète
+│   ├── content.md                     contenus de l'événement (FR référence)
+│   ├── references.md                  inspirations visuelles et structurelles
+│   ├── project-brief.md               brief business complet
+│   ├── brief-client.md                transcription FR du brief E20Sanremo
+│   └── references-visuelles/          planches Féeline et brief original
+├── sources/                           sources brutes client (hors public)
+│   ├── README.md                      inventaire et règles de nommage
+│   ├── logos/                         logos PDF vectoriels (trackés)
+│   └── photos/                        photos HD originales (non trackées)
 ├── public/
 │   └── assets/
-│       ├── photos/            visuels haute définition
-│       └── logos/             logos institutionnels
+│       ├── photos/                    versions web optimisées des photos
+│       └── logos/                     versions web optimisées des logos
 ├── src/
-│   ├── components/            composants Astro réutilisables
-│   ├── layouts/               layouts de page
-│   ├── pages/                 pages Astro et routes i18n
-│   ├── styles/                styles globaux (typo, base, tokens)
-│   └── content/               contenus structurés pour i18n
+│   ├── components/                    composants Astro réutilisables
+│   ├── layouts/                       layouts de page
+│   ├── pages/                         pages Astro et routes i18n
+│   ├── styles/                        styles globaux (typo, base, tokens)
+│   └── content/                       contenus structurés pour i18n
 ├── astro.config.mjs
 ├── tailwind.config.mjs
 ├── tsconfig.json
@@ -103,16 +109,30 @@ cenapalazzo/
 └── .nvmrc
 ```
 
+Différence clé entre `sources/` et `public/assets/` :
+
+* `sources/` contient les fichiers **maîtres** transmis par le client (PDF vectoriels, JPEG haute définition non compressés). Les photos y sont volumineuses et donc exclues de git via `.gitignore`.
+* `public/assets/` contient les **versions web optimisées** servies par Astro (JPEG compressés, et plus tard SVG des logos). Trackées dans git.
+
+Pour générer ou regénérer une version web d'une photo, voir la commande `sips` documentée dans `sources/README.md`.
+
 ## Contexte étendu
 
-Quatre fichiers de contexte complètent ce document :
+Cinq fichiers de contexte complètent ce document :
 
-1. `.claude/context/brand-guidelines.md` · charte graphique Féeline (palette, typos, esthétique, mots clés directeurs, références)
+1. `.claude/context/brand-guidelines.md` · charte graphique Féeline (palette, typos, esthétique, mots clés directeurs, tagline officielle, valeurs)
 2. `.claude/context/content.md` · tous les contenus de l'événement (horaires, tarifs, dress code, accès, patronage, menu, contact)
-3. `.claude/context/references.md` · inspirations (référence structurelle Veloura Hotel template, registre luxe institutionnel)
+3. `.claude/context/references.md` · inspirations (référence structurelle Veloura Hotel template, planches Féeline validées)
 4. `.claude/context/project-brief.md` · brief business (acteurs, marque blanche, livrables, périmètre, workflow validation)
+5. `.claude/context/brief-client.md` · transcription FR du brief client E20Sanremo (source de vérité opérationnelle)
 
-Lire ces fichiers avant toute session de développement substantielle.
+Un dossier supplémentaire `.claude/context/references-visuelles/` contient :
+
+* `brief-client-original-italien.docx` · le document Word original transmis par E20Sanremo
+* Trois planches d'identité Féeline JPEG validées par le client
+* Un `README.md` qui documente chaque planche et flagge les placeholders à ignorer (dates et lieu erronés sur certains mockups)
+
+Lire ces fichiers avant toute session de développement substantielle. En cas de conflit entre les planches Féeline et le brief client, c'est le **brief client** qui prime pour les données opérationnelles (dates, lieu, menu, contact, tarifs).
 
 ## Deadlines
 

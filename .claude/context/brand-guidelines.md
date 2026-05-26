@@ -112,12 +112,35 @@ Règles typographiques :
 * Aucune photo de stock visible
 * Aucune photo avec personnes non identifiées au premier plan
 
-## Mantra du projet
+## Tagline officielle Féeline
+
+> **Élégance. Protocole. Gastronomie. Engagement.**
+> **Une soirée d'exception pour la planète.**
+
+À utiliser au mot près. Apparaît sur la planche d'identité visuelle (`references-visuelles/01-feeline-identite-visuelle.jpeg`).
+
+## Cinq valeurs cérémoniales
+
+À exposer discrètement, par exemple en pied de section cérémoniale ou en bandeau capitales espacées :
+
+**Prestige · Engagement · Excellence · Héritage · Philanthropie**
+
+(Issues de la planche stationery suite, `references-visuelles/03-feeline-stationery-suite.jpeg`.)
+
+## Éléments d'identité signature
+
+* **Monogramme CP couronné** · doré, dans un blason, couronne princière au sommet · à utiliser en favicon, en pied de section cérémoniale, en accroche cérémonielle
+* **Wax seal CP doré** · ornement décoratif, à utiliser avec parcimonie en haut de section ou en accent
+* **Wordmark CENA A PALAZZO** · en Cormorant Garamond, lettres grandes capitales, tracking légèrement serré
+
+Aucun de ces éléments n'est encore fourni en fichier vectoriel · à demander à Féeline Création.
+
+## Mantra du projet (interne)
 
 > *Un dîner. Une cause. Une signature princière.*
 
-Cette ligne peut être utilisée en accroche, sans modification.
+Cette ligne reste utile en accroche interne mais la tagline officielle Féeline ci dessus prime côté site.
 
 ## Inspirations validées
 
-Voir `references.md` pour la liste complète. Veloura Hotel template sert de référence **structurelle** uniquement (rythme des sections, transitions, mise en page) ; la charte graphique reste 100 % Féeline.
+Voir `references.md` pour la liste complète. Veloura Hotel template sert de référence **structurelle** uniquement (rythme des sections, transitions, mise en page) ; la charte graphique reste 100 % Féeline et est désormais documentée par les trois planches Féeline validées (voir `references-visuelles/README.md`).
