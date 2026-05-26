@@ -38,6 +38,18 @@
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" />
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" is:inline></script>
     <script is:inline>new Lenis({ autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true, naiveDimensions: true, stopInertiaOnNavigate: true });</script>
+
+    <!-- Cache le badge "Made in Webflow" injecté dynamiquement par les scripts Webflow -->
+    <style>
+      .w-webflow-badge,
+      a.w-webflow-badge,
+      [class*="webflow-badge"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    </style>
   </head>
 
   <body>
