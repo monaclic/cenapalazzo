@@ -30,6 +30,11 @@ Thumbs.db
 # Vercel
 .vercel/
 
+# Captures Playwright temporaires
+.playwright-mcp/
+loader-*.png
+page-*.png
+
 # Cache
 .cache/
 .turbo/
