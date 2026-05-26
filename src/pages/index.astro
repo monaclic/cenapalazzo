@@ -39,15 +39,11 @@
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" is:inline></script>
     <script is:inline>new Lenis({ autoRaf: true, autoToggle: true, anchors: true, allowNestedScroll: true, naiveDimensions: true, stopInertiaOnNavigate: true });</script>
 
-    <!-- Masque badges et liens promotionnels Webflow ou Velour qui pourraient apparaître -->
+    <!-- Masque le badge "Made in Webflow" et le bouton "Buy the template"
+         Veloura · sélecteurs précis pour ne pas affecter les liens internes. -->
     <style>
-      a[href*="webflow.com?utm_campaign=brandjs"],
-      a[href^="https://webflow.com"],
-      a[href*="webflow.com/templates"],
-      a[href*="metrik.studio"],
-      .w-webflow-badge,
-      [class*="webflow-badge"],
-      .important-link {
+      a[href="https://webflow.com?utm_campaign=brandjs"],
+      a.important-link {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
@@ -74,10 +70,22 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript" is:inline></script>
 
-    <!-- MutationObserver DÉSACTIVÉ temporairement pour diagnostic. Les
-         sections disparaissent du DOM, on isole la cause: MO ou Webflow JS. -->
+    <!-- Filet de sécurité ultra ciblé: retire uniquement le badge "Made in
+         Webflow" injecté dynamiquement et le lien "Buy the template" Veloura
+         (.important-link). On utilise un sélecteur attribut exact pour éviter
+         de toucher les liens internes que Webflow réécrit. -->
     <script is:inline>
-      console.log('[diagnostic] MO désactivé');
+      (function () {
+        function killTemplateChrome(root) {
+          var sel = 'a[href="https://webflow.com?utm_campaign=brandjs"], a.important-link';
+          var nodes = root.querySelectorAll(sel);
+          nodes.forEach(function (n) { n.remove(); });
+        }
+        killTemplateChrome(document);
+        var mo = new MutationObserver(function () { killTemplateChrome(document); });
+        mo.observe(document.body, { childList: true, subtree: false });
+        setTimeout(function () { mo.disconnect(); }, 15000);
+      })();
     </script>
 
   </body>
