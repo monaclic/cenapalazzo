@@ -1,0 +1,46 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e8]:
+    - link "Cena a Palazzo Dîner de bienfaisance · 22 juin 2026" [ref=e10] [cursor=pointer]:
+      - /url: /
+      - generic "Cena a Palazzo" [ref=e11]:
+        - generic [ref=e12]: Cena
+        - generic [ref=e13]: a Palazzo
+      - generic [ref=e15]: Dîner de bienfaisance · 22 juin 2026
+    - navigation "Navigation principale" [ref=e16]:
+      - link "L'Événement" [ref=e17] [cursor=pointer]:
+        - /url: "#evenement"
+      - link "Le Dîner" [ref=e18] [cursor=pointer]:
+        - /url: "#diner"
+      - link "Le Menu" [ref=e19] [cursor=pointer]:
+        - /url: "#menu"
+      - link "Le Lieu" [ref=e20] [cursor=pointer]:
+        - /url: "#lieu"
+      - link "Contact" [ref=e21] [cursor=pointer]:
+        - /url: "#contact"
+      - generic "Sélecteur de langue" [ref=e23]:
+        - generic [ref=e24]: FR
+        - generic [ref=e25]: ·
+        - link "IT" [ref=e27] [cursor=pointer]:
+          - /url: /it/
+        - generic [ref=e28]: ·
+        - link "EN" [ref=e30] [cursor=pointer]:
+          - /url: /en/
+      - link "Réserver" [ref=e31] [cursor=pointer]:
+        - /url: https://www.fpa2.org/fr/evenements/cena-a-palazzo-028
+  - generic [ref=e33]:
+    - generic [ref=e35]:
+      - generic [ref=e36]: Sous la présidence de S.A.S. le Prince Albert II de Monaco
+      - heading "Cena a Palazzo" [level=1] [ref=e38]
+      - generic [ref=e42]: Dîner de bienfaisance · 22 juin 2026 · Casino di Sanremo
+      - link "Découvrir le lieu" [ref=e43] [cursor=pointer]:
+        - /url: "#start"
+        - generic [ref=e44]: Découvrir
+        - img [ref=e45]
+    - generic [ref=e49]:
+      - img "Façade du Casino di Sanremo en journée, palmiers et ciel bleu" [ref=e51]
+      - img "Salle Privée du Casino di Sanremo, parquet et plafond Belle Époque" [ref=e53]
+      - img "Façade du Casino di Sanremo illuminée la nuit" [ref=e55]
+  - generic [ref=e57]:
+    - paragraph [ref=e58]: À venir
+    - heading "Sections suivantes en cours d'intégration" [level=2] [ref=e59]
+    - paragraph [ref=e61]: Cette zone accueillera progressivement le patronage, le dîner, le menu signé du chef Christian Garcia, le programme de la soirée, le Casino di Sanremo, la galerie et le pied de page institutionnel.
