@@ -160,12 +160,22 @@
 
       /* ================================================================
          MESH GRADIENTS et BLURRY BACKGROUNDS
-         Les SVG Veloura terracotta sont remplacés par nos gradients
-         Féeline locaux (/assets/gradients/bg-gradient-1.svg et
-         bg-gradient-2.svg) qui portent les tons or doré et or
-         métallisé. On les laisse donc visibles pour conserver le
-         halo doré qui accompagne les sections.
+         Les SVG locaux or doré rendaient un halo jaune disgracieux.
+         On les masque entièrement · le fond ivoire pur est plus net
+         et plus cérémoniel pour le registre Cena a Palazzo.
          ================================================================ */
+      .mesh-bg,
+      .mesh-bgs-wrapper,
+      .mesh-bg-1-center,
+      .mesh-bg-2-center,
+      .mesh-bg-3-left,
+      .mesh-bg-4-right,
+      .room-blurry-bg,
+      .collage-blurry-bg,
+      [src*="bg-gradient-1"],
+      [src*="bg-gradient-2"] {
+        display: none !important;
+      }
 
       /* Section "is-dark" Velour: bg champagne, texte encre */
       .section.is-dark {
