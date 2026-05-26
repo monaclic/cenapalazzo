@@ -1,0 +1,378 @@
+/* ====================================================================
+   Hero · adaptation chirurgicale du template Velour Hotel
+   Structure Velour conservée, palette Féeline (ivoire / or / encre).
+   Classes nommées comme Velour pour faciliter le branchement GSAP futur.
+   ==================================================================== */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  background-color: theme('colors.ivoire');
+  color: theme('colors.encre');
+  overflow: clip;
+}
+
+.home-hero-size {
+  width: 100%;
+  min-height: 300vh;
+  display: flex;
+  flex-flow: column;
+}
+
+/* Couche texte, sticky en haut. Cale le contenu à droite de l'écran via
+   un padding-left de 50% (parti pris éditorial Velour). */
+.home-hero-layout {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 50vh;
+  padding: 10rem 8vw 2rem 50%;
+}
+
+.home-hero-content {
+  z-index: 20;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-family: theme('fontFamily.sans');
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: theme('colors.orMetallise');
+}
+
+.home-hero-title {
+  position: relative;
+  width: 100%;
+}
+
+.heading.is-home-hero-title {
+  z-index: 10;
+  position: relative;
+  display: block;
+  margin: 0;
+  font-family: theme('fontFamily.serif');
+  font-weight: 300;
+  font-size: clamp(3rem, 5vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: theme('colors.encre');
+  max-width: clamp(10rem, 50vw, 75rem);
+}
+
+.hero-subtitle {
+  font-family: theme('fontFamily.sans');
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: theme('colors.encre');
+  opacity: 0.7;
+}
+
+/* Pastille décorative animée à gauche du titre (signature Velour) */
+.dot-position-hero {
+  position: absolute;
+  bottom: clamp(1rem, 1.8vw, 2.5rem);
+  left: -3.7vw;
+  right: auto;
+  font-size: 1.3rem;
+}
+
+.dot {
+  z-index: 10;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0.4em;
+  height: 0.4em;
+  background-color: theme('colors.orDore');
+  border-radius: 50%;
+  flex: none;
+}
+
+.dot-animation {
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid theme('colors.orDore');
+  background-color: rgb(212 175 55 / 0.4);
+  border-radius: 50%;
+  flex: none;
+  animation: dot-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Lien Découvrir avec filet doré qui glisse au hover (signature Velour) */
+.regular-link {
+  z-index: 10;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.1rem;
+  margin-top: 0.5rem;
+  color: theme('colors.encre');
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.regular-link-text {
+  z-index: 10;
+  position: relative;
+  margin: 0;
+  font-family: theme('fontFamily.sans');
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.regular-link-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: theme('colors.orDore');
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.regular-link:hover .regular-link-icon {
+  transform: translateY(3px);
+}
+
+.regular-link-line {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background-color: theme('colors.orDore');
+  transform: translate(-100%, 0);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.regular-link:hover .regular-link-line {
+  transform: translate(0, 0);
+}
+
+/* Mesh gradients d'ambiance · radial-gradients en palette Féeline.
+   Reproduit le flou doré et champagne qui flotte derrière le texte. */
+.mesh-bgs-wrapper {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mesh-bg-1-center,
+.mesh-bg-2-center,
+.mesh-bg-3-left,
+.mesh-bg-4-right {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100vw;
+  pointer-events: none;
+}
+
+.mesh-bg-1-center {
+  height: 80vw;
+  opacity: 0.55;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(212 175 55 / 0.35) 0%,
+    rgb(212 175 55 / 0) 60%
+  );
+}
+
+.mesh-bg-2-center {
+  height: 80vw;
+  opacity: 0.5;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(191 164 106 / 0.3) 0%,
+    rgb(191 164 106 / 0) 55%
+  );
+  transform: rotate(72deg);
+}
+
+.mesh-bg-3-left {
+  height: 100vw;
+  opacity: 0.35;
+  background: radial-gradient(
+    ellipse at left,
+    rgb(239 230 211 / 0.65) 0%,
+    rgb(239 230 211 / 0) 50%
+  );
+  inset: 0 0 0 -85vw;
+}
+
+.mesh-bg-4-right {
+  height: 150vw;
+  opacity: 0.4;
+  background: radial-gradient(
+    ellipse at right,
+    rgb(212 175 55 / 0.25) 0%,
+    rgb(212 175 55 / 0) 55%
+  );
+  inset: 0 -100vw 0 0;
+}
+
+/* Galerie sticky d'images · 3 cadres alignés horizontalement.
+   Sur desktop ils sont sticky à 100vh pendant le scroll de l'hero,
+   donnant l'effet scrollytelling de Velour. */
+.home-hero-images {
+  z-index: 15;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
+  padding: 0 4vw;
+  overflow: clip;
+}
+
+.home-hero-sticky {
+  z-index: 15;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  gap: 4vw;
+}
+
+.home-hero-image {
+  z-index: 10;
+  flex: none;
+  position: relative;
+  width: 28vw;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.home-hero-image.is-1st,
+.home-hero-image.is-3rd {
+  flex: 1;
+}
+
+.hero-cover-image-1,
+.hero-cover-image-2,
+.hero-cover-image-3 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 14s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.06);
+}
+
+.home-hero-image:hover .hero-cover-image-1,
+.home-hero-image:hover .hero-cover-image-2,
+.home-hero-image:hover .hero-cover-image-3 {
+  transform: scale(1.12);
+}
+
+/* Apparition douce au chargement de la page */
+.home-hero-layout,
+.home-hero-images {
+  animation: hero-fade-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.home-hero-images {
+  animation-delay: 0.25s;
+}
+
+@keyframes hero-fade-in {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================================================
+   Responsive · breakpoints Velour adaptés
+   ==================================================================== */
+
+@media (max-width: 991px) {
+  .home-hero-layout {
+    padding: 9rem 8vw 2rem 8vw;
+  }
+  .heading.is-home-hero-title {
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    max-width: none;
+  }
+  .home-hero-image {
+    height: 60vh;
+  }
+  .dot-position-hero {
+    left: -2.5rem;
+    bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero-size {
+    min-height: auto;
+  }
+  .home-hero-layout {
+    position: relative;
+    padding: 9rem 6vw 3rem 6vw;
+    min-height: auto;
+  }
+  .home-hero-images {
+    padding: 0;
+  }
+  .home-hero-sticky {
+    position: relative;
+    height: auto;
+  }
+  .home-hero-image.is-2nd {
+    width: 100vw;
+    height: 28rem;
+  }
+  .home-hero-image.is-1st,
+  .home-hero-image.is-3rd {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-hero-image.is-2nd {
+    height: 24rem;
+  }
+  .heading.is-home-hero-title {
+    font-size: 2.6rem;
+    line-height: 1.1;
+  }
+  .hero-eyebrow,
+  .hero-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+  .dot-position-hero {
+    left: -1.8rem;
+    font-size: 1rem;
+  }
+}

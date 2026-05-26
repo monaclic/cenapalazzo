@@ -1,4 +1,6 @@
 ---
+import '../styles/hero.css';
+
 interface Props {
   reserveHref?: string;
 }
@@ -6,72 +8,95 @@ interface Props {
 const { reserveHref = 'https://www.fpa2.org/fr/evenements/cena-a-palazzo-028' } = Astro.props;
 ---
 
-<section id="evenement" class="relative w-full min-h-screen overflow-hidden">
-  <div class="absolute inset-0">
-    <img
-      src="/assets/photos/casino-facade-nuit.jpg"
-      alt=""
-      aria-hidden="true"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      class="w-full h-full object-cover animate-kenburns"
-    />
-    <div
-      class="absolute inset-0"
-      style="background: linear-gradient(180deg, rgba(42,42,42,0.55) 0%, rgba(42,42,42,0.35) 40%, rgba(42,42,42,0.75) 100%);"
-    ></div>
-  </div>
+<section class="hero-section">
+  <div class="home-hero-size">
 
-  <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 md:px-10 py-32 text-center text-blanc">
-    <p class="font-sans text-[0.65rem] md:text-xs tracking-ceremonial uppercase text-orDore animate-rise">
-      Sous la présidence de S.A.S. le Prince Albert II de Monaco
-    </p>
+    <!-- Couche texte, sticky en haut -->
+    <div class="home-hero-layout">
+      <div class="home-hero-content">
 
-    <h1 class="mt-10 font-serif font-light text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-ultratight leading-[0.95] animate-rise delay-200">
-      Cena a Palazzo
-    </h1>
+        <span class="hero-eyebrow">
+          Sous la présidence de S.A.S. le Prince Albert II de Monaco
+        </span>
 
-    <p class="mt-6 font-sans text-xs md:text-sm tracking-widest uppercase text-blanc/90 animate-rise delay-400">
-      Dîner de bienfaisance
-    </p>
+        <div class="home-hero-title">
+          <h1 class="heading is-home-hero-title">Cena a Palazzo</h1>
+          <div class="dot-position-hero" aria-hidden="true">
+            <div class="dot">
+              <div class="dot-animation"></div>
+            </div>
+          </div>
+        </div>
 
-    <div class="mt-10 w-20 h-px bg-orDore animate-rise delay-600"></div>
+        <span class="hero-subtitle">
+          Dîner de bienfaisance · 22 juin 2026 · Casino di Sanremo
+        </span>
 
-    <p class="mt-10 font-serif italic text-lg md:text-2xl lg:text-3xl text-blanc/95 max-w-ceremonie leading-snug animate-rise delay-600">
-      Élégance. Protocole. Gastronomie. Engagement.
-      <br class="hidden md:inline" />
-      Une soirée d'exception pour la planète.
-    </p>
+        <a href="#start" class="regular-link" aria-label="Découvrir le lieu">
+          <span class="regular-link-text">Découvrir</span>
+          <svg
+            class="regular-link-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+          <span class="regular-link-line" aria-hidden="true"></span>
+        </a>
 
-    <div class="mt-12 flex flex-col items-center gap-2 animate-rise delay-800">
-      <p class="font-serif italic text-2xl md:text-3xl">22 juin 2026</p>
-      <p class="font-sans text-[0.65rem] md:text-xs tracking-widest uppercase text-blanc/80">
-        Casino di Sanremo · Salle Privée
-      </p>
+      </div>
+
+      <!-- Mesh gradients d'ambiance -->
+      <div class="mesh-bgs-wrapper" aria-hidden="true">
+        <div class="mesh-bg-1-center"></div>
+        <div class="mesh-bg-2-center"></div>
+        <div class="mesh-bg-3-left"></div>
+        <div class="mesh-bg-4-right"></div>
+      </div>
     </div>
 
-    <div class="mt-14 flex flex-col sm:flex-row items-center gap-6 animate-rise delay-1000">
-      <a
-        href={reserveHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-sans text-[0.7rem] tracking-widest uppercase px-10 py-4 bg-orDore text-encre hover:bg-orMetallise transition-colors duration-500"
-      >
-        Réserver votre place
-      </a>
-      <a
-        href="#patronage"
-        class="group font-sans text-[0.7rem] tracking-widest uppercase text-blanc/80 hover:text-orDore transition-colors duration-300 flex items-center gap-2"
-      >
-        Découvrir
-        <span class="inline-block translate-y-[1px] transition-transform duration-500 group-hover:translate-y-[3px]" aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </div>
+    <!-- Galerie sticky d'images -->
+    <div id="start" class="home-hero-images">
+      <div class="home-hero-sticky">
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-blanc/60">
-    <span class="font-sans text-[0.6rem] tracking-ceremonial uppercase">Scroll</span>
-    <span class="block w-px h-10 bg-blanc/40 animate-pulse"></span>
+        <div class="home-hero-image is-1st">
+          <img
+            src="/assets/photos/casino-facade-jour.jpg"
+            alt="Façade du Casino di Sanremo en journée, palmiers et ciel bleu"
+            class="hero-cover-image-1"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+
+        <div class="home-hero-image is-2nd">
+          <img
+            src="/assets/photos/sala-casino-02.jpg"
+            alt="Salle Privée du Casino di Sanremo, parquet et plafond Belle Époque"
+            class="hero-cover-image-2"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="home-hero-image is-3rd">
+          <img
+            src="/assets/photos/casino-facade-nuit.jpg"
+            alt="Façade du Casino di Sanremo illuminée la nuit"
+            class="hero-cover-image-3"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
