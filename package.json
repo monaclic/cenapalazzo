@@ -1,0 +1,27 @@
+{
+  "name": "cenapalazzo",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "description": "Site événementiel du dîner de gala Cena a Palazzo, Casino di Sanremo, 22 juin 2026, sous la présidence de S.A.S. le Prince Albert II de Monaco.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/sitemap": "^3.2.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
