@@ -654,6 +654,115 @@
       }
       .feeline-faq-answer a:hover { color: #D4AF37; }
 
+      /* ================================================================
+         SECTION LE LIEU · grille éditoriale 2 colonnes, sans dépendance
+         aux animations Velour sticky-about (qui ne supportent qu'une
+         instance par page). Photos à gauche, 3 blocs info à droite.
+         ================================================================ */
+      .feeline-lieu-section {
+        background-color: #FFFFFF;
+        padding: 8rem 0 9rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .feeline-lieu-section::before,
+      .feeline-lieu-section::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: clamp(80px, 9vw, 120px);
+        height: 1px;
+        background-color: #D4AF37;
+        opacity: 0.55;
+      }
+      .feeline-lieu-section::before { top: 4.5rem; }
+      .feeline-lieu-section::after  { bottom: 4.5rem; }
+      .feeline-lieu-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 6vw;
+      }
+      .feeline-lieu-header {
+        text-align: center;
+        margin: 0 auto 5rem auto;
+        max-width: 720px;
+      }
+      .feeline-lieu-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .feeline-lieu-images {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .feeline-lieu-image {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        display: block;
+      }
+      .feeline-lieu-blocks {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+      }
+      .feeline-lieu-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .feeline-lieu-block-eyebrow {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: #BFA46A;
+        margin: 0;
+      }
+      .feeline-lieu-block-title {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(1.4rem, 2vw, 1.85rem);
+        line-height: 1.25;
+        color: #2A2A2A;
+        margin: 0;
+      }
+      .feeline-lieu-block-divider {
+        width: 32px;
+        height: 1px;
+        background-color: #D4AF37;
+        margin: 0.4rem 0 0.3rem 0;
+      }
+      .feeline-lieu-block-text {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.12rem;
+        line-height: 1.75;
+        color: #2A2A2A;
+        opacity: 0.78;
+        margin: 0;
+      }
+      @media (max-width: 991px) {
+        .feeline-lieu-layout {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        .feeline-lieu-images {
+          flex-direction: row;
+        }
+      }
+      @media (max-width: 600px) {
+        .feeline-lieu-section { padding: 5rem 0 6rem 0; }
+        .feeline-lieu-section::before { top: 2.5rem; }
+        .feeline-lieu-section::after  { bottom: 2.5rem; }
+        .feeline-lieu-images { flex-direction: column; }
+      }
+
       @media (max-width: 991px) {
         .feeline-faq-item > summary {
           grid-template-columns: 2.2rem 1fr auto;
@@ -807,7 +916,41 @@
 
 <section class="section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">L'événement</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title">Un dîner de gala caritatif au cœur de la Riviera, sous le haut patronage de S.A.S. le Prince Albert II de Monaco.</h2><a aria-label="Scroll vers la suite" data-wf--circle-button--variant="base" href="#evenement" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Salon du Casino di Sanremo avec banquettes en velours et grand lustre." class="cover-image"/></div><div class="sticky-side-image is-2nd"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Lustres sphériques ornés dans un grand couloir voûté." class="cover-image"/></div><div class="sticky-side-image is-3rd"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Service du champagne dans des flûtes en cristal." class="cover-image"/></div></div></div><div id="evenement" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Soirée caritative</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Une cause, un dîner d'exception</h2><p class="paragraph-small">Cena a Palazzo réunit le 22 juin 2026 des convives venus de Monaco, d'Italie et d'ailleurs pour célébrer la cause environnementale méditerranéenne autour d'une table d'exception.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Signé par le chef</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Le savoir faire de Christian Garcia</h2><p class="paragraph-small">Chef du Palais Princier de Monaco, Christian Garcia compose pour la soirée un menu en quatre actes, mêlant tradition ligure et grand art monégasque, servi dans la salle privée du Casino.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Engagement princier</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Au bénéfice de la Fondation</h2><p class="paragraph-small">S.A.S. le Prince Albert II de Monaco place la soirée sous son haut patronage. L'intégralité des bénéfices revient à sa Fondation, dédiée à la préservation des écosystèmes méditerranéens.</p></div></div></div></div></div><div class="bg-absolute-gradient"></div></section>
 
-<section class="section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le lieu</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title">Le Casino di Sanremo, joyau Liberty au bord de la mer Ligurienne, ouvre sa salle privée pour la soirée.</h2><a aria-label="Scroll vers la suite" data-wf--circle-button--variant="base" href="#lieu" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="cover-image"/></div><div class="sticky-side-image is-2nd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="cover-image"/></div><div class="sticky-side-image is-3rd"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="Salle de réception du Casino di Sanremo." class="cover-image"/></div></div></div><div id="lieu" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Palais Liberty</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Architecture et mémoire</h2><p class="paragraph-small">Édifié en 1905 par l'architecte Eugenio Ferret, le Casino di Sanremo demeure l'un des plus beaux exemples du style Liberty italien, classé monument historique de la Riviera des Fleurs.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Salle privée</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Un écrin cérémoniel</h2><p class="paragraph-small">La salle privée du casino, habituellement réservée aux grandes occasions, accueille les convives de Cena a Palazzo dans une scénographie intime, à la lumière des lustres d'origine.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Adresse et accès</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Au cœur de Sanremo</h2><p class="paragraph-small">Corso degli Inglesi 18, à dix minutes à pied de la gare ferroviaire. Service voiturier sur place pour la soirée, et stationnement public à proximité immédiate.</p></div></div></div></div></div><div class="bg-absolute-gradient"></div></section>
+<section id="lieu" class="feeline-lieu-section">
+  <div class="feeline-lieu-container">
+    <header class="feeline-lieu-header">
+      <p class="feeline-faq-eyebrow">Le lieu</p>
+      <h2 class="feeline-faq-heading">Casino di Sanremo</h2>
+      <p class="feeline-faq-subtitle">Joyau Liberty au bord de la mer Ligurienne, le casino ouvre sa salle privée pour accueillir les convives de Cena a Palazzo.</p>
+    </header>
+    <div class="feeline-lieu-layout">
+      <div class="feeline-lieu-images">
+        <img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="feeline-lieu-image"/>
+        <img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="feeline-lieu-image"/>
+      </div>
+      <div class="feeline-lieu-blocks">
+        <div class="feeline-lieu-block">
+          <p class="feeline-lieu-block-eyebrow">Palais Liberty</p>
+          <h3 class="feeline-lieu-block-title">Architecture et mémoire</h3>
+          <div class="feeline-lieu-block-divider"></div>
+          <p class="feeline-lieu-block-text">Édifié en 1905 par l'architecte Eugenio Ferret, le Casino di Sanremo demeure l'un des plus beaux exemples du style Liberty italien, classé monument historique de la Riviera des Fleurs.</p>
+        </div>
+        <div class="feeline-lieu-block">
+          <p class="feeline-lieu-block-eyebrow">Salle privée</p>
+          <h3 class="feeline-lieu-block-title">Un écrin cérémoniel</h3>
+          <div class="feeline-lieu-block-divider"></div>
+          <p class="feeline-lieu-block-text">La salle privée du casino, habituellement réservée aux grandes occasions, accueille les convives de Cena a Palazzo dans une scénographie intime, à la lumière des lustres d'origine.</p>
+        </div>
+        <div class="feeline-lieu-block">
+          <p class="feeline-lieu-block-eyebrow">Adresse et accès</p>
+          <h3 class="feeline-lieu-block-title">Au cœur de Sanremo</h3>
+          <div class="feeline-lieu-block-divider"></div>
+          <p class="feeline-lieu-block-text">Corso degli Inglesi 18, à dix minutes à pied de la gare ferroviaire. Service voiturier sur place pour la soirée, et stationnement public à proximité immédiate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="questions" class="feeline-faq-section">
   <div class="feeline-faq-container">
     <header class="feeline-faq-header">
