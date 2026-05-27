@@ -41,14 +41,14 @@
         --_colors---brand-dark-1:    #BFA46A;        /* or métallisé */
         --_colors---brand-dark-2:    #8A7530;        /* or assombri (hover) */
         --_colors---brand-dark-3:    #FFFFFF;        /* hero bg · blanc pur */
-        --_colors---brand-dark-4:    #FAFAFA;        /* blanc presque pur */
-        --_colors---brand-dark-5:    #F7F5EE;        /* ivoire (touche subtile) */
-        --_colors---brand-dark-6:    #FFFFFF;        /* blanc (was deepest dark) */
+        --_colors---brand-dark-4:    #FFFFFF;        /* blanc pur */
+        --_colors---brand-dark-5:    #FFFFFF;        /* blanc pur */
+        --_colors---brand-dark-6:    #FFFFFF;        /* blanc pur */
         --_colors---brand-light-1:   #FFFFFF;        /* blanc */
         --_colors---brand-light-2:   #FFFFFF;        /* blanc */
-        --_colors---brand-light-3:   #FAFAFA;        /* blanc cassé */
-        --_colors---brand-light-4:   #F7F5EE;        /* ivoire */
-        --_colors---brand-light-5:   #FAFAFA;        /* blanc cassé */
+        --_colors---brand-light-3:   #FFFFFF;        /* blanc pur */
+        --_colors---brand-light-4:   #FFFFFF;        /* blanc pur */
+        --_colors---brand-light-5:   #FFFFFF;        /* blanc pur */
         --_colors---brand-light-6:   #BFA46A;        /* or métallisé */
         --_colors---brand-color-10:  rgba(212, 175, 55, 0.10);
         --_colors---brand-color-20:  rgba(212, 175, 55, 0.20);
@@ -60,7 +60,7 @@
 
         /* Body tokens · all white */
         --body-bg:         #FFFFFF;   /* blanc pur */
-        --body-bg-dark:    #FAFAFA;   /* sections alternées en blanc cassé */
+        --body-bg-dark:    #FFFFFF;   /* sections alternées · blanc pur */
         --body-font:       #2A2A2A;   /* encre · texte par défaut */
         --body-font-light: #BFA46A;   /* or métallisé · pour H1 hero, accents */
 
@@ -143,11 +143,28 @@
         background-color: rgba(247, 245, 238, 0.15);
       }
 
-      /* Loader · blason CP centré dans le cadre, sans crop */
+      /* Loader · blason CP centré dans le cadre, sans crop, apparition chic */
       .preloader-image.is-blazon {
         object-fit: contain;
         object-position: center;
         background-color: #FFFFFF;
+        animation: blazon-appear 2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes blazon-appear {
+        0% {
+          opacity: 0;
+          transform: scale(0.85) translateY(15px);
+          filter: blur(8px);
+        }
+        50% {
+          opacity: 1;
+          filter: blur(0);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+          filter: blur(0);
+        }
       }
       /* Cache l'overlay quand on a un blason (pas une photo) */
       .preloader-image-trigger:has(.preloader-image.is-blazon) .preloader-image-color {
@@ -188,9 +205,451 @@
         display: none !important;
       }
 
-      /* Section "is-dark" Velour: bg blanc cassé, texte encre */
+      /* ----- Sticky-title avec gravure casino en background indépendant
+         Le texte reste à sa position Veloura native (animation SplitText
+         conservée). La gravure flotte derrière, en filigrane.
+         Réduit la hauteur de la section pour que le ScrollTrigger
+         déclenche l'animation du titre plus tôt (moins de scroll). ----- */
+      .sticky-title-size.has-illustration {
+        position: relative;
+        min-height: 100vh !important;
+      }
+      .sticky-title-illustration {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(420px, 60vw, 900px);
+        height: auto;
+        object-fit: contain;
+        z-index: 0;
+        opacity: 0.32;
+        pointer-events: none;
+        mix-blend-mode: multiply;
+      }
+      .sticky-title-size.has-illustration .sticky-title-layout {
+        position: relative;
+        z-index: 2;
+      }
+      @media (max-width: 767px) {
+        .sticky-title-illustration {
+          opacity: 0.22;
+        }
+      }
+
+      /* ================================================================
+         GRAVURE FÉELINE INLINE · sibling de .accomondation-wrapper.
+         Réduit la hauteur sticky-title-size Velour (150lvh par défaut,
+         crée un énorme vide) à 100vh, et padding modéré sur la gravure.
+         ================================================================ */
+      .accomondation-wrapper .sticky-title-size {
+        min-height: 100vh !important;
+      }
+      .feeline-engraving-inline {
+        width: 100%;
+        padding: 2rem 6vw 4rem 6vw;
+        text-align: center;
+      }
+      .feeline-engraving-image {
+        display: block;
+        width: 100%;
+        max-width: 720px;
+        height: auto;
+        margin: 0 auto 1.2rem auto;
+      }
+      .feeline-engraving-caption {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: #BFA46A;
+        margin: 0;
+      }
+
+      /* ================================================================
+         SECTION PATRONAGE · éditorial sobre, prose continue.
+         Wax seal CP comme ancre, deux paragraphes, pas de box.
+         ================================================================ */
+      .feeline-patronage-section {
+        background-color: #FFFFFF;
+        padding: 7rem 0 8rem 0;
+        text-align: center;
+      }
+      .feeline-patronage-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 6vw;
+      }
+      .feeline-patronage-seal {
+        display: block;
+        width: clamp(140px, 14vw, 200px);
+        height: auto;
+        margin: 0 auto 3rem auto;
+      }
+      .feeline-patronage-heading {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+        line-height: 1.3;
+        color: #2A2A2A;
+        margin: 0 0 2.5rem 0;
+      }
+      .feeline-patronage-heading em {
+        font-style: italic;
+        color: #BFA46A;
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+      .feeline-patronage-body {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.28rem;
+        line-height: 1.75;
+        color: #2A2A2A;
+        margin: 0 auto 1.5rem auto;
+        max-width: 52rem;
+      }
+      .feeline-patronage-body em {
+        font-style: italic;
+        color: #BFA46A;
+      }
+      .feeline-patronage-body:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ================================================================
+         SECTION MENU FÉELINE · 4 cartes papier disposées en ligne,
+         chacune représentant un plat. Effet papier ivoire avec ombre,
+         filet doré, légère rotation aléatoire.
+         ================================================================ */
+      .feeline-menu-section {
+        background-color: #FFFFFF;
+        padding: 7rem 0;
+        text-align: center;
+      }
+      .feeline-menu-header {
+        max-width: 1100px;
+        margin: 0 auto 4rem auto;
+        padding: 0 6vw;
+      }
+      .feeline-eyebrow {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: #BFA46A;
+        margin: 0 0 1.5rem 0;
+      }
+      .feeline-menu-heading {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(2rem, 3.4vw, 3.4rem);
+        line-height: 1.15;
+        color: #2A2A2A;
+        margin: 0 0 1.5rem 0;
+      }
+      .feeline-menu-heading em {
+        font-style: italic;
+        color: #BFA46A;
+      }
+      .feeline-menu-intro {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-size: 1.28rem;
+        line-height: 1.7;
+        color: #2A2A2A;
+        opacity: 0.8;
+        max-width: 48rem;
+        margin: 0 auto 2rem auto;
+      }
+      .feeline-filet {
+        width: 50px;
+        height: 1px;
+        background-color: #D4AF37;
+        margin: 0 auto;
+      }
+      /* ----- Les 4 cartes papier ----- */
+      .feeline-menu-cards {
+        max-width: 1280px;
+        margin: 0 auto 4rem auto;
+        padding: 0 6vw;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+      .feeline-card {
+        position: relative;
+        padding: 3rem 1.6rem 2.2rem;
+        background-color: #FCFAF3;
+        background-image:
+          radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+          radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 55%),
+          repeating-linear-gradient(0deg, rgba(212, 175, 55, 0.015) 0px, rgba(212, 175, 55, 0.015) 1px, transparent 1px, transparent 3px);
+        border: 1px solid rgba(212, 175, 55, 0.22);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.8) inset,
+          0 14px 30px rgba(42, 42, 42, 0.07),
+          0 3px 8px rgba(42, 42, 42, 0.04);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
+      }
+      .feeline-card::before {
+        content: "";
+        position: absolute;
+        top: 1.4rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 32px;
+        height: 1px;
+        background-color: #D4AF37;
+      }
+      .feeline-card:hover {
+        transform: translateY(-6px);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.8) inset,
+          0 24px 52px rgba(212, 175, 55, 0.20),
+          0 6px 16px rgba(42, 42, 42, 0.08);
+        z-index: 3;
+      }
+      .feeline-card-num {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.7rem;
+        color: #BFA46A;
+        margin-top: 1.2rem;
+        line-height: 1;
+      }
+      .feeline-card-label {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #2A2A2A;
+        opacity: 0.55;
+        margin: 0.5rem 0 1rem 0;
+      }
+      .feeline-card-dish {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.25;
+        color: #2A2A2A;
+        margin: 0;
+      }
+      .feeline-card-detail {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: #2A2A2A;
+        opacity: 0.6;
+        margin: 0.5rem 0 0 0;
+        font-style: italic;
+      }
+      .feeline-menu-pairing {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #BFA46A;
+        margin: 0;
+      }
+      @media (max-width: 991px) {
+        .feeline-menu-cards {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .feeline-menu-cards {
+          grid-template-columns: 1fr;
+          max-width: 380px;
+        }
+      }
+
+      /* ================================================================
+         SECTION CONFIDENCES + CARTE DE CORRESPONDANCE
+         Diptyque éditorial inspiré du carton d'invitation gravé.
+         Confidences numérotées en chiffres romains à gauche,
+         carte papier vellum à droite avec sous lignes pointillées.
+         ================================================================ */
+      .feeline-faq-section {
+        background-color: #FFFFFF;
+        padding: 8rem 0 9rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .feeline-faq-section::before,
+      .feeline-faq-section::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: clamp(80px, 9vw, 120px);
+        height: 1px;
+        background-color: #D4AF37;
+        opacity: 0.55;
+      }
+      .feeline-faq-section::before { top: 4.5rem; }
+      .feeline-faq-section::after  { bottom: 4.5rem; }
+      .feeline-faq-container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 6vw;
+        position: relative;
+      }
+      .feeline-faq-header {
+        text-align: center;
+        margin-bottom: 5.5rem;
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .feeline-faq-eyebrow {
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.66rem;
+        font-weight: 500;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: #BFA46A;
+        margin: 0 0 1.4rem 0;
+      }
+      .feeline-faq-heading {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(2.6rem, 5vw, 4.4rem);
+        line-height: 1;
+        color: #2A2A2A;
+        margin: 0 0 1.4rem 0;
+        letter-spacing: -0.005em;
+      }
+      .feeline-faq-subtitle {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+        color: #2A2A2A;
+        opacity: 0.65;
+        line-height: 1.55;
+        margin: 0;
+      }
+      /* ----- Confidences éditoriales ----- */
+      .feeline-faq-list {
+        display: flex;
+        flex-direction: column;
+        max-width: 820px;
+        margin: 0 auto;
+      }
+      .feeline-faq-item {
+        border-top: 1px solid rgba(191, 164, 106, 0.4);
+        padding: 1.9rem 0;
+      }
+      .feeline-faq-item:last-child {
+        border-bottom: 1px solid rgba(191, 164, 106, 0.4);
+      }
+      .feeline-faq-item > summary {
+        list-style: none;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 3.4rem 1fr auto;
+        align-items: baseline;
+        gap: 1.6rem;
+      }
+      .feeline-faq-item > summary::-webkit-details-marker { display: none; }
+      .feeline-faq-numeral {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.75rem;
+        color: #BFA46A;
+        line-height: 1;
+        transition: color 0.3s ease;
+        letter-spacing: 0.02em;
+      }
+      .feeline-faq-question {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(1.2rem, 1.55vw, 1.55rem);
+        font-weight: 400;
+        font-style: italic;
+        color: #2A2A2A;
+        line-height: 1.35;
+        transition: color 0.3s ease;
+      }
+      .feeline-faq-toggle {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: #BFA46A;
+        white-space: nowrap;
+        align-self: center;
+        opacity: 0.7;
+        transition: opacity 0.3s ease, color 0.3s ease;
+      }
+      .feeline-faq-item[open] .feeline-faq-toggle::before { content: "Refermer"; }
+      .feeline-faq-item:not([open]) .feeline-faq-toggle::before { content: "Lire la réponse"; }
+      .feeline-faq-item > summary:hover .feeline-faq-numeral,
+      .feeline-faq-item > summary:hover .feeline-faq-toggle,
+      .feeline-faq-item > summary:hover .feeline-faq-question {
+        color: #BFA46A;
+      }
+      .feeline-faq-item > summary:hover .feeline-faq-toggle { opacity: 1; }
+      .feeline-faq-answer-wrap {
+        display: grid;
+        grid-template-columns: 3.4rem 1fr;
+        gap: 1.6rem;
+        margin-top: 1.1rem;
+      }
+      .feeline-faq-answer {
+        grid-column: 2;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.12rem;
+        line-height: 1.75;
+        color: #2A2A2A;
+        opacity: 0.78;
+        margin: 0;
+        max-width: 38rem;
+        padding-left: 1.4rem;
+        border-left: 1px solid rgba(212, 175, 55, 0.5);
+      }
+      .feeline-faq-answer a {
+        color: #BFA46A;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+      }
+      .feeline-faq-answer a:hover { color: #D4AF37; }
+
+      @media (max-width: 991px) {
+        .feeline-faq-item > summary {
+          grid-template-columns: 2.2rem 1fr auto;
+          gap: 1.1rem;
+        }
+        .feeline-faq-answer-wrap {
+          grid-template-columns: 2.2rem 1fr;
+          gap: 1.1rem;
+        }
+        .feeline-faq-numeral { font-size: 1.4rem; }
+      }
+      @media (max-width: 600px) {
+        .feeline-faq-section { padding: 5rem 0 6rem 0; }
+        .feeline-faq-section::before { top: 2.5rem; }
+        .feeline-faq-section::after  { bottom: 2.5rem; }
+        .feeline-faq-toggle { display: none; }
+        .feeline-faq-item > summary {
+          grid-template-columns: 1.8rem 1fr;
+        }
+      }
+
+      /* Section "is-dark" Velour: bg blanc pur, texte encre */
       .section.is-dark {
-        background-color: #FAFAFA;
+        background-color: #FFFFFF;
         color: #2A2A2A;
       }
       .section.is-dark *:not(.regular-link):not(.regular-link-line):not(.button):not(.dot):not(.dot-animation) {
@@ -222,6 +681,20 @@
       }
       body, html, .page-wrapper {
         background-color: #FFFFFF;
+      }
+      /* Override Velour : neutraliser toutes les sources de tinte du hero.
+         page-load-bg-color force un champagne ; home-hero-* et .main peuvent
+         aussi porter un fond. On force le blanc partout dans la chaîne. */
+      .section.page-load-bg-color,
+      .page-load-bg-color,
+      main.main,
+      .main,
+      .home-hero-size,
+      .home-hero-layout,
+      .home-hero-content {
+        background-color: #FFFFFF !important;
+        background: #FFFFFF !important;
+        background-image: none !important;
       }
     </style>
 
@@ -258,7 +731,123 @@
 
   <body>
 
-<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href="/" aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690636b4c214d606fac042b6_city-logo-2-light.svg" loading="lazy" alt="" class="logo-image"/><div class="slogan-line"></div><div class="slogan-text">Hotel<br/>Template</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="/hotel" class="nav-link">Hotel</a><link rel="prerender" href="/hotel"/><a href="/relax" class="nav-link">Relax</a><a href="/rooms-1" class="nav-link">Rooms</a><a href="/restaurant" class="nav-link">Restaurant</a><a href="/contact" class="nav-link">Contact</a><div class="nav-divider"></div></div></header><div class="menu-burger"><div class="menu-burger-text">menu</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">Explore</div><div class="menu-links"><a href="/" aria-current="page" class="menu-link-block w-inline-block w--current"><div class="menu-link-text">Home</div><div class="menu-link-line"></div></a><a href="/hotel" class="menu-link-block w-inline-block"><div class="menu-link-text">The Hotel</div><div class="menu-link-line"></div></a><a href="/rooms-1" class="menu-link-block w-inline-block"><div class="menu-link-text">Rooms</div><div class="menu-link-line"></div></a><a href="/restaurant" class="menu-link-block w-inline-block"><div class="menu-link-text">Restaurant</div><div class="menu-link-line"></div></a><a href="/relax" class="menu-link-block w-inline-block"><div class="menu-link-text">Relax</div><div class="menu-link-line"></div></a><a href="/packages" class="menu-link-block w-inline-block"><div class="menu-link-text">Packages</div><div class="menu-link-line"></div></a><a href="/contact" class="menu-link-block w-inline-block"><div class="menu-link-text">Contact</div><div class="menu-link-line"></div></a><a href="/booking" class="menu-link-block w-inline-block"><div class="menu-link-text">Booking</div><div class="menu-link-line"></div></a></div></div><div class="menu-flex"><div class="menu-small-title">More</div><div class="menu-small-links"><a data-wf--regular-link--variant="dark" href="/location" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Location</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/faq" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Questions</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/rooms-2" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Rooms 2</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/rooms-3" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Rooms 3</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/utility-pages/components" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Components</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">Address</div><div class="menu-small-text">:</div><div class="menu-small-text">12 Stonebridge Street, Prague</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">A boutique escape in timeless streets</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#start" class="regular-link w-inline-block"><div class="regular-link-text">Discover</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div id="start" class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Cozy café interior with wooden tables, cushioned seating, and hanging cage pendant lights." class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Hand pouring champagne into crystal flutes on a festive table with holiday decorations and blurred background lights." class="hero-cover-image-3"/></div></div></div></div></section><section class="section is-dark"><div class="accomondation-wrapper"><div class="sticky-title-size"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Boutique Hotel</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title is-light">Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#rooms" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e549479361ab265c33c6cb_arrow-icon-10.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div id="rooms" class="rooms-wrapper w-dyn-list"><div role="list" class="rooms-list w-dyn-items"><div role="listitem" class="room-item w-dyn-item"><div class="room-list-about"><div class="room-list-image"><div data-parallax-small="true" class="parallax-image-small"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Corner Suite" class="parallax-cover-image is-small"/></div></div><div class="room-details"><div class="rooms-detail"><p class="uppercase-text with-min-w">Category</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">Suite</p></div><div class="rooms-detail"><p class="uppercase-text with-min-w">Price</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">From €215</p></div></div><p class="paragraph-small">A spacious corner retreat with warm light, elegant textures, and calm views. Designed for effortless comfort throughout your stay.</p><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="room-blurry-bg"/></div><div class="room-list-title"><a aria-label="Accommodation link" href="/room/corner-suite" class="room-list-link w-inline-block"><h3 class="heading is-room-list-title">Corner Suite</h3><div class="room-button"><div class="circle-button"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="circle-button-icon"/></div></div></a></div></div><div role="listitem" class="room-item w-dyn-item"><div class="room-list-about"><div class="room-list-image"><div data-parallax-small="true" class="parallax-image-small"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Velvet Room" class="parallax-cover-image is-small"/></div></div><div class="room-details"><div class="rooms-detail"><p class="uppercase-text with-min-w">Category</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">Room</p></div><div class="rooms-detail"><p class="uppercase-text with-min-w">Price</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">From €85</p></div></div><p class="paragraph-small">A cozy, softly lit room wrapped in warm tones and velvet textures. Perfect for restful nights, unhurried mornings, and moments of calm.</p><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="room-blurry-bg"/></div><div class="room-list-title"><a aria-label="Accommodation link" href="/room/velvet-room" class="room-list-link w-inline-block"><h3 class="heading is-room-list-title">Velvet Room</h3><div class="room-button"><div class="circle-button"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="circle-button-icon"/></div></div></a></div></div><div role="listitem" class="room-item w-dyn-item"><div class="room-list-about"><div class="room-list-image"><div data-parallax-small="true" class="parallax-image-small"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt="Amber Suite" class="parallax-cover-image is-small"/></div></div><div class="room-details"><div class="rooms-detail"><p class="uppercase-text with-min-w">Category</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">Suite</p></div><div class="rooms-detail"><p class="uppercase-text with-min-w">Price</p><p class="uppercase-text is-opa-70">:</p><p class="uppercase-text">From €125</p></div></div><p class="paragraph-small">A bright, welcoming suite with golden accents and refined details. Enjoy generous space, soft bedding, and a serene atmosphere.</p><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="room-blurry-bg"/></div><div class="room-list-title"><a aria-label="Accommodation link" href="/room/amber-suite" class="room-list-link w-inline-block"><h3 class="heading is-room-list-title">Amber Suite</h3><div class="room-button"><div class="circle-button"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="circle-button-icon"/></div></div></a></div></div></div></div></div><div class="cta-section"><div content-on-scroll="true" class="cta-content"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Boutique Hotel</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading-brand in-cta-1">Enjoy a cozy weekend stay</h2><a data-wf--main-button--variant="base" href="/booking" class="button w-inline-block"><div class="button-text">Booking</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="images-in-circle"><div class="cta-image-block"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Cobblestone street lit by street lamps at twilight with historic buildings on both sides." class="cta-image"/></div><div class="cta-image-block is-2nd"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="View of a city skyline with historic buildings and church towers at sunset behind a green park with blooming trees." class="cta-image"/></div><div class="cta-image-block is-3rd"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Person lying face down receiving back massage with oil in a serene spa setting." class="cta-image"/></div><div class="cta-image-block is-4th"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Elegant serving display with assorted cheeses, cubed cheese, almonds, crackers, bread, and sliced figs on ornate silver trays with greenery background." class="cta-image"/></div><div class="cta-image-block is-5th"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Cozy café interior with wooden tables, cushioned seating, and hanging cage pendant lights." class="cta-image"/></div><div class="cta-image-block is-6th"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="cta-image"/></div><div class="circle-border-1"></div><div class="circle-border-2"></div><div class="circle-border-3"></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg"/></div></section><section class="section with-bg-gradient-3"><div class="padding"><div data-wf--carousel-treatments--variant="base" class="carousel-wrapper"><div data-content-in="true" class="carousel-title"><div><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Treatments</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div></div><div class="carousel-h-block"><h2 class="heading is-medium">Relax that comes with your stay in Velora</h2></div></div><div class="carousel-max-width"><div data-delay="4000" data-animation="slide" class="carousel w-slider" data-autoplay="false" data-easing="ease-in-out-circ" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="0" data-duration="900" data-infinite="false"><div class="carousel-mask w-slider-mask"><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Aromatherapy Massage" href="/booking" class="card-layout w-inline-block"><div class="card-tag"><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div><div class="card-tag-text">Featured</div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" data-card-image="true" alt="Person receiving an arm massage on a massage table in a softly lit room." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Calm your senses</div><p class="paragraph-medium is-bold">Aromatherapy Massage</p><div class="card-text-block"><p class="paragraph">Warm essential oils ease tension and bring deep relaxation.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Herbal Steam Ritual" href="/booking" class="card-layout w-inline-block"><div class="card-tag"><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div><div class="card-tag-text">Featured</div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" data-card-image="true" alt="Wooden bath tray across a white bathtub filled with bubble bath and lemon slices, holding bath salt, a lit candle, two amber bottles, and a wooden brush." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Detox and renew</div><p class="paragraph-medium is-bold">Herbal Steam Ritual</p><div class="card-text-block"><p class="paragraph">Herbal steam cleanses the skin and clears the mind.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Hot Stone Therapy" href="/booking" class="card-layout w-inline-block"><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" data-card-image="true" alt="Person holding two halves of a grapefruit while massaging a bare back." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Deeper calm</div><p class="paragraph-medium is-bold">Hot Stone Therapy</p><div class="card-text-block"><p class="paragraph">Heated stones melt stress and restore harmony.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Rejuvenating Facial" href="/booking" class="card-layout w-inline-block"><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" data-card-image="true" alt="Person with eyes closed receiving a facial mask treatment applied with a brush." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Refresh and glow</div><p class="paragraph-medium is-bold">Rejuvenating Facial</p><div class="card-text-block"><p class="paragraph">Gentle care that restores brightness and hydration.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Body Renewal Scrub" href="/booking" class="card-layout w-inline-block"><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" data-card-image="true" alt="Hand holding a brown bottle of massage oil over a woman lying face down on a massage table." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Smooth, soft, renewed</div><p class="paragraph-medium is-bold">Body Renewal Scrub</p><div class="card-text-block"><p class="paragraph">Sea salt and oils refresh and soften the skin.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article><article class="carousel-slide w-slide"><div data-wf--card--variant="in-carousel" class="card-item"><a aria-label="Deep Relax Massage" href="/booking" class="card-layout w-inline-block"><div class="card-image"><div class="card-overlay"></div><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" data-card-image="true" alt="Therapist giving a back massage with oil to a person lying face down on a massage table." class="card-cover-image"/></div><div class="card-content"><div class="uppercase-text">Unwind completely</div><p class="paragraph-medium is-bold">Deep Relax Massage</p><div class="card-text-block"><p class="paragraph">Slow, flowing movements calm body and mind.</p></div><div class="card-circle-button"><img data-anim-card-icon-2="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" alt="" loading="lazy" class="card-icon-2"/><img data-anim-card-icon-1="true" src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690626cdc6efbaac2e9c3cfb_add_24dp_F3EEED_FILL0_wght400_GRAD0_opsz24.svg" alt="" loading="lazy" class="card-icon"/></div></div></a></div></article></div><div class="carousel-button is-left w-slider-arrow-left"></div><div class="carousel-button w-slider-arrow-right"></div><div class="carousel-nav w-slider-nav"></div></div></div></div></div></section><section class="section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">About the hotel</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title">Tucked away in the quiet streets of the old town - historic charm with comfort and calm.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Illuminated historic church tower and dome at night with starry sky and people walking on cobblestone street." class="cover-image"/></div><div class="sticky-side-image is-2nd"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="View of a city skyline with historic buildings and church towers at sunset behind a green park with blooming trees." class="cover-image"/></div><div class="sticky-side-image is-3rd"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Cobblestone street lit by street lamps at twilight with historic buildings on both sides." class="cover-image"/></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">townhouse with soul</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Gently rooted in timeless charm</h2><p class="paragraph-small">Our story begins in the old streets, wherehistory meets quiet, modern comfort. Blending heritage and design, inspired by old-town life.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Every guest feels at home</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Crafted for calm moments</h2><p class="paragraph-small">We believe in genuine hospitality, details, and a slower way to travel. We keep things simple: good service, cozy spaces, and moments that feel real.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Warm welcome every time</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Where elegance meets ease</h2><p class="paragraph-small">Natural materials, soft light, and timelesstextures shape every corner of the hotel. Locally crafted interiors and arm, balanced color palette.</p><a data-wf--main-button--variant="base" href="/location" class="button w-inline-block"><div class="button-text">Location</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div><div class="bg-absolute-gradient"></div></div></section><section class="section"><div class="sticky-title-size is-light"><div class="sticky-title-layout is-marquee"><div data-wf--marquee-titles--variant="dark" class="marquee-titles"><div class="marquee-wrapper"><div class="marquee-title">Wellness</div><div class="marquee-dash"></div><div class="marquee-title">Relax</div><div class="marquee-dash"></div><div class="marquee-title">Wellness</div><div class="marquee-dash"></div><div class="marquee-title">Relax</div><div class="marquee-dash"></div></div></div></div></div><div class="bg-relative-gradient-darker"></div><div class="in-nutshell"><div class="in-nutshell-sticky"><div class="in-nutshell-title"><div class="text-with-dots"><div class="uppercase-text is-bold">relax</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div></div><div class="in-nutshell-wrapper"><div class="in-nutshell-block"><h3 class="heading is-regular">Treatments</h3><div class="in-nutshell-p is-1st"><p class="paragraph-small">Unwind with therapies inspired by both traditional techniques. From full-body massages to targeted treatments.</p></div><div class="in-nutshell-line is-1st"></div></div><div class="in-nutshell-block"><h3 class="heading is-regular">Sauna room</h3><div class="in-nutshell-p is-2nd"><p class="paragraph-small">Enjoy the warmth of our sauna and the gentle mist of the steam room. Perfect for detox, circulation, and deep relaxation.</p></div><div class="in-nutshell-line is-2nd"></div></div><div class="in-nutshell-block"><h3 class="heading is-regular">Massages</h3><div class="in-nutshell-p is-3rd"><p class="paragraph-small">Escape the city buzz and recharge your energy with a calming retreat inside our wellness area.</p></div><div class="in-nutshell-line is-3rd"></div></div><div class="in-nutshell-line-block"></div></div></div><div class="in-nutshell-images"><div data-content-in="true" class="nutshell-title"><h2 class="heading is-fluid-title">Recharge your energy with a calming retreat</h2></div><div class="in-nutshell-image"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Person receiving a gentle facial massage with lit tea candles on a wooden surface in the background." class="cover-image"/></div><div class="in-nutshell-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Person in white robe holding a wooden tray with two amber pump bottles, a lit candle, a brush, and a bowl of bath salts." class="cover-image"/></div><div class="in-nutshell-image is-3rd"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Person lying face down receiving back massage with oil in a serene spa setting." class="cover-image"/></div></div></div></section><section class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">Book now</h3><a data-wf--main-button--variant="base" href="/booking" class="button w-inline-block"><div class="button-text">Reservations</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section><div data-wf--footer--variant="without-cta-section" class="footer w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div class="footer-cta w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div content-on-scroll="true" class="cta-content"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Next</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h3 class="heading-brand in-cta-2">Book your calm escape now</h3><a data-wf--main-button--variant="base" href="/booking" class="button w-inline-block"><div class="button-text">Fill the form</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="images-in-circle in-footer"><div class="cta-image-block"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Cobblestone street lit by street lamps at twilight with historic buildings on both sides." class="cta-image is-2nd"/></div><div class="cta-image-block is-2nd"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Restaurant" class="cta-image is-2nd"/></div><div class="cta-image-block is-3rd"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt="Modern bedroom with a light beige upholstered bed, marble and wood accent walls, pendant lights, and sheer curtains." class="cta-image is-2nd"/></div><div class="cta-image-block is-4th"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Wellness hotel" class="cta-image is-2nd"/></div><div class="cta-image-block is-5th"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Cozy café interior with wooden tables, cushioned seating, and hanging cage pendant lights." class="cta-image is-2nd"/></div><div class="cta-image-block is-6th"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="Modern dining area with round wooden table, six gray chairs, green hydrangea centerpiece, pendant lights, and kitchen with wood cabinets and marble backsplash." class="cta-image is-2nd"/></div><div class="circle-border-1"></div><div class="circle-border-2"></div><div class="circle-border-3"></div></div><div class="footer-gradient-top"></div><div class="footer-gradient-bottom"></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg in-footer"/></div><div class="footer-layout"><div class="footer-brand"><div id="w-node-_23843005-236c-0236-c551-2818836be17b-b84ddaca" class="footer-stars"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/></div><a id="w-node-_3024d66e-0397-f40b-e835-c02141f5881a-b84ddaca" href="/" aria-current="page" class="footer-logo w-inline-block w--current"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690636b4d18ebee5ec8757a4_city-logo-2-dark.svg" loading="lazy" alt="" class="footer-logo-image"/><div class="footer-slogan">boutique hotel</div></a><div class="footer-socials"><div class="footer-socials-wrap w-dyn-list"><div role="list" class="footer-socials-list w-dyn-items"><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a4080fa10c5d6267d4e0_facebook-logo-black.svg" loading="lazy" alt="Facebook" class="image"/></a></div><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a3fa51da5a551b66e572_youtube-logo-black.svg" loading="lazy" alt="Youtube" class="image"/></a></div><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a47b5bac0334ac832329_instagram-black-full.svg" loading="lazy" alt="Instagram" class="image"/></a></div></div></div></div></div><div class="footer-content"><div class="footer-links-col is-1st"><div class="footer-flex"><div class="footer-text">Discover</div><a href="/" aria-current="page" class="footer-link w--current">Home</a><a href="/hotel" class="footer-link">Hotel</a><a href="/relax" class="footer-link">Relax</a><a href="/restaurant" class="footer-link">Restaurant</a><a href="/packages" class="footer-link">Packages</a></div><div class="footer-flex"><div class="footer-text">Stay</div><a href="/rooms-1" class="footer-link">Rooms 1</a><a href="/rooms-2" class="footer-link">Rooms 2</a><a href="/rooms-3" class="footer-link">Rooms 3</a></div><div class="footer-flex"><div class="footer-text">Hotel</div><a href="/contact" class="footer-link">Contact</a><a href="/location" class="footer-link">Location</a><a href="/booking" class="footer-link">Booking</a><a href="/faq" class="footer-link">Questions</a></div></div><div class="footer-links-col"><div class="footer-flex"><div class="footer-text">Address</div><div class="footer-text is-address">12 Stonebridge Street, Prague 1<br/></div><a data-wf--regular-link--variant="dark" href="https://maps.app.goo.gl/Zv2Yv5eV2UAi9oj88" target="_blank" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Map</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div><div class="footer-flex"><div class="footer-text">Reservations</div><div class="footer-text is-address">For general inquiries our team is available every day<br/></div><a data-wf--regular-link--variant="dark" href="/booking" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Booking</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div></div></div><div class="footer-sublinks"><div class="footer-sublinks-wrap is-1st"><a href="/utility-pages/components" class="footer-link is-author">Components</a><a href="/utility-pages/style-guide" class="footer-link is-author">Style guide</a><a href="/utility-pages/licenses" class="footer-link is-author">Licences</a><a href="/utility-pages/instructions" class="footer-link is-author">Instructions</a></div><div class="footer-sublinks-wrap"><a href="https://www.webflow.com" target="_blank" class="footer-link is-author">Powered by Webflow</a><a href="https://www.metrik.studio/webflow-templates" target="_blank" class="footer-link is-author">Webflow templates</a><a href="https://webflow.com/templates/designers/metrik" target="_blank" class="footer-link is-author">Made by Metrik.studio</a></div></div><div class="footer-bg w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"></div></div></div></main></div><a href="https://webflow.com/templates/html/veloura-website-template" target="_blank" class="important-link w-inline-block"><div class="important-link-text">Buy the template</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/69306a8396b06476390ed6b2_cart-icon.svg" loading="lazy" alt="" class="important-link-icon"/></a>
+<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href="/" aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690636b4c214d606fac042b6_city-logo-2-light.svg" loading="lazy" alt="" class="logo-image"/><div class="slogan-line"></div><div class="slogan-text">Hotel<br/>Template</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="/hotel" class="nav-link">Hotel</a><link rel="prerender" href="/hotel"/><a href="/relax" class="nav-link">Relax</a><a href="/rooms-1" class="nav-link">Rooms</a><a href="/restaurant" class="nav-link">Restaurant</a><a href="/contact" class="nav-link">Contact</a><div class="nav-divider"></div></div></header><div class="menu-burger"><div class="menu-burger-text">menu</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">Explore</div><div class="menu-links"><a href="/" aria-current="page" class="menu-link-block w-inline-block w--current"><div class="menu-link-text">Home</div><div class="menu-link-line"></div></a><a href="/hotel" class="menu-link-block w-inline-block"><div class="menu-link-text">The Hotel</div><div class="menu-link-line"></div></a><a href="/rooms-1" class="menu-link-block w-inline-block"><div class="menu-link-text">Rooms</div><div class="menu-link-line"></div></a><a href="/restaurant" class="menu-link-block w-inline-block"><div class="menu-link-text">Restaurant</div><div class="menu-link-line"></div></a><a href="/relax" class="menu-link-block w-inline-block"><div class="menu-link-text">Relax</div><div class="menu-link-line"></div></a><a href="/packages" class="menu-link-block w-inline-block"><div class="menu-link-text">Packages</div><div class="menu-link-line"></div></a><a href="/contact" class="menu-link-block w-inline-block"><div class="menu-link-text">Contact</div><div class="menu-link-line"></div></a><a href="/booking" class="menu-link-block w-inline-block"><div class="menu-link-text">Booking</div><div class="menu-link-line"></div></a></div></div><div class="menu-flex"><div class="menu-small-title">More</div><div class="menu-small-links"><a data-wf--regular-link--variant="dark" href="/location" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Location</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/faq" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Questions</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/rooms-2" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Rooms 2</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/rooms-3" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Rooms 3</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a><a data-wf--regular-link--variant="dark" href="/utility-pages/components" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Components</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">Address</div><div class="menu-small-text">:</div><div class="menu-small-text">12 Stonebridge Street, Prague</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">A boutique escape in timeless streets</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#start" class="regular-link w-inline-block"><div class="regular-link-text">Discover</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div id="start" class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Cozy café interior with wooden tables, cushioned seating, and hanging cage pendant lights." class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="hero-cover-image-3"/></div></div></div></div></section>
+<section class="section is-dark"><div class="accomondation-wrapper"><div class="sticky-title-size"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Boutique Hotel</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title is-light">Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#rooms" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e549479361ab265c33c6cb_arrow-icon-10.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div></div><div class="feeline-engraving-inline"><img src="/assets/feeline/casino-engraving-web.png" alt="Casino di Sanremo · gravure ornementale" loading="lazy" class="feeline-engraving-image"/><p class="feeline-engraving-caption">Casino di Sanremo · Salle Privée</p></div></section><section id="menu" class="feeline-menu-section">
+  <div class="feeline-menu-header">
+    <p class="feeline-eyebrow">Menu de gala</p>
+    <h2 class="feeline-menu-heading">Signé par le Chef<br><em>Christian Garcia</em></h2>
+    <p class="feeline-menu-intro">Chef du Palais Princier de Monaco, il compose un menu d'exception à la rencontre de la tradition princière et de la Riviera italienne.</p>
+    <div class="feeline-filet"></div>
+  </div>
+  <div class="feeline-menu-cards">
+    <article class="feeline-card">
+      <span class="feeline-card-num">I</span>
+      <p class="feeline-card-label">Mise en bouche</p>
+      <h3 class="feeline-card-dish">Gelée<br>de Lion Fish</h3>
+    </article>
+    <article class="feeline-card">
+      <span class="feeline-card-num">II</span>
+      <p class="feeline-card-label">Entrée</p>
+      <h3 class="feeline-card-dish">Chartreuse de Macaroni à la Grimaldi</h3>
+      <p class="feeline-card-detail">Gamberoni de San Remo</p>
+    </article>
+    <article class="feeline-card">
+      <span class="feeline-card-num">III</span>
+      <p class="feeline-card-label">Plat principal</p>
+      <h3 class="feeline-card-dish">Mignon de veau fermier Rossini</h3>
+      <p class="feeline-card-detail">Petits légumes farcis Monégasques</p>
+    </article>
+    <article class="feeline-card">
+      <span class="feeline-card-num">IV</span>
+      <p class="feeline-card-label">Dessert</p>
+      <h3 class="feeline-card-dish">Dessert<br>à la Mecchia</h3>
+    </article>
+  </div>
+  <p class="feeline-menu-pairing">Sélection de vins et champagne · Café et mignardises</p>
+</section>
+<section id="patronage" class="feeline-patronage-section">
+  <div class="feeline-patronage-container">
+    <img src="/assets/feeline/wax-seal-hd-web.png" alt="" class="feeline-patronage-seal" loading="lazy"/>
+    <h2 class="feeline-patronage-heading"><em>Sous la haute présidence</em><br>de S.A.S. le Prince Albert II de Monaco</h2>
+    <p class="feeline-patronage-body">Le dîner se tient sous la présidence honorifique du Souverain, dans le prolongement du lien historique qui unit la Principauté de Monaco à la ville de Sanremo · une attache portée par l'Association des Sites Historiques Grimaldi de Monaco.</p>
+    <p class="feeline-patronage-body">L'intégralité des fonds récoltés est reversée à la <em>Fondation Prince Albert II de Monaco</em>, dédiée à la protection de l'environnement · changement climatique, biodiversité, ressources en eau.</p>
+  </div>
+</section>
+<section id="reservation" class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">Réservez<br>votre place</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section>
+
+<section class="section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">About the hotel</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title">Tucked away in the quiet streets of the old town - historic charm with comfort and calm.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Illuminated historic church tower and dome at night with starry sky and people walking on cobblestone street." class="cover-image"/></div><div class="sticky-side-image is-2nd"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="View of a city skyline with historic buildings and church towers at sunset behind a green park with blooming trees." class="cover-image"/></div><div class="sticky-side-image is-3rd"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Cobblestone street lit by street lamps at twilight with historic buildings on both sides." class="cover-image"/></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">townhouse with soul</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Gently rooted in timeless charm</h2><p class="paragraph-small">Our story begins in the old streets, wherehistory meets quiet, modern comfort. Blending heritage and design, inspired by old-town life.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Every guest feels at home</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Crafted for calm moments</h2><p class="paragraph-small">We believe in genuine hospitality, details, and a slower way to travel. We keep things simple: good service, cozy spaces, and moments that feel real.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Warm welcome every time</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Where elegance meets ease</h2><p class="paragraph-small">Natural materials, soft light, and timelesstextures shape every corner of the hotel. Locally crafted interiors and arm, balanced color palette.</p><a data-wf--main-button--variant="base" href="/location" class="button w-inline-block"><div class="button-text">Location</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div><div class="bg-absolute-gradient"></div></div></section>
+<section id="questions" class="feeline-faq-section">
+  <div class="feeline-faq-container">
+    <header class="feeline-faq-header">
+      <p class="feeline-faq-eyebrow">Confidences</p>
+      <h2 class="feeline-faq-heading">Avant le dîner</h2>
+      <p class="feeline-faq-subtitle">Les réponses essentielles aux questions de nos convives, avant de rejoindre la salle privée du Casino.</p>
+    </header>
+    <div class="feeline-faq-list">
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">I</span>
+          <span class="feeline-faq-question">Comment réserver une place à la soirée ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">Les réservations s'effectuent en ligne, sur la plateforme officielle de la Fondation Prince Albert II de Monaco. Le bouton <a href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener">Réserver</a> de la section précédente vous y conduit. Pour toute demande particulière, écrivez nous à <a href="mailto:info@e20sanremo.it">info@e20sanremo.it</a>.</p>
+        </div>
+      </details>
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">II</span>
+          <span class="feeline-faq-question">Quelle tenue est attendue ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">Tenue de soirée exigée. Costume sombre ou smoking pour les messieurs, robe longue ou robe de cocktail pour les dames. La couleur noire s'accorde naturellement à la salle privée du Casino di Sanremo, sans pour autant être imposée.</p>
+        </div>
+      </details>
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">III</span>
+          <span class="feeline-faq-question">À quelle heure se présenter au Casino ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">L'accueil débute à vingt heures par un cocktail dînatoire. Le dîner de gala signé Christian Garcia est servi à partir de vingt et une heures dans la salle privée. Nous recommandons d'arriver entre dix neuf heures quarante cinq et vingt heures quinze, afin de savourer pleinement l'apéritif.</p>
+        </div>
+      </details>
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">IV</span>
+          <span class="feeline-faq-question">Le menu peut il s'adapter à un régime particulier ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">Allergies, intolérances et régimes particuliers sont pris en compte par les équipes du chef. Merci de nous signaler vos contraintes au moment de la réservation, ou au plus tard quinze jours avant l'événement, à <a href="mailto:info@e20sanremo.it">info@e20sanremo.it</a>.</p>
+        </div>
+      </details>
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">V</span>
+          <span class="feeline-faq-question">Comment accéder au Casino di Sanremo ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">Le Casino se situe au Corso degli Inglesi 18, à Sanremo. Un service voiturier est mis en place pour la soirée. Les accès piétons et le stationnement public se trouvent à proximité immédiate, et la gare se rejoint en moins de dix minutes à pied.</p>
+        </div>
+      </details>
+      <details class="feeline-faq-item">
+        <summary>
+          <span class="feeline-faq-numeral">VI</span>
+          <span class="feeline-faq-question">À quoi sert exactement la contribution des convives ?</span>
+          <span class="feeline-faq-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="feeline-faq-answer-wrap">
+          <p class="feeline-faq-answer">L'intégralité des bénéfices de la soirée est reversée à la Fondation Prince Albert II de Monaco. Les fonds soutiennent ses programmes en faveur de la préservation de la biodiversité méditerranéenne et de la lutte contre le dérèglement climatique.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<div data-wf--footer--variant="without-cta-section" class="footer w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div class="footer-cta w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div content-on-scroll="true" class="cta-content"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Next</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h3 class="heading-brand in-cta-2">Book your calm escape now</h3><a data-wf--main-button--variant="base" href="/booking" class="button w-inline-block"><div class="button-text">Fill the form</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="images-in-circle in-footer"><div class="cta-image-block"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Cobblestone street lit by street lamps at twilight with historic buildings on both sides." class="cta-image is-2nd"/></div><div class="cta-image-block is-2nd"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Restaurant" class="cta-image is-2nd"/></div><div class="cta-image-block is-3rd"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt="Modern bedroom with a light beige upholstered bed, marble and wood accent walls, pendant lights, and sheer curtains." class="cta-image is-2nd"/></div><div class="cta-image-block is-4th"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Wellness hotel" class="cta-image is-2nd"/></div><div class="cta-image-block is-5th"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Cozy café interior with wooden tables, cushioned seating, and hanging cage pendant lights." class="cta-image is-2nd"/></div><div class="cta-image-block is-6th"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="Modern dining area with round wooden table, six gray chairs, green hydrangea centerpiece, pendant lights, and kitchen with wood cabinets and marble backsplash." class="cta-image is-2nd"/></div><div class="circle-border-1"></div><div class="circle-border-2"></div><div class="circle-border-3"></div></div><div class="footer-gradient-top"></div><div class="footer-gradient-bottom"></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg in-footer"/></div><div class="footer-layout"><div class="footer-brand"><div id="w-node-_23843005-236c-0236-c551-2818836be17b-b84ddaca" class="footer-stars"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/6907a53457098970332e0e52_star_24dp_2A0800_FILL0_wght400_GRAD0_opsz24%20(1).svg" loading="lazy" alt="" class="footer-star"/></div><a id="w-node-_3024d66e-0397-f40b-e835-c02141f5881a-b84ddaca" href="/" aria-current="page" class="footer-logo w-inline-block w--current"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/690636b4d18ebee5ec8757a4_city-logo-2-dark.svg" loading="lazy" alt="" class="footer-logo-image"/><div class="footer-slogan">boutique hotel</div></a><div class="footer-socials"><div class="footer-socials-wrap w-dyn-list"><div role="list" class="footer-socials-list w-dyn-items"><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a4080fa10c5d6267d4e0_facebook-logo-black.svg" loading="lazy" alt="Facebook" class="image"/></a></div><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a3fa51da5a551b66e572_youtube-logo-black.svg" loading="lazy" alt="Youtube" class="image"/></a></div><div role="listitem" class="w-dyn-item"><a href="#" class="footer-social-link w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc109/6907a47b5bac0334ac832329_instagram-black-full.svg" loading="lazy" alt="Instagram" class="image"/></a></div></div></div></div></div><div class="footer-content"><div class="footer-links-col is-1st"><div class="footer-flex"><div class="footer-text">Discover</div><a href="/" aria-current="page" class="footer-link w--current">Home</a><a href="/hotel" class="footer-link">Hotel</a><a href="/relax" class="footer-link">Relax</a><a href="/restaurant" class="footer-link">Restaurant</a><a href="/packages" class="footer-link">Packages</a></div><div class="footer-flex"><div class="footer-text">Stay</div><a href="/rooms-1" class="footer-link">Rooms 1</a><a href="/rooms-2" class="footer-link">Rooms 2</a><a href="/rooms-3" class="footer-link">Rooms 3</a></div><div class="footer-flex"><div class="footer-text">Hotel</div><a href="/contact" class="footer-link">Contact</a><a href="/location" class="footer-link">Location</a><a href="/booking" class="footer-link">Booking</a><a href="/faq" class="footer-link">Questions</a></div></div><div class="footer-links-col"><div class="footer-flex"><div class="footer-text">Address</div><div class="footer-text is-address">12 Stonebridge Street, Prague 1<br/></div><a data-wf--regular-link--variant="dark" href="https://maps.app.goo.gl/Zv2Yv5eV2UAi9oj88" target="_blank" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Map</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div><div class="footer-flex"><div class="footer-text">Reservations</div><div class="footer-text is-address">For general inquiries our team is available every day<br/></div><a data-wf--regular-link--variant="dark" href="/booking" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Booking</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div></div></div><div class="footer-sublinks"><div class="footer-sublinks-wrap is-1st"><a href="/utility-pages/components" class="footer-link is-author">Components</a><a href="/utility-pages/style-guide" class="footer-link is-author">Style guide</a><a href="/utility-pages/licenses" class="footer-link is-author">Licences</a><a href="/utility-pages/instructions" class="footer-link is-author">Instructions</a></div><div class="footer-sublinks-wrap"><a href="https://www.webflow.com" target="_blank" class="footer-link is-author">Powered by Webflow</a><a href="https://www.metrik.studio/webflow-templates" target="_blank" class="footer-link is-author">Webflow templates</a><a href="https://webflow.com/templates/designers/metrik" target="_blank" class="footer-link is-author">Made by Metrik.studio</a></div></div><div class="footer-bg w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"></div></div></div></main></div><a href="https://webflow.com/templates/html/veloura-website-template" target="_blank" class="important-link w-inline-block"><div class="important-link-text">Buy the template</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/69306a8396b06476390ed6b2_cart-icon.svg" loading="lazy" alt="" class="important-link-icon"/></a>
     <!-- =================================================================
          SCRIPTS Veloura (jQuery + Webflow + GSAP), ordre verbatim
          ================================================================= -->
@@ -287,7 +876,46 @@
       })();
     </script>
 
-    <!-- Force la disparition du loader après 2 secondes (l'animation Webflow
+    <!-- Override animation titre sticky : déclenche dès que l'élément entre
+         dans le viewport, scroll-linké (scrub), avec stagger doux. -->
+    <script is:inline>
+      window.addEventListener('load', function () {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        var h2 = document.querySelector('.heading.is-sticky-title');
+        if (!h2) return;
+        gsap.registerPlugin(ScrollTrigger);
+        // Tue les ScrollTriggers Veloura qui ciblent ce titre
+        ScrollTrigger.getAll().forEach(function (st) {
+          if (st.trigger === h2 || (h2.contains && st.trigger && h2.contains(st.trigger))) {
+            st.kill();
+          }
+        });
+        gsap.killTweensOf(h2);
+        gsap.killTweensOf(h2.querySelectorAll('*'));
+
+        var split;
+        if (typeof SplitText !== 'undefined') {
+          try { split = new SplitText(h2, { type: 'words' }); } catch (e) {}
+        }
+        var targets = (split && split.words && split.words.length) ? split.words : [h2];
+        gsap.set(targets, { opacity: 0, y: 30 });
+        gsap.to(targets, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: h2,
+            start: 'top bottom-=80',
+            end: 'top top+=200',
+            scrub: 1.2
+          }
+        });
+      });
+    </script>
+
+<!-- Force la disparition du loader après 2 secondes (l'animation Webflow
          IX2 ne s'exécute pas correctement ici car on a modifié la structure
          du preloader). -->
     <script is:inline>
@@ -301,9 +929,9 @@
           setTimeout(function () { loader.style.display = 'none'; }, 750);
         }
         if (document.readyState === 'complete') {
-          setTimeout(hide, 1800);
+          setTimeout(hide, 2600);
         } else {
-          window.addEventListener('load', function () { setTimeout(hide, 1800); }, { once: true });
+          window.addEventListener('load', function () { setTimeout(hide, 2600); }, { once: true });
         }
       })();
     </script>
