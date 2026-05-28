@@ -776,192 +776,152 @@
       }
 
       /* ================================================================
-         SECTION A PROPOS · adaptation stable de la section sticky Velour.
-         Même esprit éditorial, sans réutiliser sticky-about qui bugue
-         quand plusieurs instances Webflow cohabitent sur la page.
+         SECTION A PROPOS · adaptation proche de la section Velour fournie.
+         On garde la structure sticky-about, avec des overrides de stabilité
+         pour éviter les positions invisibles avant animation Webflow.
          ================================================================ */
       .feeline-about-section {
         background-color: #FFFFFF;
-        padding: 0 0 9rem 0;
         position: relative;
         overflow: hidden;
       }
-      .feeline-about-title {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 8rem 6vw;
-      }
-      .feeline-about-title::before {
-        content: "";
-        position: absolute;
-        inset: 9vw;
-        border: 1px solid rgba(212, 175, 55, 0.18);
-        pointer-events: none;
-      }
-      .feeline-about-title-inner {
-        max-width: 980px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 2;
-      }
-      .feeline-about-heading {
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(2.7rem, 6.4vw, 6.8rem);
-        line-height: 0.96;
+      .feeline-about-section .sticky-title-layout {
         color: #2A2A2A;
-        margin: 1.8rem 0 2rem 0;
-        letter-spacing: 0;
       }
-      .feeline-about-heading em {
+      .feeline-about-section .heading.is-sticky-title {
+        color: #2A2A2A;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .feeline-about-section .heading.is-sticky-title em {
         color: #BFA46A;
         font-style: italic;
       }
-      .feeline-about-scroll {
-        font-family: "Montserrat", system-ui, sans-serif;
-        font-size: 0.68rem;
-        font-weight: 500;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: #BFA46A;
-        text-decoration: none;
+      :global(.feeline-about-section .heading.is-sticky-title .gsap_split_word) {
+        opacity: 1 !important;
+        transform: none !important;
+        translate: none !important;
       }
-      .feeline-about-scroll:hover {
-        color: #D4AF37;
+      .feeline-about-section .circle-button {
+        border-color: rgba(191, 164, 106, 0.55);
+        background-color: #FFFFFF;
       }
-      .feeline-about-container {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 0 6vw;
+      .feeline-about-section .large-top-padding {
+        padding-top: 7rem;
+        padding-bottom: 9rem;
       }
-      .feeline-about-layout {
+      .feeline-about-section .sticky-about {
         display: grid;
-        grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+        grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
         gap: clamp(3rem, 7vw, 7rem);
         align-items: start;
       }
-      .feeline-about-images {
+      .feeline-about-section .sticky-side-images {
         position: sticky;
         top: 8rem;
         min-height: 620px;
       }
-      .feeline-about-image {
+      .feeline-about-section .sticky-side-images-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 620px;
+      }
+      .feeline-about-section .sticky-side-image {
         position: absolute;
         width: min(74%, 360px);
         overflow: hidden;
         background-color: #F7F5EE;
         border: 1px solid rgba(212, 175, 55, 0.22);
         box-shadow: 0 24px 56px rgba(42, 42, 42, 0.08);
+        visibility: visible !important;
       }
-      .feeline-about-image img {
+      .feeline-about-section .sticky-side-image.is-1st {
+        top: 0;
+        left: 0;
+        aspect-ratio: 4 / 5;
+        transform: rotate(-4deg) !important;
+      }
+      .feeline-about-section .sticky-side-image.is-2nd {
+        top: 10rem;
+        right: 0;
+        aspect-ratio: 3 / 4;
+        transform: rotate(3deg) !important;
+      }
+      .feeline-about-section .sticky-side-image.is-3rd {
+        left: 12%;
+        bottom: 0;
+        aspect-ratio: 5 / 4;
+        transform: rotate(-1deg) !important;
+      }
+      .feeline-about-section .cover-image {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        visibility: visible !important;
       }
-      .feeline-about-image.is-1st {
-        top: 0;
-        left: 0;
-        aspect-ratio: 4 / 5;
-        transform: rotate(-4deg);
-      }
-      .feeline-about-image.is-2nd {
-        top: 10rem;
-        right: 0;
-        aspect-ratio: 3 / 4;
-        transform: rotate(3deg);
-      }
-      .feeline-about-image.is-3rd {
-        left: 12%;
-        bottom: 0;
-        aspect-ratio: 5 / 4;
-        transform: rotate(-1deg);
-      }
-      .feeline-about-content {
+      .feeline-about-section .sticky-content-wrapper {
         display: flex;
         flex-direction: column;
         gap: 4.4rem;
         padding-top: 1.5rem;
       }
-      .feeline-about-block {
+      .feeline-about-section .content-flex-block {
         max-width: 560px;
       }
-      .feeline-about-block-eyebrow {
-        font-family: "Montserrat", system-ui, sans-serif;
-        font-size: 0.64rem;
-        font-weight: 500;
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
-        color: #BFA46A;
-        margin: 0 0 1rem 0;
-      }
-      .feeline-about-block-title {
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-style: italic;
-        font-weight: 400;
-        font-size: clamp(1.75rem, 2.5vw, 2.35rem);
-        line-height: 1.18;
+      .feeline-about-section .heading.is-regular {
         color: #2A2A2A;
-        margin: 0 0 1rem 0;
       }
-      .feeline-about-block-text {
+      .feeline-about-section .paragraph-small {
         font-family: "Cormorant Garamond", Georgia, serif;
         font-size: 1.16rem;
         line-height: 1.76;
         color: #2A2A2A;
         opacity: 0.78;
-        margin: 0;
       }
-      .feeline-about-button {
-        margin-top: 1.7rem;
+      .feeline-about-section .button {
+        margin-top: 1.4rem;
       }
       @media (max-width: 991px) {
-        .feeline-about-section {
+        .feeline-about-section .large-top-padding {
+          padding-top: 5rem;
           padding-bottom: 7rem;
         }
-        .feeline-about-layout {
+        .feeline-about-section .sticky-about {
           grid-template-columns: 1fr;
           gap: 4rem;
         }
-        .feeline-about-images {
+        .feeline-about-section .sticky-side-images,
+        .feeline-about-section .sticky-side-images-wrapper {
           position: relative;
           top: auto;
           min-height: auto;
+        }
+        .feeline-about-section .sticky-side-images-wrapper {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1rem;
         }
-        .feeline-about-image {
+        .feeline-about-section .sticky-side-image {
           position: relative;
           top: auto !important;
           right: auto !important;
           bottom: auto !important;
           left: auto !important;
           width: 100%;
-          transform: none !important;
           aspect-ratio: 4 / 5;
-        }
-        .feeline-about-content {
-          gap: 3rem;
-          padding-top: 0;
+          transform: none !important;
         }
       }
       @media (max-width: 600px) {
-        .feeline-about-title {
-          min-height: 82vh;
-          padding: 6rem 1.5rem;
+        .feeline-about-section .sticky-title-size {
+          min-height: 86vh !important;
         }
-        .feeline-about-title::before {
-          inset: 1.5rem;
-        }
-        .feeline-about-images {
+        .feeline-about-section .sticky-side-images-wrapper {
           grid-template-columns: 1fr;
         }
-        .feeline-about-block {
+        .feeline-about-section .content-flex-block {
           max-width: none;
         }
       }
@@ -1117,45 +1077,7 @@
 </section>
 <section id="reservation" class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">Réservez<br>votre place</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section>
 
-<section class="feeline-about-section">
-  <div class="feeline-about-title">
-    <div class="feeline-about-title-inner">
-      <div class="text-with-dots">
-        <div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div>
-        <div class="uppercase-text is-bold">À propos du dîner</div>
-        <div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div>
-      </div>
-      <h2 class="feeline-about-heading">Une soirée de gala où <em>patrimoine, protocole</em> et gastronomie se rencontrent.</h2>
-      <a href="#about-dinner" class="feeline-about-scroll">Découvrir</a>
-    </div>
-  </div>
-  <div id="about-dinner" class="feeline-about-container">
-    <div class="feeline-about-layout">
-      <div class="feeline-about-images" aria-hidden="true">
-        <div class="feeline-about-image is-1st"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt=""/></div>
-        <div class="feeline-about-image is-2nd"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt=""/></div>
-        <div class="feeline-about-image is-3rd"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt=""/></div>
-      </div>
-      <div class="feeline-about-content">
-        <article class="feeline-about-block">
-          <p class="feeline-about-block-eyebrow">Un palais Liberty</p>
-          <h3 class="feeline-about-block-title">Le Casino di Sanremo comme écrin</h3>
-          <p class="feeline-about-block-text">La salle privée accueille les convives dans l'esprit des grandes réceptions italiennes, entre lumière dorée, architecture Belle Époque et présence historique de la Riviera.</p>
-        </article>
-        <article class="feeline-about-block">
-          <p class="feeline-about-block-eyebrow">Une table princière</p>
-          <h3 class="feeline-about-block-title">Le Chef Christian Garcia signe le dîner</h3>
-          <p class="feeline-about-block-text">Chef du Palais Princier de Monaco, Christian Garcia compose un menu d'exception, inspiré par la tradition monégasque et les saveurs de Sanremo.</p>
-        </article>
-        <article class="feeline-about-block">
-          <p class="feeline-about-block-eyebrow">Une cause essentielle</p>
-          <h3 class="feeline-about-block-title">Au bénéfice de la Fondation Prince Albert II de Monaco</h3>
-          <p class="feeline-about-block-text">La soirée réunit prestige, engagement et philanthropie autour d'une mission commune : soutenir la protection de l'environnement, de la biodiversité et des ressources en eau.</p>
-          <a data-wf--main-button--variant="base" href="#questions" class="button w-inline-block feeline-about-button"><div class="button-text">Informations pratiques</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a>
-        </article>
-      </div>
-    </div>
-  </div>
+<section class="section feeline-about-section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">À propos du dîner</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title" aria-label="Une soirée de gala au coeur du Casino di Sanremo, entre patrimoine Liberty, art culinaire princier et engagement pour le vivant.">Une soirée de gala au coeur du Casino di Sanremo, entre patrimoine Liberty, art culinaire princier et engagement pour le vivant.</h2><a aria-label="Descendre vers la section À propos du dîner" data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="cover-image"/></div><div class="sticky-side-image is-2nd"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Restaurant du Casino di Sanremo dressé pour une réception." class="cover-image"/></div><div class="sticky-side-image is-3rd"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt="Intérieur patrimonial du Casino di Sanremo." class="cover-image"/></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Un palais Liberty</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Le Casino di Sanremo comme écrin</h2><p class="paragraph-small">La salle privée accueille les convives dans l'esprit des grandes réceptions italiennes, entre lumière dorée, architecture Belle Époque et présence historique de la Riviera.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Une table princière</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Le Chef Christian Garcia signe le dîner</h2><p class="paragraph-small">Chef du Palais Princier de Monaco, Christian Garcia compose un menu d'exception, inspiré par la tradition monégasque et les saveurs de Sanremo.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Une cause essentielle</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Au bénéfice de la Fondation Prince Albert II de Monaco</h2><p class="paragraph-small">La soirée réunit prestige, engagement et philanthropie autour d'une mission commune : soutenir la protection de l'environnement, de la biodiversité et des ressources en eau.</p><a data-wf--main-button--variant="base" href="#questions" class="button w-inline-block"><div class="button-text">Informations pratiques</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div></div><div class="bg-absolute-gradient"></div>
 </section>
 
 <section id="questions" class="feeline-faq-section">
