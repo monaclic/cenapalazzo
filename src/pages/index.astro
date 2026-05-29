@@ -1232,18 +1232,33 @@
               word.style.translate = 'none';
             });
 
+            function isInPlayZone() {
+              var rect = h2.getBoundingClientRect();
+              var vh = window.innerHeight || document.documentElement.clientHeight;
+              return rect.top < vh * 0.78 && rect.bottom > vh * 0.16;
+            }
+
             function play() {
+              if (!isInPlayZone()) return;
               if (h2.getAttribute('data-cpa-title-played') === 'true') return;
               h2.setAttribute('data-cpa-title-played', 'true');
               if (!h2.animate) return;
               h2.animate([
-                { opacity: 0.4, transform: 'translateY(1.4rem)', filter: 'blur(8px)' },
-                { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }
+                { opacity: 0.12, transform: 'translateY(3rem) scale(0.96)', filter: 'blur(14px)' },
+                { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
               ], {
-                duration: h2.closest('.cpa-about-section') ? 900 : 780,
-                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                duration: h2.closest('.cpa-about-section') ? 1180 : 980,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 fill: 'both'
               });
+            }
+
+            function update() {
+              if (isInPlayZone()) {
+                play();
+                return;
+              }
+              h2.removeAttribute('data-cpa-title-played');
             }
 
             if (!('IntersectionObserver' in window)) {
@@ -1254,12 +1269,15 @@
             var observer = new IntersectionObserver(function (entries) {
               entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                  play();
+                  update();
                   observer.disconnect();
                 }
               });
-            }, { rootMargin: '0px 0px -18% 0px', threshold: 0.25 });
+            }, { rootMargin: '0px 0px -2% 0px', threshold: 0.05 });
             observer.observe(h2);
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update, { passive: true });
+            window.setTimeout(update, 250);
           });
         }
 
