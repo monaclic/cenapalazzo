@@ -197,6 +197,135 @@
         color: #BFA46A;
       }
 
+      .cpa-poster-hero {
+        min-height: 100svh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: clamp(7rem, 10vw, 10rem) clamp(1.25rem, 6vw, 6rem) clamp(3.5rem, 7vw, 6rem);
+        background-color: #2A2A2A;
+        isolation: isolate;
+      }
+      .cpa-poster-hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: -3;
+      }
+      .cpa-poster-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(42, 42, 42, 0.78) 0%, rgba(42, 42, 42, 0.42) 42%, rgba(42, 42, 42, 0.06) 78%),
+          linear-gradient(0deg, rgba(42, 42, 42, 0.62) 0%, rgba(42, 42, 42, 0.12) 46%, rgba(42, 42, 42, 0.2) 100%);
+        z-index: -2;
+      }
+      .cpa-poster-hero::after {
+        content: "";
+        position: absolute;
+        inset: 1.1rem;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        pointer-events: none;
+        z-index: -1;
+      }
+      .cpa-poster-hero-content {
+        width: min(100%, 760px);
+        color: #FFFFFF;
+      }
+      .cpa-poster-hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin-bottom: 1.15rem;
+        color: rgba(255, 255, 255, 0.84);
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .cpa-poster-hero-kicker::before {
+        content: "";
+        width: 2.8rem;
+        height: 1px;
+        background-color: rgba(212, 175, 55, 0.72);
+      }
+      .cpa-poster-hero-title {
+        margin: 0;
+        color: #FFFFFF;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(4.6rem, 11vw, 10rem);
+        font-style: italic;
+        font-weight: 500;
+        line-height: 0.86;
+      }
+      .cpa-poster-hero-subtitle {
+        margin: 1.4rem 0 0;
+        color: rgba(255, 255, 255, 0.92);
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: clamp(0.86rem, 1.2vw, 1.05rem);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .cpa-poster-hero-line {
+        width: min(100%, 34rem);
+        height: 1px;
+        margin: 1.6rem 0;
+        background: linear-gradient(90deg, rgba(212, 175, 55, 0.72), rgba(212, 175, 55, 0));
+      }
+      .cpa-poster-hero-copy {
+        max-width: 40rem;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: clamp(1rem, 1.25vw, 1.15rem);
+        line-height: 1.75;
+      }
+      .cpa-poster-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .cpa-poster-hero-actions .button {
+        background-color: rgba(255, 255, 255, 0.92) !important;
+        border-color: rgba(255, 255, 255, 0.72) !important;
+      }
+      .cpa-poster-hero-actions .regular-link {
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .cpa-poster-hero-actions .regular-link-line {
+        background-color: rgba(212, 175, 55, 0.88);
+      }
+      .cpa-poster-hero-actions .regular-link-icon {
+        filter: brightness(0) invert(1);
+      }
+      @media (max-width: 760px) {
+        .cpa-poster-hero {
+          align-items: flex-end;
+          padding: 7rem 1.25rem 3.25rem;
+        }
+        .cpa-poster-hero::after {
+          inset: 0.75rem;
+        }
+        .cpa-poster-hero::before {
+          background:
+            linear-gradient(0deg, rgba(42, 42, 42, 0.84) 0%, rgba(42, 42, 42, 0.44) 52%, rgba(42, 42, 42, 0.08) 100%);
+        }
+        .cpa-poster-hero-title {
+          font-size: clamp(4rem, 19vw, 5.8rem);
+        }
+      }
+
       /* "Welcome" du loader en or doré sur fond ivoire */
       .preloader-text {
         color: #BFA46A;
@@ -1088,7 +1217,7 @@
 
   <body>
 
-<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href="/" aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><div class="brand-wordmark">Cena a Palazzo</div><div class="slogan-line"></div><div class="slogan-text">22 juin<br/>2026</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="#menu" class="nav-link">Menu</a><a href="#patronage" class="nav-link">Patronage</a><a href="#reservation" class="nav-link">Réserver</a><a href="#questions" class="nav-link">Questions</a><div class="nav-divider"></div></div></header><div class="menu-burger"><div class="menu-burger-text">menu</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">Navigation</div><div class="menu-links"><a href="#start" class="menu-link-block w-inline-block"><div class="menu-link-text">Accueil</div><div class="menu-link-line"></div></a><a href="#menu" class="menu-link-block w-inline-block"><div class="menu-link-text">Menu</div><div class="menu-link-line"></div></a><a href="#patronage" class="menu-link-block w-inline-block"><div class="menu-link-text">Patronage</div><div class="menu-link-line"></div></a><a href="#reservation" class="menu-link-block w-inline-block"><div class="menu-link-text">Réservation</div><div class="menu-link-line"></div></a><a href="#questions" class="menu-link-block w-inline-block"><div class="menu-link-text">Questions</div><div class="menu-link-line"></div></a></div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">Lieu</div><div class="menu-small-text">:</div><div class="menu-small-text">Casino di Sanremo, Corso degli Inglesi 18, Sanremo</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">Cena a Palazzo</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#start" class="regular-link w-inline-block"><div class="regular-link-text">Découvrir</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div id="start" class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Salon du Casino di Sanremo avec banquettes en velours et grand lustre." class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="hero-cover-image-3"/></div></div></div></div></section>
+<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href="/" aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><div class="brand-wordmark">Cena a Palazzo</div><div class="slogan-line"></div><div class="slogan-text">22 juin<br/>2026</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="#menu" class="nav-link">Menu</a><a href="#patronage" class="nav-link">Patronage</a><a href="#reservation" class="nav-link">Réserver</a><a href="#questions" class="nav-link">Questions</a><div class="nav-divider"></div></div></header><div class="menu-burger"><div class="menu-burger-text">menu</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">Navigation</div><div class="menu-links"><a href="#start" class="menu-link-block w-inline-block"><div class="menu-link-text">Accueil</div><div class="menu-link-line"></div></a><a href="#menu" class="menu-link-block w-inline-block"><div class="menu-link-text">Menu</div><div class="menu-link-line"></div></a><a href="#patronage" class="menu-link-block w-inline-block"><div class="menu-link-text">Patronage</div><div class="menu-link-line"></div></a><a href="#reservation" class="menu-link-block w-inline-block"><div class="menu-link-text">Réservation</div><div class="menu-link-line"></div></a><a href="#questions" class="menu-link-block w-inline-block"><div class="menu-link-text">Questions</div><div class="menu-link-line"></div></a></div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">Lieu</div><div class="menu-small-text">:</div><div class="menu-small-text">Casino di Sanremo, Corso degli Inglesi 18, Sanremo</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section id="start" class="section cpa-poster-hero"><img src="/assets/feeline/cena-hero-palazzo.png" loading="eager" alt="Façade illustrée du Casino di Sanremo pour Cena a Palazzo." class="cpa-poster-hero-image"/><div class="cpa-poster-hero-content"><div class="cpa-poster-hero-kicker">Dîner de bienfaisance</div><h1 class="cpa-poster-hero-title">Cena a Palazzo</h1><p class="cpa-poster-hero-subtitle">22 juin 2026 · Casino di Sanremo</p><div class="cpa-poster-hero-line"></div><p class="cpa-poster-hero-copy">Une soirée de gala sous la présidence de S.A.S. le Prince Albert II de Monaco, au bénéfice de la Fondation Prince Albert II de Monaco.</p><div class="cpa-poster-hero-actions"><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a><a data-wf--regular-link--variant="base" href="#experience" class="regular-link w-inline-block"><div class="regular-link-text">Découvrir</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div></div></section><section id="experience" class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">Cena a Palazzo</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#menu" class="regular-link w-inline-block"><div class="regular-link-text">Découvrir</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Salon du Casino di Sanremo avec banquettes en velours et grand lustre." class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="hero-cover-image-3"/></div></div></div></div></section>
 <section class="section is-dark"><div class="accomondation-wrapper"><div class="sticky-title-size"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Casino di Sanremo</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title is-light">Le palais Liberty ouvre ses salons pour accueillir le dîner de gala dans sa salle privée.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#rooms" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e549479361ab265c33c6cb_arrow-icon-10.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div></div><div class="feeline-engraving-inline"><img src="/assets/feeline/casino-engraving-web.png" alt="Casino di Sanremo · gravure ornementale" loading="lazy" class="feeline-engraving-image"/><p class="feeline-engraving-caption">Casino di Sanremo · Salle Privée</p></div></section><section id="menu" class="feeline-menu-section">
   <div class="feeline-menu-header">
     <p class="feeline-eyebrow">Menu de gala</p>
