@@ -1216,18 +1216,19 @@
             try { split = new SplitText(h2, { type: 'words' }); } catch (e) {}
           }
           var targets = (split && split.words && split.words.length) ? split.words : [h2];
-          gsap.set(targets, { opacity: 0, y: 30 });
+          var isAboutTitle = h2.closest('.cpa-about-section');
+          gsap.set(targets, { opacity: 0, y: isAboutTitle ? 42 : 30 });
           gsap.to(targets, {
             opacity: 1,
             y: 0,
-            duration: 1.2,
+            duration: isAboutTitle ? 1.35 : 1.2,
             ease: 'power2.out',
-            stagger: 0.08,
+            stagger: isAboutTitle ? 0.055 : 0.08,
             scrollTrigger: {
               trigger: h2,
-              start: 'top bottom-=80',
-              end: 'top top+=200',
-              scrub: 1.2
+              start: isAboutTitle ? 'top bottom-=20' : 'top bottom-=80',
+              end: isAboutTitle ? 'bottom center+=80' : 'top top+=200',
+              scrub: isAboutTitle ? 1 : 1.2
             }
           });
         });
