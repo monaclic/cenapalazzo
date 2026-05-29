@@ -168,6 +168,29 @@
       .form-submit-button .button-icon {
         display: none !important;
       }
+      :global(.button),
+      :global(.form-submit-button) {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 0 !important;
+        padding-left: 1.35rem !important;
+        padding-right: 1.35rem !important;
+      }
+      :global(.button .button-text),
+      :global(.form-submit-button .button-text) {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+      }
+      :global(.button .button-icon-block),
+      :global(.button .button-icon),
+      :global(.form-submit-button .button-icon-block),
+      :global(.form-submit-button .button-icon) {
+        display: none !important;
+      }
 
       /* H1 du hero en or doré pour matcher les planches Féeline */
       .heading.is-home-hero-title {
