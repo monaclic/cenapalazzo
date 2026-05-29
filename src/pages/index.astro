@@ -298,6 +298,15 @@
       .cpa-about-section > .large-top-padding {
         padding-top: clamp(2.5rem, 5vw, 4.5rem);
       }
+      .cpa-about-section .heading.is-sticky-title,
+      .cpa-about-section .sticky-side-image,
+      .cpa-about-section .cover-image,
+      .cpa-about-section .uppercase-text,
+      .cpa-about-section .button,
+      .cpa-about-section .button-bg,
+      .cpa-about-section .button-icon {
+        visibility: visible !important;
+      }
       .feeline-engraving-inline {
         width: 100%;
         padding: 2rem 6vw 4rem 6vw;
@@ -1196,43 +1205,89 @@
     <!-- Override animation titre sticky : déclenche dès que l'élément entre
          dans le viewport, scroll-linké (scrub), avec stagger doux. -->
     <script is:inline>
-      window.addEventListener('load', function () {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        var titles = document.querySelectorAll('.heading.is-sticky-title');
-        if (!titles.length) return;
-        gsap.registerPlugin(ScrollTrigger);
-        titles.forEach(function (h2) {
-          // Tue les ScrollTriggers Veloura qui ciblent ce titre
-          ScrollTrigger.getAll().forEach(function (st) {
-            if (st.trigger === h2 || (h2.contains && st.trigger && h2.contains(st.trigger))) {
-              st.kill();
-            }
-          });
-          gsap.killTweensOf(h2);
-          gsap.killTweensOf(h2.querySelectorAll('*'));
+      (function () {
+        var attempts = 0;
 
-          var split;
-          if (typeof SplitText !== 'undefined') {
-            try { split = new SplitText(h2, { type: 'words' }); } catch (e) {}
-          }
-          var targets = (split && split.words && split.words.length) ? split.words : [h2];
-          var isAboutTitle = h2.closest('.cpa-about-section');
-          gsap.set(targets, { opacity: 0, y: isAboutTitle ? 42 : 30 });
-          gsap.to(targets, {
-            opacity: 1,
-            y: 0,
-            duration: isAboutTitle ? 1.35 : 1.2,
-            ease: 'power2.out',
-            stagger: isAboutTitle ? 0.055 : 0.08,
-            scrollTrigger: {
-              trigger: h2,
-              start: isAboutTitle ? 'top bottom-=20' : 'top bottom-=80',
-              end: isAboutTitle ? 'bottom center+=80' : 'top top+=200',
-              scrub: isAboutTitle ? 1 : 1.2
-            }
+        function revealStickyTitlesFallback() {
+          var titles = document.querySelectorAll('.heading.is-sticky-title');
+          titles.forEach(function (h2) {
+            h2.style.visibility = 'visible';
+            var words = h2.querySelectorAll('div, span');
+            words.forEach(function (word) {
+              word.style.visibility = 'visible';
+              word.style.opacity = '1';
+              word.style.transform = 'none';
+            });
           });
-        });
-      });
+        }
+
+        function initStickyTitles(force) {
+          attempts += 1;
+          if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            if (attempts === 10) revealStickyTitlesFallback();
+            if (attempts < 30) window.setTimeout(function () { initStickyTitles(force); }, 120);
+            return;
+          }
+
+          var titles = document.querySelectorAll('.heading.is-sticky-title');
+          if (!titles.length) return;
+          gsap.registerPlugin(ScrollTrigger);
+          titles.forEach(function (h2, index) {
+            if (h2.getAttribute('data-cpa-title-ready') === 'true' && !force) return;
+            h2.setAttribute('data-cpa-title-ready', 'true');
+
+            // Tue les ScrollTriggers Veloura qui ciblent ce titre
+            ScrollTrigger.getAll().forEach(function (st) {
+              if (st.trigger === h2 || (h2.contains && st.trigger && h2.contains(st.trigger))) {
+                st.kill();
+              }
+            });
+            if (h2._cpaTitleTween) h2._cpaTitleTween.kill();
+            gsap.killTweensOf(h2);
+            gsap.killTweensOf(h2.querySelectorAll('*'));
+
+            if (!h2._cpaTitleTargets) {
+              var split;
+              var existingWords = h2.querySelectorAll('div, span');
+              if (!existingWords.length && typeof SplitText !== 'undefined') {
+                try { split = new SplitText(h2, { type: 'words' }); } catch (e) {}
+              }
+              h2._cpaTitleTargets = existingWords.length ? Array.prototype.slice.call(existingWords) : ((split && split.words && split.words.length) ? split.words : [h2]);
+            }
+
+            var targets = h2._cpaTitleTargets;
+            var isAboutTitle = h2.closest('.cpa-about-section');
+            gsap.set(h2, { visibility: 'visible' });
+            gsap.set(targets, { opacity: 0, y: isAboutTitle ? 42 : 30, visibility: 'visible' });
+            h2._cpaTitleTween = gsap.to(targets, {
+              opacity: 1,
+              y: 0,
+              duration: isAboutTitle ? 1.35 : 1.2,
+              ease: 'power2.out',
+              stagger: isAboutTitle ? 0.055 : 0.08,
+              scrollTrigger: {
+                id: 'cpa-title-' + index,
+                trigger: h2,
+                start: isAboutTitle ? 'top bottom-=20' : 'top bottom-=80',
+                end: isAboutTitle ? 'bottom center+=80' : 'top top+=200',
+                scrub: isAboutTitle ? 1 : 1.2,
+                invalidateOnRefresh: true
+              }
+            });
+          });
+          ScrollTrigger.refresh();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function () { initStickyTitles(false); }, { once: true });
+        } else {
+          initStickyTitles(false);
+        }
+        window.addEventListener('load', function () {
+          window.setTimeout(function () { initStickyTitles(true); }, 160);
+          window.setTimeout(function () { initStickyTitles(true); }, 1100);
+        }, { once: true });
+      })();
     </script>
 
 <!-- Force la disparition du loader après 2 secondes (l'animation Webflow
