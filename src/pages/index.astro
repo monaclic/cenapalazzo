@@ -310,6 +310,13 @@
       .heading.is-sticky-title {
         visibility: visible !important;
       }
+      :global(.heading.is-sticky-title > div),
+      :global(.heading.is-sticky-title > span) {
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+        translate: none !important;
+      }
       .feeline-engraving-inline {
         width: 100%;
         padding: 2rem 6vw 4rem 6vw;
@@ -1205,30 +1212,63 @@
       })();
     </script>
 
-    <!-- Filet de sécurité titres sticky : Webflow gère l'effet,
-         ce bloc évite qu'un H2 reste invisible si l'init arrive en retard. -->
+    <!-- Animation fiable des titres sticky : remplace l'état initial
+         Webflow par une révélation légère qui ne peut pas bloquer le texte. -->
     <script is:inline>
       (function () {
-        function revealStuckTitles() {
+        function setupStickyTitles() {
           var titles = document.querySelectorAll('.heading.is-sticky-title');
           titles.forEach(function (h2) {
+            if (h2.getAttribute('data-cpa-stable-title') === 'true') return;
+            h2.setAttribute('data-cpa-stable-title', 'true');
             h2.style.visibility = 'visible';
             h2.style.opacity = '1';
+
             var words = h2.querySelectorAll('div, span');
             words.forEach(function (word) {
-              var stuck = getComputedStyle(word).opacity === '0';
-              if (stuck) {
-                word.style.visibility = 'visible';
-                word.style.opacity = '1';
-                word.style.transform = 'none';
-                word.style.translate = 'none';
-              }
+              word.style.visibility = 'visible';
+              word.style.opacity = '1';
+              word.style.transform = 'none';
+              word.style.translate = 'none';
             });
+
+            function play() {
+              if (h2.getAttribute('data-cpa-title-played') === 'true') return;
+              h2.setAttribute('data-cpa-title-played', 'true');
+              if (!h2.animate) return;
+              h2.animate([
+                { opacity: 0.4, transform: 'translateY(1.4rem)', filter: 'blur(8px)' },
+                { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }
+              ], {
+                duration: h2.closest('.cpa-about-section') ? 900 : 780,
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                fill: 'both'
+              });
+            }
+
+            if (!('IntersectionObserver' in window)) {
+              play();
+              return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  play();
+                  observer.disconnect();
+                }
+              });
+            }, { rootMargin: '0px 0px -18% 0px', threshold: 0.25 });
+            observer.observe(h2);
           });
         }
 
-        window.setTimeout(revealStuckTitles, 900);
-        window.addEventListener('load', function () { window.setTimeout(revealStuckTitles, 600); }, { once: true });
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setupStickyTitles, { once: true });
+        } else {
+          setupStickyTitles();
+        }
+        window.addEventListener('load', function () { window.setTimeout(setupStickyTitles, 350); }, { once: true });
       })();
     </script>
 
