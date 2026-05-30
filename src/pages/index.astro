@@ -316,35 +316,39 @@
       }
       @media (max-width: 760px) {
         .cpa-poster-hero {
-          align-items: flex-end;
-          padding: 6rem 1.25rem 3.25rem;
+          align-items: center;
+          padding: 5.5rem 1.25rem 3.25rem;
         }
         .cpa-poster-hero::after {
           inset: 0.75rem;
         }
+        /* Gradient horizontal comme en desktop : blanc a gauche pour la
+           lisibilite du texte, transparent a droite pour reveler le
+           batiment qui sert d'accent decoratif. */
         .cpa-poster-hero::before {
           background:
-            linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.88) 40%, rgba(255, 255, 255, 0.18) 78%);
+            linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.92) 38%, rgba(255, 255, 255, 0.45) 70%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 22%);
         }
-        /* Illustration centree en haut, contenue entierement dans le viewport.
-           L'ancien right:-52%; width:118vw croppait le batiment de facon
-           disgracieuse. On la pose proprement, decorative au-dessus du texte. */
+        /* Illustration en accent decoratif a droite, comme desktop mais
+           bien plus petite et entierement visible. */
         .cpa-poster-hero-image {
-          top: 4.5rem;
-          right: auto;
-          left: 50%;
-          transform: translateX(-50%);
-          width: min(92vw, 460px);
+          top: 50%;
+          right: 0.5rem;
+          left: auto;
+          transform: translateY(-50%);
+          width: 42vw;
+          max-width: 200px;
           height: auto;
-          max-height: 34vh;
+          max-height: 38vh;
           object-fit: contain;
-          object-position: center top;
-          opacity: 0.95;
+          object-position: center right;
+          opacity: 0.82;
           filter: drop-shadow(0 14px 32px rgba(138, 117, 48, 0.14));
         }
         .cpa-poster-hero-content {
-          margin-top: auto;
-          padding-top: clamp(36vh, 44vw, 40vh);
+          padding-top: 0;
+          margin-top: 0;
         }
         .cpa-poster-hero-title {
           font-size: clamp(4rem, 19vw, 5.8rem);
