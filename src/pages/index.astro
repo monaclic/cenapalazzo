@@ -473,6 +473,12 @@
         .cpa-about-section > .large-top-padding {
           padding-top: 0;
         }
+        /* Velour pose padding-top:40lvh sur sticky-content-wrapper pour
+           laisser de la place a l'animation scroll des images laterales.
+           Ici, image quasi statique, on resserre fortement. */
+        .cpa-about-section .sticky-content-wrapper {
+          padding-top: clamp(2rem, 4vw, 4rem) !important;
+        }
       }
       .cpa-about-section .heading.is-sticky-title,
       .cpa-about-section .sticky-side-image,
