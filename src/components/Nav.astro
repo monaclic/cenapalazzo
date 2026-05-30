@@ -7,7 +7,7 @@ interface Props {
 }
 
 const {
-  reserveHref = 'https://www.fpa2.org/fr/evenements/cena-a-palazzo-028',
+  reserveHref = '/reservation/',
   currentLang = 'fr',
 } = Astro.props;
 
@@ -60,8 +60,6 @@ const links = [
 
     <a
       href={reserveHref}
-      target="_blank"
-      rel="noopener noreferrer"
       class="nav-reserve"
     >
       Réserver

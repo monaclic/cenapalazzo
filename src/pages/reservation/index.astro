@@ -1,0 +1,527 @@
+---
+const translations = {
+  fr: {
+    title: 'Demande de réservation · Cena a Palazzo',
+    description: 'Formulaire de demande de réservation pour Cena a Palazzo, dîner de gala au Casino di Sanremo le 22 juin 2026.',
+    homeHref: '/',
+    eyebrow: 'Demande de réservation',
+    heading: 'Réserver sa place',
+    intro: "Merci de compléter ce formulaire. L'organisation vérifiera les disponibilités avant de vous envoyer le lien de paiement officiel de la Fondation Prince Albert II de Monaco.",
+    back: 'Retour au site',
+    languageLabel: 'Langues',
+    fields: {
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      email: 'Adresse e-mail',
+      phone: 'Numéro de téléphone',
+      guests: 'Nombre de personnes à réserver',
+      allergies: 'Allergies ou intolérances alimentaires',
+      vehicle: "Numéro d'immatriculation du véhicule",
+      vehicleHint: 'À renseigner uniquement si vous venez en voiture.',
+      allergiesPlaceholder: 'Indiquez les allergies, intolérances ou écrivez aucune.',
+      vehiclePlaceholder: 'Exemple: AB 123 CD',
+    },
+    submit: 'Envoyer la demande',
+    mailSubject: 'Demande de réservation Cena a Palazzo',
+    mailIntro: 'Bonjour, voici une nouvelle demande de réservation pour Cena a Palazzo.',
+    status: "Votre messagerie va s'ouvrir avec la demande préremplie. Envoyez l'e-mail à info@e20sanremo.it pour finaliser la demande.",
+    stepsTitle: 'Après votre demande',
+    steps: [
+      {
+        title: 'Vérification des disponibilités',
+        text: "L'organisation vérifie le nombre de places disponibles pour votre demande.",
+      },
+      {
+        title: 'Confirmation et paiement',
+        text: "Si la demande est confirmée, vous recevrez un e-mail avec le lien vers le site de la Fondation pour effectuer le paiement, ainsi que l'adresse info@e20sanremo.it à laquelle envoyer la preuve de paiement.",
+      },
+      {
+        title: 'Billet électronique',
+        text: "Après réception de la confirmation de paiement, l'organisation enverra votre confirmation définitive, votre billet électronique personnalisé et les informations logistiques utiles.",
+      },
+    ],
+    required: 'Champ obligatoire',
+  },
+  en: {
+    title: 'Booking request · Cena a Palazzo',
+    description: 'Booking request form for Cena a Palazzo, gala dinner at the Casino di Sanremo on 22 June 2026.',
+    homeHref: '/en/',
+    eyebrow: 'Booking request',
+    heading: 'Book your seat',
+    intro: 'Please complete this form. The organization will check availability before sending you the official payment link from the Prince Albert II of Monaco Foundation.',
+    back: 'Back to site',
+    languageLabel: 'Languages',
+    fields: {
+      firstName: 'First name',
+      lastName: 'Last name',
+      email: 'Email address',
+      phone: 'Phone number',
+      guests: 'Number of guests to reserve',
+      allergies: 'Food allergies or intolerances',
+      vehicle: 'Vehicle registration number',
+      vehicleHint: 'Only fill this in if you are coming by car.',
+      allergiesPlaceholder: 'List allergies, intolerances or write none.',
+      vehiclePlaceholder: 'Example: AB 123 CD',
+    },
+    submit: 'Send request',
+    mailSubject: 'Cena a Palazzo booking request',
+    mailIntro: 'Hello, here is a new booking request for Cena a Palazzo.',
+    status: 'Your email app will open with the request filled in. Send the email to info@e20sanremo.it to complete the request.',
+    stepsTitle: 'After your request',
+    steps: [
+      {
+        title: 'Availability check',
+        text: 'The organization checks the number of available seats for your request.',
+      },
+      {
+        title: 'Confirmation and payment',
+        text: 'If the request is confirmed, you will receive an email with the Foundation payment link and the address info@e20sanremo.it where the payment proof must be sent.',
+      },
+      {
+        title: 'Electronic ticket',
+        text: 'After receiving payment confirmation, the organization will send your final confirmation, your personalized electronic ticket and the useful logistical information.',
+      },
+    ],
+    required: 'Required field',
+  },
+  it: {
+    title: 'Richiesta di prenotazione · Cena a Palazzo',
+    description: 'Modulo di richiesta di prenotazione per Cena a Palazzo, cena di gala al Casino di Sanremo il 22 giugno 2026.',
+    homeHref: '/it/',
+    eyebrow: 'Richiesta di prenotazione',
+    heading: 'Prenotare il posto',
+    intro: "Compilate il modulo. L'organizzazione verificherà la disponibilità prima di inviarvi il link ufficiale di pagamento della Fondazione Principe Alberto II di Monaco.",
+    back: 'Torna al sito',
+    languageLabel: 'Lingue',
+    fields: {
+      firstName: 'Nome',
+      lastName: 'Cognome',
+      email: 'Indirizzo e-mail',
+      phone: 'Numero di telefono',
+      guests: 'Numero di persone da prenotare',
+      allergies: 'Allergie o intolleranze alimentari',
+      vehicle: 'Numero di targa del veicolo',
+      vehicleHint: 'Da compilare solo se arrivate in auto.',
+      allergiesPlaceholder: 'Indicate allergie, intolleranze oppure scrivete nessuna.',
+      vehiclePlaceholder: 'Esempio: AB 123 CD',
+    },
+    submit: 'Inviare la richiesta',
+    mailSubject: 'Richiesta di prenotazione Cena a Palazzo',
+    mailIntro: 'Buongiorno, ecco una nuova richiesta di prenotazione per Cena a Palazzo.',
+    status: "La vostra app e-mail si aprirà con la richiesta precompilata. Inviate l'e-mail a info@e20sanremo.it per completare la richiesta.",
+    stepsTitle: 'Dopo la richiesta',
+    steps: [
+      {
+        title: 'Verifica della disponibilità',
+        text: "L'organizzazione verifica il numero di posti disponibili per la vostra richiesta.",
+      },
+      {
+        title: 'Conferma e pagamento',
+        text: "Se la richiesta è confermata, riceverete un'e-mail con il link di pagamento della Fondazione e l'indirizzo info@e20sanremo.it a cui inviare la prova del pagamento.",
+      },
+      {
+        title: 'Biglietto elettronico',
+        text: "Dopo la ricezione della conferma di pagamento, l'organizzazione invierà la conferma definitiva, il biglietto elettronico personalizzato e tutte le informazioni logistiche utili.",
+      },
+    ],
+    required: 'Campo obbligatorio',
+  },
+} as const;
+
+type Locale = keyof typeof translations;
+const localeFromPath = Astro.url.pathname.split('/').filter(Boolean)[0];
+const locale = (localeFromPath in translations ? localeFromPath : 'fr') as Locale;
+const t = translations[locale];
+const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
+  { lang: 'fr', label: 'FR', href: '/reservation/' },
+  { lang: 'en', label: 'EN', href: '/en/reservation/' },
+  { lang: 'it', label: 'IT', href: '/it/reservation/' },
+];
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {languageOptions.map((option) => (
+      <link rel="alternate" hreflang={option.lang} href={`https://cenapalazzo.com${option.href}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href="https://cenapalazzo.com/reservation/" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript" is:inline></script>
+    <script type="text/javascript" is:inline>WebFont.load({ google: { families: ["Cormorant Garamond:300,400,500,600,700","Cormorant Garamond:ital,300,400,500,600,700","Montserrat:300,400,500,600,700"] } });</script>
+    <style>
+      :root {
+        --ink: #2A2A2A;
+        --gold: #BFA46A;
+        --gold-strong: #D4AF37;
+        --paper: #FFFFFF;
+        --champagne: #EFE6D3;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      body {
+        font-family: "Montserrat", system-ui, sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+      .reservation-page {
+        min-height: 100svh;
+        padding: clamp(1rem, 3vw, 1.75rem);
+        background:
+          linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 58%, #EFE6D3 100%);
+      }
+      .reservation-frame {
+        min-height: calc(100svh - clamp(2rem, 6vw, 3.5rem));
+        border: 1px solid rgba(191, 164, 106, 0.34);
+        padding: clamp(1.25rem, 5vw, 4rem);
+      }
+      .reservation-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: clamp(3rem, 7vw, 6rem);
+      }
+      .brand-link {
+        text-decoration: none;
+      }
+      .brand-wordmark {
+        display: block;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        line-height: 1;
+      }
+      .nav-tools {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.9rem, 2vw, 1.5rem);
+      }
+      .back-link,
+      .language-link {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .back-link,
+      .language-link.is-active {
+        color: #8A7530;
+      }
+      .language-switcher {
+        display: inline-flex;
+        gap: 0.5rem;
+      }
+      .language-link {
+        color: rgba(42, 42, 42, 0.52);
+      }
+      .reservation-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+        gap: clamp(3rem, 7vw, 7rem);
+        align-items: start;
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .reservation-eyebrow {
+        margin: 0 0 1.15rem;
+        color: #8A7530;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .reservation-title {
+        margin: 0;
+        max-width: 42rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(4rem, 9vw, 8rem);
+        font-style: italic;
+        font-weight: 500;
+        line-height: 0.92;
+      }
+      .reservation-intro {
+        margin: 2rem 0 0;
+        max-width: 34rem;
+        color: rgba(42, 42, 42, 0.72);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+        line-height: 1.7;
+      }
+      .process-card {
+        margin-top: clamp(3rem, 7vw, 5rem);
+        padding-top: 2rem;
+        border-top: 1px solid rgba(191, 164, 106, 0.38);
+      }
+      .process-title {
+        margin: 0 0 1.4rem;
+        color: #8A7530;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .process-list {
+        display: grid;
+        gap: 1.45rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .process-step {
+        display: grid;
+        grid-template-columns: 2rem 1fr;
+        gap: 1rem;
+      }
+      .process-number {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.8rem;
+        font-style: italic;
+        line-height: 1;
+      }
+      .process-step-title {
+        margin: 0 0 0.35rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.35rem;
+        font-style: italic;
+        font-weight: 500;
+      }
+      .process-step-text {
+        margin: 0;
+        color: rgba(42, 42, 42, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.65;
+      }
+      .reservation-form {
+        display: grid;
+        gap: 1rem;
+        padding: clamp(1.1rem, 3vw, 2rem);
+        background: rgba(255, 255, 255, 0.76);
+        border: 1px solid rgba(191, 164, 106, 0.32);
+        box-shadow: 0 1.6rem 4rem rgba(42, 42, 42, 0.08);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .field {
+        display: grid;
+        gap: 0.5rem;
+      }
+      .field.is-wide {
+        grid-column: 1 / -1;
+      }
+      label {
+        color: #5f4f20;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(191, 164, 106, 0.38);
+        border-radius: 0;
+        background: #FFFFFF;
+        color: var(--ink);
+        font: inherit;
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 0.95rem 1rem;
+        outline: none;
+        transition: border-color 0.24s ease, box-shadow 0.24s ease;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--gold-strong);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+      textarea {
+        min-height: 8rem;
+        resize: vertical;
+      }
+      .hint {
+        margin: -0.2rem 0 0;
+        color: rgba(42, 42, 42, 0.58);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+      .submit-button {
+        justify-self: start;
+        margin-top: 0.75rem;
+        border: 1px solid var(--gold);
+        background: #FFFFFF;
+        color: var(--ink);
+        cursor: pointer;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        padding: 1rem 1.35rem;
+        text-transform: uppercase;
+        transition: background-color 0.24s ease, border-color 0.24s ease;
+      }
+      .submit-button:hover {
+        background: rgba(212, 175, 55, 0.08);
+        border-color: var(--gold-strong);
+      }
+      .form-status {
+        min-height: 1.4rem;
+        margin: 0.4rem 0 0;
+        color: #6f5d25;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      @media (max-width: 900px) {
+        .reservation-layout,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .reservation-nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .nav-tools {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+      @media (max-width: 560px) {
+        .reservation-page {
+          padding: 0.75rem;
+        }
+        .reservation-frame {
+          padding: 1.25rem;
+        }
+        .reservation-title {
+          font-size: clamp(3.4rem, 17vw, 4.8rem);
+        }
+        .submit-button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="reservation-page">
+      <div class="reservation-frame">
+        <nav class="reservation-nav" aria-label="Reservation navigation">
+          <a href={t.homeHref} class="brand-link">
+            <span class="brand-wordmark">Cena a Palazzo</span>
+          </a>
+          <div class="nav-tools">
+            <a href={t.homeHref} class="back-link">{t.back}</a>
+            <div class="language-switcher" aria-label={t.languageLabel}>
+              {languageOptions.map((option) => (
+                <a href={option.href} class:list={['language-link', { 'is-active': option.lang === locale }]} aria-current={option.lang === locale ? 'page' : undefined}>{option.label}</a>
+              ))}
+            </div>
+          </div>
+        </nav>
+
+        <div class="reservation-layout">
+          <section>
+            <p class="reservation-eyebrow">{t.eyebrow}</p>
+            <h1 class="reservation-title">{t.heading}</h1>
+            <p class="reservation-intro">{t.intro}</p>
+
+            <div class="process-card">
+              <h2 class="process-title">{t.stepsTitle}</h2>
+              <ol class="process-list">
+                {t.steps.map((step, index) => (
+                  <li class="process-step">
+                    <span class="process-number">{String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3 class="process-step-title">{step.title}</h3>
+                      <p class="process-step-text">{step.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          <form class="reservation-form" id="reservation-form" action="mailto:info@e20sanremo.it" method="post" enctype="text/plain" data-locale={locale} data-subject={t.mailSubject} data-intro={t.mailIntro} data-status={t.status}>
+            <div class="form-grid">
+              <div class="field">
+                <label for="firstName">{t.fields.firstName}</label>
+                <input id="firstName" name={t.fields.firstName} autocomplete="given-name" required aria-required="true" title={t.required} />
+              </div>
+              <div class="field">
+                <label for="lastName">{t.fields.lastName}</label>
+                <input id="lastName" name={t.fields.lastName} autocomplete="family-name" required aria-required="true" title={t.required} />
+              </div>
+              <div class="field">
+                <label for="email">{t.fields.email}</label>
+                <input id="email" name={t.fields.email} type="email" autocomplete="email" required aria-required="true" title={t.required} />
+              </div>
+              <div class="field">
+                <label for="phone">{t.fields.phone}</label>
+                <input id="phone" name={t.fields.phone} type="tel" autocomplete="tel" required aria-required="true" title={t.required} />
+              </div>
+              <div class="field is-wide">
+                <label for="guests">{t.fields.guests}</label>
+                <input id="guests" name={t.fields.guests} type="number" min="1" step="1" inputmode="numeric" required aria-required="true" title={t.required} />
+              </div>
+              <div class="field is-wide">
+                <label for="allergies">{t.fields.allergies}</label>
+                <textarea id="allergies" name={t.fields.allergies} placeholder={t.fields.allergiesPlaceholder}></textarea>
+              </div>
+              <div class="field is-wide">
+                <label for="vehicle">{t.fields.vehicle}</label>
+                <input id="vehicle" name={t.fields.vehicle} placeholder={t.fields.vehiclePlaceholder} />
+                <p class="hint">{t.fields.vehicleHint}</p>
+              </div>
+            </div>
+            <button type="submit" class="submit-button">{t.submit}</button>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById('reservation-form');
+        var status = document.getElementById('form-status');
+        if (!form) return;
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          var data = new FormData(form);
+          var lines = [form.dataset.intro || '', '', 'Langue / Language / Lingua: ' + (form.dataset.locale || 'fr')];
+          data.forEach(function (value, key) {
+            lines.push(key + ': ' + value);
+          });
+
+          var subject = encodeURIComponent(form.dataset.subject || 'Cena a Palazzo');
+          var body = encodeURIComponent(lines.join('\n'));
+          window.location.href = 'mailto:info@e20sanremo.it?subject=' + subject + '&body=' + body;
+          if (status) status.textContent = form.dataset.status || '';
+        });
+      })();
+    </script>
+  </body>
+</html>
