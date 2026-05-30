@@ -6,7 +6,7 @@ const translations = {
     homeHref: '/',
     eyebrow: 'Demande de réservation',
     heading: 'Réserver sa place',
-    intro: "Merci de compléter ce formulaire. L'organisation vérifiera les disponibilités avant de vous envoyer le lien de paiement officiel de la Fondation Prince Albert II de Monaco.",
+    intro: "Merci de compléter ce formulaire. L'équipe Cena a Palazzo reviendra vers vous par e-mail pour confirmer votre demande.",
     back: 'Retour au site',
     languageLabel: 'Langues',
     fields: {
@@ -25,21 +25,6 @@ const translations = {
     mailSubject: 'Demande de réservation Cena a Palazzo',
     mailIntro: 'Bonjour, voici une nouvelle demande de réservation pour Cena a Palazzo.',
     status: "Votre messagerie va s'ouvrir avec la demande préremplie. Envoyez l'e-mail à info@e20sanremo.it pour finaliser la demande.",
-    stepsTitle: 'Après votre demande',
-    steps: [
-      {
-        title: 'Vérification des disponibilités',
-        text: "L'organisation vérifie le nombre de places disponibles pour votre demande.",
-      },
-      {
-        title: 'Confirmation et paiement',
-        text: "Si la demande est confirmée, vous recevrez un e-mail avec le lien vers le site de la Fondation pour effectuer le paiement, ainsi que l'adresse info@e20sanremo.it à laquelle envoyer la preuve de paiement.",
-      },
-      {
-        title: 'Billet électronique',
-        text: "Après réception de la confirmation de paiement, l'organisation enverra votre confirmation définitive, votre billet électronique personnalisé et les informations logistiques utiles.",
-      },
-    ],
     required: 'Champ obligatoire',
   },
   en: {
@@ -48,7 +33,7 @@ const translations = {
     homeHref: '/en/',
     eyebrow: 'Booking request',
     heading: 'Book your seat',
-    intro: 'Please complete this form. The organization will check availability before sending you the official payment link from the Prince Albert II of Monaco Foundation.',
+    intro: 'Please complete this form. The Cena a Palazzo team will get back to you by email to confirm your request.',
     back: 'Back to site',
     languageLabel: 'Languages',
     fields: {
@@ -67,21 +52,6 @@ const translations = {
     mailSubject: 'Cena a Palazzo booking request',
     mailIntro: 'Hello, here is a new booking request for Cena a Palazzo.',
     status: 'Your email app will open with the request filled in. Send the email to info@e20sanremo.it to complete the request.',
-    stepsTitle: 'After your request',
-    steps: [
-      {
-        title: 'Availability check',
-        text: 'The organization checks the number of available seats for your request.',
-      },
-      {
-        title: 'Confirmation and payment',
-        text: 'If the request is confirmed, you will receive an email with the Foundation payment link and the address info@e20sanremo.it where the payment proof must be sent.',
-      },
-      {
-        title: 'Electronic ticket',
-        text: 'After receiving payment confirmation, the organization will send your final confirmation, your personalized electronic ticket and the useful logistical information.',
-      },
-    ],
     required: 'Required field',
   },
   it: {
@@ -90,7 +60,7 @@ const translations = {
     homeHref: '/it/',
     eyebrow: 'Richiesta di prenotazione',
     heading: 'Prenotare il posto',
-    intro: "Compilate il modulo. L'organizzazione verificherà la disponibilità prima di inviarvi il link ufficiale di pagamento della Fondazione Principe Alberto II di Monaco.",
+    intro: 'Compilate il modulo. Il team Cena a Palazzo vi ricontatterà via e-mail per confermare la richiesta.',
     back: 'Torna al sito',
     languageLabel: 'Lingue',
     fields: {
@@ -109,21 +79,6 @@ const translations = {
     mailSubject: 'Richiesta di prenotazione Cena a Palazzo',
     mailIntro: 'Buongiorno, ecco una nuova richiesta di prenotazione per Cena a Palazzo.',
     status: "La vostra app e-mail si aprirà con la richiesta precompilata. Inviate l'e-mail a info@e20sanremo.it per completare la richiesta.",
-    stepsTitle: 'Dopo la richiesta',
-    steps: [
-      {
-        title: 'Verifica della disponibilità',
-        text: "L'organizzazione verifica il numero di posti disponibili per la vostra richiesta.",
-      },
-      {
-        title: 'Conferma e pagamento',
-        text: "Se la richiesta è confermata, riceverete un'e-mail con il link di pagamento della Fondazione e l'indirizzo info@e20sanremo.it a cui inviare la prova del pagamento.",
-      },
-      {
-        title: 'Biglietto elettronico',
-        text: "Dopo la ricezione della conferma di pagamento, l'organizzazione invierà la conferma definitiva, il biglietto elettronico personalizzato e tutte le informazioni logistiche utili.",
-      },
-    ],
     required: 'Campo obbligatorio',
   },
 } as const;
@@ -263,51 +218,6 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
         font-size: clamp(1.12rem, 1.5vw, 1.35rem);
         line-height: 1.7;
       }
-      .process-card {
-        margin-top: clamp(3rem, 7vw, 5rem);
-        padding-top: 2rem;
-        border-top: 1px solid rgba(191, 164, 106, 0.38);
-      }
-      .process-title {
-        margin: 0 0 1.4rem;
-        color: #8A7530;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-      .process-list {
-        display: grid;
-        gap: 1.45rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .process-step {
-        display: grid;
-        grid-template-columns: 2rem 1fr;
-        gap: 1rem;
-      }
-      .process-number {
-        color: var(--gold);
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: 1.8rem;
-        font-style: italic;
-        line-height: 1;
-      }
-      .process-step-title {
-        margin: 0 0 0.35rem;
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: 1.35rem;
-        font-style: italic;
-        font-weight: 500;
-      }
-      .process-step-text {
-        margin: 0;
-        color: rgba(42, 42, 42, 0.7);
-        font-size: 0.95rem;
-        line-height: 1.65;
-      }
       .reservation-form {
         display: grid;
         gap: 1rem;
@@ -442,20 +352,6 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
             <h1 class="reservation-title">{t.heading}</h1>
             <p class="reservation-intro">{t.intro}</p>
 
-            <div class="process-card">
-              <h2 class="process-title">{t.stepsTitle}</h2>
-              <ol class="process-list">
-                {t.steps.map((step, index) => (
-                  <li class="process-step">
-                    <span class="process-number">{String(index + 1).padStart(2, '0')}</span>
-                    <div>
-                      <h3 class="process-step-title">{step.title}</h3>
-                      <p class="process-step-text">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
           </section>
 
           <form class="reservation-form" id="reservation-form" action="mailto:info@e20sanremo.it" method="post" enctype="text/plain" data-locale={locale} data-subject={t.mailSubject} data-intro={t.mailIntro} data-status={t.status}>
