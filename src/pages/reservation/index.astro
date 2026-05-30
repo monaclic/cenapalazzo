@@ -27,8 +27,9 @@ const translations = {
     mailIntro: 'Bonjour, voici une nouvelle demande de réservation pour Cena a Palazzo.',
     pending: 'Préparation de votre demande...',
     successTitle: 'Merci pour votre demande',
-    successMessage: "Votre demande est prête. Votre messagerie va s'ouvrir avec un e-mail prérempli à envoyer à info@e20sanremo.it. L'équipe Cena a Palazzo reviendra vers vous par e-mail.",
+    successMessage: "Votre demande a bien été envoyée à l'équipe Cena a Palazzo. Nous reviendrons vers vous par e-mail.",
     errorMessage: 'Merci de vérifier les champs obligatoires avant envoi.',
+    sendErrorMessage: "L'envoi n'a pas abouti. Merci de réessayer dans quelques instants ou de contacter info@e20sanremo.it.",
     spamMessage: 'Votre demande n’a pas pu être envoyée.',
     honeypot: 'Site internet',
     required: 'Champ obligatoire',
@@ -60,8 +61,9 @@ const translations = {
     mailIntro: 'Hello, here is a new booking request for Cena a Palazzo.',
     pending: 'Preparing your request...',
     successTitle: 'Thank you for your request',
-    successMessage: 'Your request is ready. Your email app will open with a prefilled message to send to info@e20sanremo.it. The Cena a Palazzo team will get back to you by email.',
+    successMessage: 'Your request has been sent to the Cena a Palazzo team. We will get back to you by email.',
     errorMessage: 'Please check the required fields before sending.',
+    sendErrorMessage: 'The request could not be sent. Please try again shortly or contact info@e20sanremo.it.',
     spamMessage: 'Your request could not be sent.',
     honeypot: 'Website',
     required: 'Required field',
@@ -93,8 +95,9 @@ const translations = {
     mailIntro: 'Buongiorno, ecco una nuova richiesta di prenotazione per Cena a Palazzo.',
     pending: 'Preparazione della richiesta...',
     successTitle: 'Grazie per la richiesta',
-    successMessage: "La richiesta è pronta. La vostra app e-mail si aprirà con un messaggio precompilato da inviare a info@e20sanremo.it. Il team Cena a Palazzo vi ricontatterà via e-mail.",
+    successMessage: 'La richiesta è stata inviata al team Cena a Palazzo. Vi ricontatteremo via e-mail.',
     errorMessage: "Controllate i campi obbligatori prima dell'invio.",
+    sendErrorMessage: "L'invio non è riuscito. Riprovate tra qualche istante o contattate info@e20sanremo.it.",
     spamMessage: 'La richiesta non è stata inviata.',
     honeypot: 'Sito internet',
     required: 'Campo obbligatorio',
@@ -415,7 +418,7 @@ const phonePattern = String.raw`\+[0-9][0-9\s().-]{6,}`;
 
           </section>
 
-          <form class="reservation-form" id="reservation-form" action="mailto:info@e20sanremo.it" method="post" enctype="text/plain" data-locale={locale} data-subject={t.mailSubject} data-intro={t.mailIntro} data-pending={t.pending} data-error={t.errorMessage} data-spam={t.spamMessage}>
+          <form class="reservation-form" id="reservation-form" action="/api/reservation" method="post" data-locale={locale} data-pending={t.pending} data-error={t.errorMessage} data-send-error={t.sendErrorMessage} data-spam={t.spamMessage}>
             <div class="form-grid">
               <div class="field is-trap" aria-hidden="true">
                 <label for="website">{t.honeypot}</label>
@@ -503,20 +506,35 @@ const phonePattern = String.raw`\+[0-9][0-9\s().-]{6,}`;
 
           if (submitButton) submitButton.disabled = true;
           if (status) status.textContent = form.dataset.pending || '';
-          var data = new FormData(form);
-          var lines = [form.dataset.intro || '', '', 'Langue / Language / Lingua: ' + (form.dataset.locale || 'fr')];
-          data.forEach(function (value, key) {
-            var cleanValue = String(value).trim();
-            if (key !== 'website' && cleanValue !== '') {
-              lines.push(key + ': ' + cleanValue);
-            }
-          });
-
-          var subject = encodeURIComponent(form.dataset.subject || 'Cena a Palazzo');
-          var body = encodeURIComponent(lines.join('\n'));
-          window.location.href = 'mailto:info@e20sanremo.it?subject=' + subject + '&body=' + body;
-          form.classList.add('is-hidden');
-          if (success) success.classList.remove('is-hidden');
+          fetch('/api/reservation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              locale: form.dataset.locale || 'fr',
+              firstName: document.getElementById('firstName').value.trim(),
+              lastName: document.getElementById('lastName').value.trim(),
+              email: document.getElementById('email').value.trim(),
+              phone: document.getElementById('phone').value.trim(),
+              guests: document.getElementById('guests').value.trim(),
+              allergies: document.getElementById('allergies').value.trim(),
+              vehicle: document.getElementById('vehicle').value.trim(),
+              website: trap ? trap.value.trim() : '',
+            }),
+          })
+            .then(function (response) {
+              if (!response.ok) throw new Error('send_failed');
+              form.classList.add('is-hidden');
+              if (success) success.classList.remove('is-hidden');
+            })
+            .catch(function () {
+              if (status) {
+                status.textContent = form.dataset.sendError || form.dataset.error || '';
+                status.classList.add('is-error');
+              }
+              if (submitButton) submitButton.disabled = false;
+            });
         });
       })();
     </script>
