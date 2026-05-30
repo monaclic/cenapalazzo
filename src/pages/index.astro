@@ -1218,12 +1218,8 @@
         html.w-mod-js #reservation .heading.is-cta-collage-title {
           visibility: hidden;
         }
-        html.w-mod-js #reservation .heading.is-cta-collage-title:has(.gsap_split_letter) {
+        html.w-mod-js #reservation .heading.is-cta-collage-title.is-split-ready {
           visibility: visible;
-        }
-        html.w-mod-js #reservation .heading.is-cta-collage-title .gsap_split_letter {
-          opacity: 0;
-          transform: translate3d(0, -3rem, 0);
         }
       }
 
@@ -1610,6 +1606,33 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript" is:inline></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript" is:inline></script>
+
+    <script is:inline>
+      (function () {
+        var title = document.querySelector('#reservation .heading.is-cta-collage-title');
+        if (!title) return;
+
+        function markReady() {
+          if (title.querySelector('.gsap_split_letter')) {
+            title.classList.add('is-split-ready');
+            return true;
+          }
+          return false;
+        }
+
+        if (markReady()) return;
+
+        var observer = new MutationObserver(function () {
+          if (markReady()) observer.disconnect();
+        });
+        observer.observe(title, { childList: true, subtree: true });
+
+        window.setTimeout(function () {
+          if (!markReady()) title.classList.add('is-split-ready');
+          observer.disconnect();
+        }, 1400);
+      })();
+    </script>
 
     <!-- Stabilise les mesures de la section A propos au premier passage. -->
     <script is:inline>
