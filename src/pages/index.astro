@@ -1172,6 +1172,143 @@
       .footer-link:hover {
         color: #D4AF37;
       }
+      .cpa-footer {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 6vw, 6rem) 2rem;
+        background:
+          linear-gradient(180deg, #FFFFFF 0%, #EFE6D3 32%, #E7D7B9 100%) !important;
+        color: #2A2A2A;
+      }
+      .cpa-footer::before {
+        content: "";
+        position: absolute;
+        inset: 1rem;
+        border: 1px solid rgba(191, 164, 106, 0.32);
+        pointer-events: none;
+      }
+      .cpa-footer-cta {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: clamp(2rem, 6vw, 6rem);
+        max-width: 1180px;
+        margin: 0 auto clamp(4rem, 8vw, 7rem);
+      }
+      .cpa-footer-eyebrow,
+      .cpa-footer-label {
+        margin: 0 0 1rem;
+        color: #8A7530;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .cpa-footer-title {
+        margin: 0;
+        max-width: 780px;
+        color: #2A2A2A;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(4rem, 9vw, 8.5rem);
+        font-style: italic;
+        font-weight: 500;
+        line-height: 0.98;
+        padding-bottom: 0.08em;
+      }
+      .cpa-footer-copy {
+        margin: 1.4rem 0 0;
+        max-width: 34rem;
+        color: rgba(42, 42, 42, 0.72);
+        font-size: clamp(1rem, 1.2vw, 1.12rem);
+        line-height: 1.7;
+      }
+      .cpa-footer-main {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr 1fr;
+        gap: clamp(1.5rem, 4vw, 4rem);
+        max-width: 1180px;
+        margin: 0 auto;
+        padding-top: clamp(2rem, 4vw, 3.5rem);
+        border-top: 1px solid rgba(191, 164, 106, 0.36);
+      }
+      .cpa-footer-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cpa-footer-value {
+        margin: 0;
+        color: #2A2A2A;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 500;
+        line-height: 1.05;
+      }
+      .cpa-footer-text {
+        margin: 0.9rem 0 0;
+        color: rgba(42, 42, 42, 0.72);
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+      .cpa-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem 1.2rem;
+        margin-top: 1.2rem;
+      }
+      .cpa-footer-link {
+        color: #2A2A2A;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .cpa-footer-link:hover {
+        color: #8A7530;
+      }
+      .cpa-footer-bottom {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        max-width: 1180px;
+        margin: clamp(3rem, 6vw, 5rem) auto 0;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(42, 42, 42, 0.12);
+        color: rgba(42, 42, 42, 0.62);
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      @media (max-width: 900px) {
+        .cpa-footer-cta,
+        .cpa-footer-main {
+          grid-template-columns: 1fr;
+        }
+        .cpa-footer-cta {
+          align-items: start;
+        }
+      }
+      @media (max-width: 600px) {
+        .cpa-footer {
+          padding: 5rem 1.25rem 2rem;
+        }
+        .cpa-footer::before {
+          inset: 0.75rem;
+        }
+        .cpa-footer-bottom {
+          flex-direction: column;
+        }
+      }
 
       /* Sections génériques · blanc pur partout */
       .section {
@@ -1355,7 +1492,40 @@
     </div>
   </div>
 </section>
-<div data-wf--footer--variant="without-cta-section" class="footer w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div class="footer-cta w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"><div content-on-scroll="true" class="cta-content"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Suivant</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h3 class="heading-brand in-cta-2">Réserver sa place</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="images-in-circle in-footer"><div class="cta-image-block"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="cta-image is-2nd"/></div><div class="cta-image-block is-2nd"><img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Restaurant du Casino di Sanremo." class="cta-image is-2nd"/></div><div class="cta-image-block is-3rd"><img src="/assets/photos/sala-casino-18.jpg" loading="lazy" alt="Intérieur du Casino di Sanremo." class="cta-image is-2nd"/></div><div class="cta-image-block is-4th"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Salle de réception du Casino di Sanremo." class="cta-image is-2nd"/></div><div class="cta-image-block is-5th"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="cta-image is-2nd"/></div><div class="cta-image-block is-6th"><img src="/assets/photos/sala-casino-32.jpg" loading="lazy" alt="Salle de gala du Casino di Sanremo." class="cta-image is-2nd"/></div><div class="circle-border-1"></div><div class="circle-border-2"></div><div class="circle-border-3"></div></div><div class="footer-gradient-top"></div><div class="footer-gradient-bottom"></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg in-footer"/></div><div class="footer-layout"><div class="footer-brand"><a id="w-node-_3024d66e-0397-f40b-e835-c02141f5881a-b84ddaca" href="/" aria-current="page" class="footer-logo w-inline-block w--current"><div class="footer-wordmark">Cena a Palazzo</div><div class="footer-slogan">22 juin 2026 · Casino di Sanremo</div></a></div></div><div class="footer-content"><div class="footer-links-col is-1st"><div class="footer-flex"><div class="footer-text">Navigation</div><a href="#start" class="footer-link">Accueil</a><a href="#menu" class="footer-link">Menu</a><a href="#patronage" class="footer-link">Patronage</a><a href="#reservation" class="footer-link">Réservation</a><a href="#questions" class="footer-link">Questions</a></div></div><div class="footer-links-col"><div class="footer-flex"><div class="footer-text">Lieu</div><div class="footer-text is-address">Casino di Sanremo<br/>Corso degli Inglesi 18, Sanremo<br/></div><a data-wf--regular-link--variant="dark" href="https://maps.app.goo.gl/2tFXgU14e7zvbi9Y9" target="_blank" rel="noopener" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">Itinéraire</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div><div class="footer-flex"><div class="footer-text">Contact</div><div class="footer-text is-address">Pour toute demande<br/></div><a data-wf--regular-link--variant="dark" href="mailto:info@e20sanremo.it" class="regular-link w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de w-inline-block"><div class="regular-link-text">info@e20sanremo.it</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e548f2811a2e9ad399625d_arrow-icon-6.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line w-variant-b6121c2f-879b-c3d7-31a9-0e657e50b4de"></div></a></div></div></div><div class="footer-sublinks"><div class="footer-sublinks-wrap is-1st"><span class="footer-link is-author">© 2026 Cena a Palazzo</span><span class="footer-link is-author">Un engagement tourné vers le vivant</span></div><div class="footer-sublinks-wrap"><span class="footer-link is-author">Crédit Féeline Création</span></div></div><div class="footer-bg w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a"></div></div></div></main></div>
+<footer data-wf--footer--variant="without-cta-section" class="footer cpa-footer w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a">
+  <div class="cpa-footer-cta">
+    <div>
+      <p class="cpa-footer-eyebrow">Dernière étape</p>
+      <h2 class="cpa-footer-title">Réserver sa place</h2>
+      <p class="cpa-footer-copy">Cena a Palazzo accueille un nombre limité de convives dans la salle privée du Casino di Sanremo. La réservation se fait sur la plateforme officielle de la Fondation Prince Albert II de Monaco.</p>
+    </div>
+    <a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a>
+  </div>
+  <div class="cpa-footer-main">
+    <div class="cpa-footer-block">
+      <p class="cpa-footer-label">Date</p>
+      <p class="cpa-footer-value">22 juin 2026</p>
+      <p class="cpa-footer-text">Accueil à 20 h, dîner à 21 h.</p>
+    </div>
+    <div class="cpa-footer-block">
+      <p class="cpa-footer-label">Lieu</p>
+      <p class="cpa-footer-value">Casino di Sanremo</p>
+      <p class="cpa-footer-text">Corso degli Inglesi 18, Sanremo. Service voiturier prévu pour la soirée.</p>
+      <div class="cpa-footer-links"><a href="https://maps.app.goo.gl/2tFXgU14e7zvbi9Y9" target="_blank" rel="noopener" class="cpa-footer-link">Itinéraire</a></div>
+    </div>
+    <div class="cpa-footer-block">
+      <p class="cpa-footer-label">Contact</p>
+      <p class="cpa-footer-value">E20Sanremo</p>
+      <p class="cpa-footer-text">Pour une demande particulière ou une précision avant réservation.</p>
+      <div class="cpa-footer-links"><a href="mailto:info@e20sanremo.it" class="cpa-footer-link">info@e20sanremo.it</a></div>
+    </div>
+  </div>
+  <div class="cpa-footer-bottom">
+    <span>© 2026 Cena a Palazzo</span>
+    <span>Au bénéfice de la Fondation Prince Albert II de Monaco</span>
+    <span>Crédit Féeline Création</span>
+  </div>
+</footer></main></div>
     <!-- =================================================================
          SCRIPTS Veloura (jQuery + Webflow + GSAP), ordre verbatim
          ================================================================= -->
