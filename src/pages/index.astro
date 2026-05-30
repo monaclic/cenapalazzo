@@ -516,7 +516,39 @@
           padding-bottom: clamp(2rem, 6vw, 3.5rem) !important;
         }
         .cpa-about-section .sticky-side-images {
+          display: block !important;
+          position: relative !important;
+          top: auto !important;
+          width: min(100%, 21rem);
+          margin: 0 auto 2.5rem auto;
+          min-height: auto !important;
+        }
+        .cpa-about-section .sticky-side-images-wrapper {
+          position: relative !important;
+          width: 100% !important;
+          min-height: auto !important;
+        }
+        .cpa-about-section .sticky-side-image {
           display: none !important;
+        }
+        .cpa-about-section .sticky-side-image.is-1st {
+          display: block !important;
+          position: relative !important;
+          inset: auto !important;
+          width: 100% !important;
+          height: auto !important;
+          aspect-ratio: 3 / 4;
+          overflow: hidden;
+          border: 1px solid rgba(191, 164, 106, 0.32);
+          background-color: #FFFFFF;
+          box-shadow: 0 1.4rem 3.5rem rgba(42, 42, 42, 0.12);
+          transform: rotate(-1.5deg) !important;
+          opacity: 1 !important;
+        }
+        .cpa-about-section .sticky-side-image.is-1st .cover-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
       .cpa-about-section .heading.is-sticky-title,
@@ -608,6 +640,38 @@
       }
       .feeline-patronage-body:last-child {
         margin-bottom: 0;
+      }
+      .cpa-mobile-photo-strip {
+        display: none;
+      }
+      @media (max-width: 767px) {
+        .cpa-mobile-photo-strip {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 0.78fr);
+          gap: 0.75rem;
+          padding: 0 1.25rem 4.25rem 1.25rem;
+          background-color: #FFFFFF;
+        }
+        .cpa-mobile-photo-strip figure {
+          margin: 0;
+          overflow: hidden;
+          border: 1px solid rgba(191, 164, 106, 0.28);
+          background-color: #FFFFFF;
+          box-shadow: 0 1.2rem 3rem rgba(42, 42, 42, 0.1);
+        }
+        .cpa-mobile-photo-strip figure:first-child {
+          aspect-ratio: 4 / 5;
+        }
+        .cpa-mobile-photo-strip figure:nth-child(2) {
+          aspect-ratio: 3 / 4;
+          margin-top: 2.2rem;
+        }
+        .cpa-mobile-photo-strip img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
       /* ================================================================
@@ -1487,6 +1551,14 @@
     <p class="feeline-patronage-body">Les bénéfices sont reversés à la <em>Fondation Prince Albert II de Monaco</em>, afin de soutenir ses actions pour le climat, la biodiversité et la préservation des ressources en eau.</p>
   </div>
 </section>
+<div class="cpa-mobile-photo-strip">
+  <figure>
+    <img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit."/>
+  </figure>
+  <figure>
+    <img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Salle du Casino di Sanremo dressée pour une réception."/>
+  </figure>
+</div>
 <section id="reservation" class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">Réserver<br>sa place</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section>
 
 <section class="section cpa-about-section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">L'expérience</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title" aria-label="Au coeur du Casino di Sanremo, Cena a Palazzo compose une soirée de caractère, pensée comme un trait d'union entre culture, cuisine et engagement.">Au coeur du Casino di Sanremo, Cena a Palazzo compose une soirée de caractère, pensée comme un trait d'union entre culture, cuisine et engagement.</h2><a aria-label="Descendre vers la section L'expérience" data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/feeline/plan-de-table.png" loading="lazy" alt="Plan de table Cena a Palazzo présenté dans un cadre doré ornemental." class="cover-image"/></div><div class="sticky-side-image is-2nd"></div><div class="sticky-side-image is-3rd"></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le lieu</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Une salle privée chargée d'histoire</h2><p class="paragraph-small">Derrière la façade iconique du Casino, la salle privée offre un décor intime et solennel, où les ors, les volumes et la mémoire du lieu accompagnent la soirée sans l'écraser.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le geste culinaire</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Une cuisine de transmission</h2><p class="paragraph-small">Le menu relie Monaco à la Riviera italienne avec précision: des références patrimoniales, des produits choisis et une mise en scène pensée pour le rythme d'un dîner de réception.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le sens de la soirée</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Un engagement tourné vers le vivant</h2><p class="paragraph-small">Chaque table participe à une même intention: transformer un moment de célébration en soutien concret aux programmes environnementaux portés par la Fondation Prince Albert II de Monaco.</p><a data-wf--main-button--variant="base" href="#questions" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div></div><div class="bg-absolute-gradient"></div>
