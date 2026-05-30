@@ -6,18 +6,430 @@
 // éviter toute interférence avec la feuille de style et les scripts
 // Webflow Veloura.
 // =====================================================================
+
+const translations = {
+  fr: {
+    title: 'Cena a Palazzo · 22 juin 2026 · Casino di Sanremo',
+    description: "Cena a Palazzo réunit Monaco et Sanremo le 22 juin 2026 au Casino di Sanremo, autour d'une table signée Christian Garcia et d'un engagement pour le vivant.",
+    nav: {
+      menu: 'Menu',
+      patronage: 'Patronage',
+      book: 'Réserver',
+      questions: 'Questions',
+      navigation: 'Navigation',
+      home: 'Accueil',
+      reservation: 'Réservation',
+      placeLabel: 'Lieu',
+      placeValue: 'Casino di Sanremo, Corso degli Inglesi 18, Sanremo',
+      menuButton: 'menu',
+    },
+    hero: {
+      kicker: 'Soirée caritative',
+      subtitle: '22 juin 2026 · Casino di Sanremo',
+      copy: "Le 22 juin 2026, Monaco et Sanremo se retrouvent autour d'une table rare, imaginée pour célébrer l'hospitalité, le patrimoine et l'engagement environnemental.",
+      discover: 'Découvrir',
+    },
+    intro: {
+      eyebrow: 'Casino di Sanremo',
+      title: 'Un palais Belle Époque, une table princière, une soirée dédiée à la Méditerranée.',
+      caption: 'Casino di Sanremo · Salle Privée',
+    },
+    menu: {
+      eyebrow: 'La table',
+      heading: 'Signé par le Chef',
+      chef: 'Christian Garcia',
+      intro: "Chef du Palais Princier de Monaco, Christian Garcia imagine un parcours en quatre temps, entre mémoire monégasque, produits de la Riviera et élégance de réception.",
+      course1Label: 'Mise en bouche',
+      course1Dish: 'Gelée',
+      course1DishSecond: 'de Lion Fish',
+      course2Label: 'Entrée',
+      course2Dish: 'Chartreuse de Macaroni à la Grimaldi',
+      course2Detail: 'Gamberoni de San Remo',
+      course3Label: 'Plat principal',
+      course3Dish: 'Mignon de veau fermier Rossini',
+      course3Detail: 'Petits légumes farcis Monégasques',
+      course4Label: 'Dessert',
+      course4Dish: 'Dessert',
+      course4DishSecond: 'à la Mecchia',
+      pairing: 'Sélection de vins et champagne · Café et mignardises',
+    },
+    patronage: {
+      pre: 'Sous la haute présidence',
+      title: 'de S.A.S. le Prince Albert II de Monaco',
+      body1: "La soirée s'inscrit dans le dialogue ancien entre la Principauté de Monaco et Sanremo, avec la présence symbolique de S.A.S. le Prince Albert II de Monaco et le concours de l'Association des Sites Historiques Grimaldi de Monaco.",
+      body2Prefix: 'Les bénéfices sont reversés à la',
+      body2Em: 'Fondation Prince Albert II de Monaco',
+      body2Suffix: "afin de soutenir ses actions pour le climat, la biodiversité et la préservation des ressources en eau.",
+    },
+    reservation: {
+      titleLine1: 'Réserver',
+      titleLine2: 'sa place',
+    },
+    about: {
+      eyebrow: "L'expérience",
+      title: "Au coeur du Casino di Sanremo, Cena a Palazzo compose une soirée de caractère, pensée comme un trait d'union entre culture, cuisine et engagement.",
+      scrollLabel: "Descendre vers la section L'expérience",
+      block1Eyebrow: 'Le lieu',
+      block1Title: "Une salle privée chargée d'histoire",
+      block1Text: "Derrière la façade iconique du Casino, la salle privée offre un décor intime et solennel, où les ors, les volumes et la mémoire du lieu accompagnent la soirée sans l'écraser.",
+      block2Eyebrow: 'Le geste culinaire',
+      block2Title: 'Une cuisine de transmission',
+      block2Text: "Le menu relie Monaco à la Riviera italienne avec précision: des références patrimoniales, des produits choisis et une mise en scène pensée pour le rythme d'un dîner de réception.",
+      block3Eyebrow: 'Le sens de la soirée',
+      block3Title: 'Un engagement tourné vers le vivant',
+      block3Text: 'Chaque table participe à une même intention: transformer un moment de célébration en soutien concret aux programmes environnementaux portés par la Fondation Prince Albert II de Monaco.',
+    },
+    faq: {
+      eyebrow: 'Questions pratiques',
+      heading: 'Préparer la soirée',
+      subtitle: "Réservation, horaires, tenue et accès: les informations utiles pour aborder la soirée avec sérénité.",
+      open: 'Lire la réponse',
+      close: 'Refermer',
+      questions: [
+        {
+          question: 'Comment réserver sa place ?',
+          answerPrefix: 'Les réservations se font en ligne via la plateforme officielle de la Fondation Prince Albert II de Monaco. Le bouton',
+          answerLink: 'Réserver',
+          answerSuffix: "vous y conduit directement. Pour une demande particulière, écrivez-nous à",
+        },
+        {
+          question: 'Quelle tenue est attendue ?',
+          answer: "Tenue de soirée exigée. Costume sombre ou smoking pour les messieurs, robe longue ou robe de cocktail pour les dames. Le noir convient naturellement à l'esprit du lieu, sans être imposé.",
+        },
+        {
+          question: 'À quelle heure arriver ?',
+          answer: "L'accueil commence à 20 h avec un cocktail. Le dîner signé Christian Garcia est servi à partir de 21 h dans la salle privée. Une arrivée entre 19 h 45 et 20 h 15 est recommandée.",
+        },
+        {
+          question: 'Le menu peut-il être adapté ?',
+          answer: "Allergies, intolérances et régimes particuliers peuvent être signalés au moment de la réservation. Pour faciliter l'organisation en cuisine, merci de transmettre toute contrainte au plus tard quinze jours avant l'événement.",
+        },
+        {
+          question: 'Comment rejoindre le Casino di Sanremo ?',
+          answer: 'Le Casino se situe au Corso degli Inglesi 18, à Sanremo. Un service voiturier est prévu pour la soirée. Des stationnements publics et des accès piétons se trouvent à proximité immédiate.',
+        },
+        {
+          question: 'Quelle cause la soirée soutient-elle ?',
+          answer: "Les bénéfices de Cena a Palazzo sont reversés à la Fondation Prince Albert II de Monaco, qui agit pour le climat, la biodiversité, l'océan et les ressources en eau.",
+        },
+      ],
+    },
+    footer: {
+      eyebrow: 'Dernière étape',
+      title: 'Réserver sa place',
+      copy: 'Cena a Palazzo accueille un nombre limité de convives dans la salle privée du Casino di Sanremo. La réservation se fait sur la plateforme officielle de la Fondation Prince Albert II de Monaco.',
+      dateLabel: 'Date',
+      dateValue: '22 juin 2026',
+      dateText: 'Accueil à 20 h, dîner à 21 h.',
+      placeLabel: 'Lieu',
+      placeText: 'Corso degli Inglesi 18, Sanremo. Service voiturier prévu pour la soirée.',
+      route: 'Itinéraire',
+      contactText: 'Pour une demande particulière ou une précision avant réservation.',
+      cause: 'Au bénéfice de la Fondation Prince Albert II de Monaco',
+      credit: 'Crédit Féeline Création',
+    },
+    alts: {
+      hero: 'Façade illustrée du Casino di Sanremo pour Cena a Palazzo.',
+      menu: 'Salon du Casino di Sanremo avec banquettes en velours et grand lustre.',
+      facadeDay: 'Façade du Casino di Sanremo de jour.',
+      facadeNight: 'Façade illuminée du Casino di Sanremo de nuit.',
+      room: 'Salle du Casino di Sanremo dressée pour une réception.',
+      engraving: 'Casino di Sanremo · gravure ornementale',
+      plan: 'Plan de table Cena a Palazzo présenté dans un cadre doré ornemental.',
+    },
+  },
+  en: {
+    title: 'Cena a Palazzo · 22 June 2026 · Casino di Sanremo',
+    description: 'Cena a Palazzo brings Monaco and Sanremo together on 22 June 2026 at the Casino di Sanremo, around a dinner by Christian Garcia and a commitment to the living world.',
+    nav: {
+      menu: 'Menu',
+      patronage: 'Patronage',
+      book: 'Book',
+      questions: 'Questions',
+      navigation: 'Navigation',
+      home: 'Home',
+      reservation: 'Booking',
+      placeLabel: 'Venue',
+      placeValue: 'Casino di Sanremo, Corso degli Inglesi 18, Sanremo',
+      menuButton: 'menu',
+    },
+    hero: {
+      kicker: 'Charity gala dinner',
+      subtitle: '22 June 2026 · Casino di Sanremo',
+      copy: 'On 22 June 2026, Monaco and Sanremo meet around a rare table, imagined to celebrate hospitality, heritage and environmental commitment.',
+      discover: 'Discover',
+    },
+    intro: {
+      eyebrow: 'Casino di Sanremo',
+      title: 'A Belle Époque palace, a princely table, an evening dedicated to the Mediterranean.',
+      caption: 'Casino di Sanremo · Private Room',
+    },
+    menu: {
+      eyebrow: 'The table',
+      heading: 'Signed by Chef',
+      chef: 'Christian Garcia',
+      intro: "Chef of the Prince's Palace of Monaco, Christian Garcia imagines a four-course journey between Monegasque memory, Riviera products and reception elegance.",
+      course1Label: 'Amuse bouche',
+      course1Dish: 'Lion Fish',
+      course1DishSecond: 'jelly',
+      course2Label: 'Starter',
+      course2Dish: 'Macaroni chartreuse à la Grimaldi',
+      course2Detail: 'San Remo red prawns',
+      course3Label: 'Main course',
+      course3Dish: 'Farm veal mignon Rossini',
+      course3Detail: 'Monegasque stuffed vegetables',
+      course4Label: 'Dessert',
+      course4Dish: 'Dessert',
+      course4DishSecond: 'à la Mecchia',
+      pairing: 'Wine and champagne selection · Coffee and mignardises',
+    },
+    patronage: {
+      pre: 'Under the high presidency',
+      title: 'of H.S.H. Prince Albert II of Monaco',
+      body1: 'The evening is part of the long-standing dialogue between the Principality of Monaco and Sanremo, with the symbolic presence of H.S.H. Prince Albert II of Monaco and the support of the Association of Grimaldi Historic Sites of Monaco.',
+      body2Prefix: 'Proceeds will be donated to the',
+      body2Em: 'Prince Albert II of Monaco Foundation',
+      body2Suffix: 'to support its work for climate, biodiversity and the preservation of water resources.',
+    },
+    reservation: {
+      titleLine1: 'Book',
+      titleLine2: 'your seat',
+    },
+    about: {
+      eyebrow: 'The experience',
+      title: 'At the heart of the Casino di Sanremo, Cena a Palazzo creates an evening of character, conceived as a link between culture, cuisine and commitment.',
+      scrollLabel: 'Scroll to The experience section',
+      block1Eyebrow: 'The venue',
+      block1Title: 'A private room steeped in history',
+      block1Text: 'Behind the iconic Casino facade, the private room offers an intimate and ceremonial setting where gilding, volumes and memory accompany the evening with restraint.',
+      block2Eyebrow: 'The culinary gesture',
+      block2Title: 'A cuisine of transmission',
+      block2Text: 'The menu connects Monaco with the Italian Riviera with precision: heritage references, selected products and a rhythm designed for a reception dinner.',
+      block3Eyebrow: 'The purpose',
+      block3Title: 'A commitment to the living world',
+      block3Text: 'Each table shares the same intention: transforming a moment of celebration into concrete support for the environmental programs led by the Prince Albert II of Monaco Foundation.',
+    },
+    faq: {
+      eyebrow: 'Practical questions',
+      heading: 'Plan the evening',
+      subtitle: 'Booking, schedule, dress code and access: the useful details for approaching the evening with ease.',
+      open: 'Read the answer',
+      close: 'Close',
+      questions: [
+        {
+          question: 'How can I book my seat?',
+          answerPrefix: 'Bookings are made online through the official platform of the Prince Albert II of Monaco Foundation. The',
+          answerLink: 'Book',
+          answerSuffix: 'button takes you directly there. For a specific request, write to us at',
+        },
+        {
+          question: 'What dress code is expected?',
+          answer: 'Evening dress is required. Dark suit or tuxedo for gentlemen, long dress or cocktail dress for ladies. Black naturally suits the spirit of the venue, without being mandatory.',
+        },
+        {
+          question: 'What time should I arrive?',
+          answer: 'Guest reception begins at 8 pm with a cocktail. Dinner by Christian Garcia is served from 9 pm in the private room. Arrival between 7:45 pm and 8:15 pm is recommended.',
+        },
+        {
+          question: 'Can the menu be adapted?',
+          answer: 'Allergies, intolerances and specific dietary requirements can be indicated when booking. To help the kitchen prepare, please send any constraint no later than fifteen days before the event.',
+        },
+        {
+          question: 'How do I get to the Casino di Sanremo?',
+          answer: 'The Casino is located at Corso degli Inglesi 18, in Sanremo. Valet service is planned for the evening. Public parking and pedestrian access are available nearby.',
+        },
+        {
+          question: 'Which cause does the evening support?',
+          answer: 'Proceeds from Cena a Palazzo will be donated to the Prince Albert II of Monaco Foundation, which acts for climate, biodiversity, the ocean and water resources.',
+        },
+      ],
+    },
+    footer: {
+      eyebrow: 'Final step',
+      title: 'Book your seat',
+      copy: 'Cena a Palazzo welcomes a limited number of guests in the private room of the Casino di Sanremo. Booking is made through the official platform of the Prince Albert II of Monaco Foundation.',
+      dateLabel: 'Date',
+      dateValue: '22 June 2026',
+      dateText: 'Reception at 8 pm, dinner at 9 pm.',
+      placeLabel: 'Venue',
+      placeText: 'Corso degli Inglesi 18, Sanremo. Valet service planned for the evening.',
+      route: 'Directions',
+      contactText: 'For a specific request or a question before booking.',
+      cause: 'In support of the Prince Albert II of Monaco Foundation',
+      credit: 'Féeline Création credit',
+    },
+    alts: {
+      hero: 'Illustrated facade of the Casino di Sanremo for Cena a Palazzo.',
+      menu: 'Casino di Sanremo lounge with velvet banquettes and a grand chandelier.',
+      facadeDay: 'Casino di Sanremo facade by day.',
+      facadeNight: 'Illuminated facade of the Casino di Sanremo at night.',
+      room: 'Casino di Sanremo room set for a reception.',
+      engraving: 'Casino di Sanremo · ornamental engraving',
+      plan: 'Cena a Palazzo table plan presented in an ornate gold frame.',
+    },
+  },
+  it: {
+    title: 'Cena a Palazzo · 22 giugno 2026 · Casino di Sanremo',
+    description: 'Cena a Palazzo riunisce Monaco e Sanremo il 22 giugno 2026 al Casino di Sanremo, attorno a una tavola firmata Christian Garcia e a un impegno per il vivente.',
+    nav: {
+      menu: 'Menu',
+      patronage: 'Patrocinio',
+      book: 'Prenotare',
+      questions: 'Domande',
+      navigation: 'Navigazione',
+      home: 'Home',
+      reservation: 'Prenotazione',
+      placeLabel: 'Luogo',
+      placeValue: 'Casino di Sanremo, Corso degli Inglesi 18, Sanremo',
+      menuButton: 'menu',
+    },
+    hero: {
+      kicker: 'Cena benefica',
+      subtitle: '22 giugno 2026 · Casino di Sanremo',
+      copy: "Il 22 giugno 2026, Monaco e Sanremo si incontrano attorno a una tavola rara, pensata per celebrare ospitalità, patrimonio e impegno ambientale.",
+      discover: 'Scoprire',
+    },
+    intro: {
+      eyebrow: 'Casino di Sanremo',
+      title: 'Un palazzo Belle Époque, una tavola principesca, una serata dedicata al Mediterraneo.',
+      caption: 'Casino di Sanremo · Sala Privata',
+    },
+    menu: {
+      eyebrow: 'La tavola',
+      heading: 'Firmato dallo Chef',
+      chef: 'Christian Garcia',
+      intro: 'Chef del Palazzo Principesco di Monaco, Christian Garcia immagina un percorso in quattro tempi, tra memoria monegasca, prodotti della Riviera ed eleganza di ricevimento.',
+      course1Label: 'Aperitivo',
+      course1Dish: 'Gelatina',
+      course1DishSecond: 'di Lion Fish',
+      course2Label: 'Antipasto',
+      course2Dish: 'Chartreuse di Macaroni alla Grimaldi',
+      course2Detail: 'Gamberoni di San Remo',
+      course3Label: 'Piatto principale',
+      course3Dish: 'Mignon di vitello fermier Rossini',
+      course3Detail: 'Piccole verdure farcite monegasche',
+      course4Label: 'Dessert',
+      course4Dish: 'Dessert',
+      course4DishSecond: 'alla Mecchia',
+      pairing: 'Selezione di vini e champagne · Caffè e mignardises',
+    },
+    patronage: {
+      pre: "Sotto l'alta presidenza",
+      title: 'di S.A.S. il Principe Alberto II di Monaco',
+      body1: "La serata si inserisce nel dialogo storico tra il Principato di Monaco e Sanremo, con la presenza simbolica di S.A.S. il Principe Alberto II di Monaco e il sostegno dell'Associazione dei Siti Storici Grimaldi di Monaco.",
+      body2Prefix: 'I proventi saranno devoluti alla',
+      body2Em: 'Fondazione Principe Alberto II di Monaco',
+      body2Suffix: "per sostenere le sue azioni a favore del clima, della biodiversità e della tutela delle risorse idriche.",
+    },
+    reservation: {
+      titleLine1: 'Prenotare',
+      titleLine2: 'il posto',
+    },
+    about: {
+      eyebrow: "L'esperienza",
+      title: 'Nel cuore del Casino di Sanremo, Cena a Palazzo compone una serata di carattere, pensata come un legame tra cultura, cucina e impegno.',
+      scrollLabel: "Scendere verso la sezione L'esperienza",
+      block1Eyebrow: 'Il luogo',
+      block1Title: 'Una sala privata carica di storia',
+      block1Text: "Dietro la facciata iconica del Casino, la sala privata offre uno scenario intimo e solenne, dove ori, volumi e memoria del luogo accompagnano la serata con misura.",
+      block2Eyebrow: 'Il gesto culinario',
+      block2Title: 'Una cucina di trasmissione',
+      block2Text: "Il menu collega Monaco alla Riviera italiana con precisione: riferimenti patrimoniali, prodotti scelti e una messa in scena pensata per il ritmo di una cena di ricevimento.",
+      block3Eyebrow: 'Il senso della serata',
+      block3Title: 'Un impegno rivolto al vivente',
+      block3Text: "Ogni tavolo partecipa a una stessa intenzione: trasformare un momento di celebrazione in un sostegno concreto ai programmi ambientali della Fondazione Principe Alberto II di Monaco.",
+    },
+    faq: {
+      eyebrow: 'Domande pratiche',
+      heading: 'Preparare la serata',
+      subtitle: 'Prenotazione, orari, dress code e accesso: le informazioni utili per vivere la serata con serenità.',
+      open: 'Leggi la risposta',
+      close: 'Chiudere',
+      questions: [
+        {
+          question: 'Come prenotare il proprio posto?',
+          answerPrefix: 'Le prenotazioni si effettuano online tramite la piattaforma ufficiale della Fondazione Principe Alberto II di Monaco. Il pulsante',
+          answerLink: 'Prenotare',
+          answerSuffix: 'vi porta direttamente alla pagina. Per una richiesta particolare, scriveteci a',
+        },
+        {
+          question: 'Quale abbigliamento è richiesto?',
+          answer: "È richiesto abito da sera. Abito scuro o smoking per gli uomini, abito lungo o da cocktail per le donne. Il nero si adatta naturalmente allo spirito del luogo, senza essere imposto.",
+        },
+        {
+          question: 'A che ora arrivare?',
+          answer: "L'accoglienza inizia alle 20:00 con un cocktail. La cena firmata Christian Garcia viene servita dalle 21:00 nella sala privata. Si consiglia un arrivo tra le 19:45 e le 20:15.",
+        },
+        {
+          question: 'Il menu può essere adattato?',
+          answer: "Allergie, intolleranze e regimi alimentari specifici possono essere segnalati al momento della prenotazione. Per facilitare l'organizzazione in cucina, vi chiediamo di comunicare ogni esigenza entro quindici giorni dall'evento.",
+        },
+        {
+          question: 'Come raggiungere il Casino di Sanremo?',
+          answer: 'Il Casino si trova in Corso degli Inglesi 18, a Sanremo. Per la serata è previsto un servizio di valet parking. Parcheggi pubblici e accessi pedonali sono disponibili nelle immediate vicinanze.',
+        },
+        {
+          question: 'Quale causa sostiene la serata?',
+          answer: "I proventi di Cena a Palazzo saranno devoluti alla Fondazione Principe Alberto II di Monaco, che opera per il clima, la biodiversità, l'oceano e le risorse idriche.",
+        },
+      ],
+    },
+    footer: {
+      eyebrow: 'Ultimo passo',
+      title: 'Prenotare il posto',
+      copy: 'Cena a Palazzo accoglie un numero limitato di ospiti nella sala privata del Casino di Sanremo. La prenotazione avviene sulla piattaforma ufficiale della Fondazione Principe Alberto II di Monaco.',
+      dateLabel: 'Data',
+      dateValue: '22 giugno 2026',
+      dateText: 'Accoglienza alle 20:00, cena alle 21:00.',
+      placeLabel: 'Luogo',
+      placeText: 'Corso degli Inglesi 18, Sanremo. Servizio valet previsto per la serata.',
+      route: 'Itinerario',
+      contactText: 'Per una richiesta particolare o una precisazione prima della prenotazione.',
+      cause: 'A beneficio della Fondazione Principe Alberto II di Monaco',
+      credit: 'Crediti Féeline Création',
+    },
+    alts: {
+      hero: 'Facciata illustrata del Casino di Sanremo per Cena a Palazzo.',
+      menu: 'Salone del Casino di Sanremo con sedute in velluto e grande lampadario.',
+      facadeDay: 'Facciata del Casino di Sanremo di giorno.',
+      facadeNight: 'Facciata illuminata del Casino di Sanremo di notte.',
+      room: 'Sala del Casino di Sanremo allestita per un ricevimento.',
+      engraving: 'Casino di Sanremo · incisione ornamentale',
+      plan: 'Piano dei tavoli Cena a Palazzo presentato in una cornice dorata ornamentale.',
+    },
+  },
+} as const;
+
+type Locale = keyof typeof translations;
+const localeFromPath = Astro.url.pathname.split('/').filter(Boolean)[0];
+const locale = ((Astro.currentLocale ?? localeFromPath ?? 'fr') in translations ? (Astro.currentLocale ?? localeFromPath) : 'fr') as Locale;
+const t = translations[locale];
+const languageLabels: Record<Locale, string> = { fr: 'FR', en: 'EN', it: 'IT' };
+const languageNames: Record<Locale, string> = { fr: 'Français', en: 'English', it: 'Italiano' };
+const languageOptions = (['fr', 'en', 'it'] as const).map((lang) => ({
+  lang,
+  label: languageLabels[lang],
+  name: languageNames[lang],
+  href: lang === 'fr' ? '/' : `/${lang}/`,
+  current: lang === locale,
+}));
+const currentLocaleHref = languageOptions.find((option) => option.current)?.href ?? '/';
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous" />
-    <title>Cena a Palazzo · 22 juin 2026 · Casino di Sanremo</title>
-    <meta content="Cena a Palazzo réunit Monaco et Sanremo le 22 juin 2026 au Casino di Sanremo, autour d'une table signée Christian Garcia et d'un engagement pour le vivant." name="description" />
+    <title>{t.title}</title>
+    <meta content={t.description} name="description" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Astro" name="generator" />
     <meta name="robots" content="noindex, nofollow" />
+    {languageOptions.map(({ lang, href }) => (
+      <link rel="alternate" hreflang={lang} href={`https://cenapalazzo.com${href}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href="https://cenapalazzo.com/" />
 
     <link
       href="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/css/veloura-hotel-template.webflow.shared.b406b5f30.min.css"
@@ -107,6 +519,34 @@
       .regular-link:hover,
       .footer-link:hover {
         color: #D4AF37;
+      }
+      .language-switcher {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .language-link {
+        color: rgba(42, 42, 42, 0.55);
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .language-link:hover,
+      .language-link.is-active {
+        color: #8A7530;
+      }
+      .language-separator {
+        width: 1px;
+        height: 0.8rem;
+        background-color: rgba(191, 164, 106, 0.35);
+      }
+      .menu-language-switcher {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
       }
 
       /* Filets dorés (les regular-link-line étaient light-4 = beige) */
@@ -917,8 +1357,8 @@
         opacity: 0.7;
         transition: opacity 0.3s ease, color 0.3s ease;
       }
-      .feeline-faq-item[open] .feeline-faq-toggle::before { content: "Refermer"; }
-      .feeline-faq-item:not([open]) .feeline-faq-toggle::before { content: "Lire la réponse"; }
+      .feeline-faq-item[open] .feeline-faq-toggle::before { content: attr(data-close); }
+      .feeline-faq-item:not([open]) .feeline-faq-toggle::before { content: attr(data-open); }
       .feeline-faq-item > summary:hover .feeline-faq-numeral,
       .feeline-faq-item > summary:hover .feeline-faq-toggle,
       .feeline-faq-item > summary:hover .feeline-faq-question {
@@ -1477,164 +1917,120 @@
 
   <body>
 
-<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href="/" aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><div class="brand-wordmark">Cena a Palazzo</div><div class="slogan-line"></div><div class="slogan-text">22 juin<br/>2026</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="#menu" class="nav-link">Menu</a><a href="#patronage" class="nav-link">Patronage</a><a href="#reservation" class="nav-link">Réserver</a><a href="#questions" class="nav-link">Questions</a><div class="nav-divider"></div></div></header><div class="menu-burger"><div class="menu-burger-text">menu</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">Navigation</div><div class="menu-links"><a href="#start" class="menu-link-block w-inline-block"><div class="menu-link-text">Accueil</div><div class="menu-link-line"></div></a><a href="#menu" class="menu-link-block w-inline-block"><div class="menu-link-text">Menu</div><div class="menu-link-line"></div></a><a href="#patronage" class="menu-link-block w-inline-block"><div class="menu-link-text">Patronage</div><div class="menu-link-line"></div></a><a href="#reservation" class="menu-link-block w-inline-block"><div class="menu-link-text">Réservation</div><div class="menu-link-line"></div></a><a href="#questions" class="menu-link-block w-inline-block"><div class="menu-link-text">Questions</div><div class="menu-link-line"></div></a></div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">Lieu</div><div class="menu-small-text">:</div><div class="menu-small-text">Casino di Sanremo, Corso degli Inglesi 18, Sanremo</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section id="start" class="section cpa-poster-hero"><img src="/assets/feeline/cena-hero-palazzo.png" loading="eager" alt="Façade illustrée du Casino di Sanremo pour Cena a Palazzo." class="cpa-poster-hero-image"/><div class="cpa-poster-hero-content"><div class="cpa-poster-hero-kicker">Soirée caritative</div><h1 class="cpa-poster-hero-title">Cena a Palazzo</h1><p class="cpa-poster-hero-subtitle">22 juin 2026 · Casino di Sanremo</p><div class="cpa-poster-hero-line"></div><p class="cpa-poster-hero-copy">Le 22 juin 2026, Monaco et Sanremo se retrouvent autour d'une table rare, imaginée pour célébrer l'hospitalité, le patrimoine et l'engagement environnemental.</p><div class="cpa-poster-hero-actions"><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a><a data-wf--regular-link--variant="base" href="#experience" class="regular-link w-inline-block"><div class="regular-link-text">Découvrir</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div></div></section><section id="experience" class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">Cena a Palazzo</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#menu" class="regular-link w-inline-block"><div class="regular-link-text">Découvrir</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt="Façade du Casino di Sanremo de jour." class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Salon du Casino di Sanremo avec banquettes en velours et grand lustre." class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit." class="hero-cover-image-3"/></div></div></div></div></section>
+<div class="page-load-animation"><div class="preloader-image-size"><div class="preloader-image-trigger"><img alt="Cena a Palazzo · blason CP couronné" loading="eager" src="/assets/feeline/cp-monogram-web.png" class="preloader-image is-blazon"/><div class="preloader-image-color"></div></div></div><div class="preloader-bg"></div></div><div class="page-wrapper"><nav data-nav-trigger="true" data-wf--nav--variant="main-variant" class="nav"><header data-nav-header-trigger="true" class="nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><div class="nav-brand w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a data-preloader="" id="w-node-_65301474-6920-2dff-f184-c5336c446fd1-6c446fcf" href={currentLocaleHref} aria-current="page" class="brand-logo-link w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-inline-block w--current"><div class="brand-wordmark">Cena a Palazzo</div><div class="slogan-line"></div><div class="slogan-text">{t.footer.dateValue}</div></a></div><div class="nav-links w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14 w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"><a href="#menu" class="nav-link">{t.nav.menu}</a><a href="#patronage" class="nav-link">{t.nav.patronage}</a><a href="#reservation" class="nav-link">{t.nav.book}</a><a href="#questions" class="nav-link">{t.nav.questions}</a><div class="nav-divider"></div><div class="language-switcher" aria-label="Language selector">{languageOptions.map((option, index) => (<><a href={option.href} class:list={['language-link', { 'is-active': option.current }]} aria-current={option.current ? 'page' : undefined} lang={option.lang}>{option.label}</a>{index < languageOptions.length - 1 && <span class="language-separator" aria-hidden="true"></span>}</>))}</div></div></header><div class="menu-burger"><div class="menu-burger-text">{t.nav.menuButton}</div><div class="burger-icon"><div class="burger-icon-line"></div><div class="burger-icon-line"></div><div class="burger-icon-line"></div></div><div class="menu-burger-bg"></div></div><div class="menu"><div class="menu-layout"><div class="menu-image-layout"><div class="menu-image-frame"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt={t.alts.menu} class="menu-image"/></div></div><div class="menu-close"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="menu-close-icon"/></div><div class="menu-wrapper"><div class="menu-block"><div class="menu-flex"><div class="menu-small-title">{t.nav.navigation}</div><div class="menu-links"><a href="#start" class="menu-link-block w-inline-block"><div class="menu-link-text">{t.nav.home}</div><div class="menu-link-line"></div></a><a href="#menu" class="menu-link-block w-inline-block"><div class="menu-link-text">{t.nav.menu}</div><div class="menu-link-line"></div></a><a href="#patronage" class="menu-link-block w-inline-block"><div class="menu-link-text">{t.nav.patronage}</div><div class="menu-link-line"></div></a><a href="#reservation" class="menu-link-block w-inline-block"><div class="menu-link-text">{t.nav.reservation}</div><div class="menu-link-line"></div></a><a href="#questions" class="menu-link-block w-inline-block"><div class="menu-link-text">{t.nav.questions}</div><div class="menu-link-line"></div></a></div><div class="menu-language-switcher" aria-label="Language selector">{languageOptions.map((option) => (<a href={option.href} class:list={['language-link', { 'is-active': option.current }]} aria-current={option.current ? 'page' : undefined} lang={option.lang}>{option.name}</a>))}</div></div></div><div class="menu-block"><div class="menu-address"><div class="menu-small-text">{t.nav.placeLabel}</div><div class="menu-small-text">:</div><div class="menu-small-text">{t.nav.placeValue}</div></div></div></div></div><div class="menu-bg-color"></div><div class="menu-bg-blur"></div></div></nav><main class="main"><section id="start" class="section cpa-poster-hero"><img src="/assets/feeline/cena-hero-palazzo.png" loading="eager" alt={t.alts.hero} class="cpa-poster-hero-image"/><div class="cpa-poster-hero-content"><div class="cpa-poster-hero-kicker">{t.hero.kicker}</div><h1 class="cpa-poster-hero-title">Cena a Palazzo</h1><p class="cpa-poster-hero-subtitle">{t.hero.subtitle}</p><div class="cpa-poster-hero-line"></div><p class="cpa-poster-hero-copy">{t.hero.copy}</p><div class="cpa-poster-hero-actions"><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">{t.nav.book}</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a><a data-wf--regular-link--variant="base" href="#experience" class="regular-link w-inline-block"><div class="regular-link-text">{t.hero.discover}</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div></div></section><section id="experience" class="section page-load-bg-color"><div data-page-load-content="true" class="home-hero-size"><div class="home-hero-layout"><div class="home-hero-content"><div class="home-hero-title"><h1 class="heading is-home-hero-title">Cena a Palazzo</h1><div class="dot-position-hero"><div data-wf--dot--variant="large" class="dot w-variant-bccf4381-4ed0-caaa-8f41-067aba358caf"><div class="dot-animation"></div></div></div></div><a data-wf--regular-link--variant="base" href="#menu" class="regular-link w-inline-block"><div class="regular-link-text">{t.hero.discover}</div><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" data-link-icon="true" alt="" class="regular-link-icon"/><div data-link-line="true" class="regular-link-line"></div></a></div><div data-wf--mesh-bgs-wrapper--variant="display-absolute" class="mesh-bgs-wrapper w-variant-62aec6e1-d35f-27c4-87bc-ba7d7fbb26e8"><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-1-center"/><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="mesh-bg-2-center"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-3-left"/><img src="/assets/gradients/bg-gradient-2.svg" loading="lazy" alt="" class="mesh-bg-4-right"/></div></div><div class="home-hero-images"><div class="home-hero-sticky"><div class="home-hero-image is-1st"><img src="/assets/photos/casino-facade-jour.jpg" loading="lazy" alt={t.alts.facadeDay} class="hero-cover-image-1"/></div><div class="home-hero-image is-2nd"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt={t.alts.menu} class="hero-cover-image-2"/></div><div class="home-hero-image is-3rd"><img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt={t.alts.facadeNight} class="hero-cover-image-3"/></div></div></div></div></section>
 <div class="cpa-mobile-photo-strip">
   <figure>
-    <img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt="Façade illuminée du Casino di Sanremo de nuit."/>
+    <img src="/assets/photos/casino-facade-nuit.jpg" loading="lazy" alt={t.alts.facadeNight}/>
   </figure>
   <figure>
-    <img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt="Salle du Casino di Sanremo dressée pour une réception."/>
+    <img src="/assets/photos/sala-casino-12.jpg" loading="lazy" alt={t.alts.room}/>
   </figure>
 </div>
-<section class="section is-dark"><div class="accomondation-wrapper"><div class="sticky-title-size"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Casino di Sanremo</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title is-light">Un palais Belle Époque, une table princière, une soirée dédiée à la Méditerranée.</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#rooms" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e549479361ab265c33c6cb_arrow-icon-10.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div></div><div class="feeline-engraving-inline"><img src="/assets/feeline/casino-engraving-web.png" alt="Casino di Sanremo · gravure ornementale" loading="lazy" class="feeline-engraving-image"/><p class="feeline-engraving-caption">Casino di Sanremo · Salle Privée</p></div></section><section id="menu" class="feeline-menu-section">
+<section class="section is-dark"><div class="accomondation-wrapper"><div class="sticky-title-size"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">{t.intro.eyebrow}</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title is-light">{t.intro.title}</h2><a aria-label="Scroll button with arrow" data-wf--circle-button--variant="base" href="#rooms" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e549479361ab265c33c6cb_arrow-icon-10.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div></div><div class="feeline-engraving-inline"><img src="/assets/feeline/casino-engraving-web.png" alt={t.alts.engraving} loading="lazy" class="feeline-engraving-image"/><p class="feeline-engraving-caption">{t.intro.caption}</p></div></section><section id="menu" class="feeline-menu-section">
   <div class="feeline-menu-header">
-    <p class="feeline-eyebrow">La table</p>
-    <h2 class="feeline-menu-heading">Signé par le Chef<br><em>Christian Garcia</em></h2>
-    <p class="feeline-menu-intro">Chef du Palais Princier de Monaco, Christian Garcia imagine un parcours en quatre temps, entre mémoire monégasque, produits de la Riviera et élégance de réception.</p>
+    <p class="feeline-eyebrow">{t.menu.eyebrow}</p>
+    <h2 class="feeline-menu-heading">{t.menu.heading}<br><em>{t.menu.chef}</em></h2>
+    <p class="feeline-menu-intro">{t.menu.intro}</p>
     <div class="feeline-filet"></div>
   </div>
   <div class="feeline-menu-cards">
     <article class="feeline-card">
       <span class="feeline-card-num">I</span>
-      <p class="feeline-card-label">Mise en bouche</p>
-      <h3 class="feeline-card-dish">Gelée<br>de Lion Fish</h3>
+      <p class="feeline-card-label">{t.menu.course1Label}</p>
+      <h3 class="feeline-card-dish">{t.menu.course1Dish}<br>{t.menu.course1DishSecond}</h3>
     </article>
     <article class="feeline-card">
       <span class="feeline-card-num">II</span>
-      <p class="feeline-card-label">Entrée</p>
-      <h3 class="feeline-card-dish">Chartreuse de Macaroni à la Grimaldi</h3>
-      <p class="feeline-card-detail">Gamberoni de San Remo</p>
+      <p class="feeline-card-label">{t.menu.course2Label}</p>
+      <h3 class="feeline-card-dish">{t.menu.course2Dish}</h3>
+      <p class="feeline-card-detail">{t.menu.course2Detail}</p>
     </article>
     <article class="feeline-card">
       <span class="feeline-card-num">III</span>
-      <p class="feeline-card-label">Plat principal</p>
-      <h3 class="feeline-card-dish">Mignon de veau fermier Rossini</h3>
-      <p class="feeline-card-detail">Petits légumes farcis Monégasques</p>
+      <p class="feeline-card-label">{t.menu.course3Label}</p>
+      <h3 class="feeline-card-dish">{t.menu.course3Dish}</h3>
+      <p class="feeline-card-detail">{t.menu.course3Detail}</p>
     </article>
     <article class="feeline-card">
       <span class="feeline-card-num">IV</span>
-      <p class="feeline-card-label">Dessert</p>
-      <h3 class="feeline-card-dish">Dessert<br>à la Mecchia</h3>
+      <p class="feeline-card-label">{t.menu.course4Label}</p>
+      <h3 class="feeline-card-dish">{t.menu.course4Dish}<br>{t.menu.course4DishSecond}</h3>
     </article>
   </div>
-  <p class="feeline-menu-pairing">Sélection de vins et champagne · Café et mignardises</p>
+  <p class="feeline-menu-pairing">{t.menu.pairing}</p>
 </section>
 <section id="patronage" class="feeline-patronage-section">
   <div class="feeline-patronage-container">
     <img src="/assets/feeline/wax-seal-hd-web.png" alt="" class="feeline-patronage-seal" loading="lazy"/>
-    <h2 class="feeline-patronage-heading"><em>Sous la haute présidence</em><br>de S.A.S. le Prince Albert II de Monaco</h2>
-    <p class="feeline-patronage-body">La soirée s'inscrit dans le dialogue ancien entre la Principauté de Monaco et Sanremo, avec la présence symbolique de S.A.S. le Prince Albert II de Monaco et le concours de l'Association des Sites Historiques Grimaldi de Monaco.</p>
-    <p class="feeline-patronage-body">Les bénéfices sont reversés à la <em>Fondation Prince Albert II de Monaco</em>, afin de soutenir ses actions pour le climat, la biodiversité et la préservation des ressources en eau.</p>
+    <h2 class="feeline-patronage-heading"><em>{t.patronage.pre}</em><br>{t.patronage.title}</h2>
+    <p class="feeline-patronage-body">{t.patronage.body1}</p>
+    <p class="feeline-patronage-body">{t.patronage.body2Prefix} <em>{t.patronage.body2Em}</em>, {t.patronage.body2Suffix}</p>
   </div>
 </section>
-<section id="reservation" class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">Réserver<br>sa place</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt="Elegant indoor lounge with pink velvet seating around a cherry blossom tree, a floral-decorated staircase, and a large chandelier overhead." class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section>
+<section id="reservation" class="section"><div class="cta-collage"><div class="cta-collage-layout"><div class="cta-collage-content"><h3 class="heading is-cta-collage-title">{t.reservation.titleLine1}<br>{t.reservation.titleLine2}</h3><a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">{t.nav.book}</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div><div class="cta-collage-images"><div class="collage-image-1"><img src="/assets/photos/sala-casino-05.jpg" loading="lazy" alt="Three ornate spherical chandeliers hanging in a grand stone-arched hallway with large windows." class="collage-image"/></div><div class="collage-image-2"><img src="/assets/photos/sala-casino-30.jpg" loading="lazy" alt="Woman in a white suit with a beaded black top lounging on a sofa while drinking from a wine glass." class="collage-image"/></div><div class="collage-image-3"><img src="/assets/photos/sala-casino-02.jpg" loading="lazy" alt={t.alts.menu} class="collage-image"/></div><div class="collage-image-4"><img src="/assets/photos/sala-casino-06.jpg" loading="lazy" alt="Silver bowl filled with torn focaccia bread pieces, surrounded by fresh herbs and cherry tomatoes." class="collage-image"/></div></div><img src="/assets/gradients/bg-gradient-1.svg" loading="lazy" alt="" class="collage-blurry-bg"/></div></div></section>
 
-<section class="section cpa-about-section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">L'expérience</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title" aria-label="Au coeur du Casino di Sanremo, Cena a Palazzo compose une soirée de caractère, pensée comme un trait d'union entre culture, cuisine et engagement.">Au coeur du Casino di Sanremo, Cena a Palazzo compose une soirée de caractère, pensée comme un trait d'union entre culture, cuisine et engagement.</h2><a aria-label="Descendre vers la section L'expérience" data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/feeline/plan-de-table.png" loading="lazy" alt="Plan de table Cena a Palazzo présenté dans un cadre doré ornemental." class="cover-image"/></div><div class="sticky-side-image is-2nd"></div><div class="sticky-side-image is-3rd"></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le lieu</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Une salle privée chargée d'histoire</h2><p class="paragraph-small">Derrière la façade iconique du Casino, la salle privée offre un décor intime et solennel, où les ors, les volumes et la mémoire du lieu accompagnent la soirée sans l'écraser.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le geste culinaire</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Une cuisine de transmission</h2><p class="paragraph-small">Le menu relie Monaco à la Riviera italienne avec précision: des références patrimoniales, des produits choisis et une mise en scène pensée pour le rythme d'un dîner de réception.</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">Le sens de la soirée</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">Un engagement tourné vers le vivant</h2><p class="paragraph-small">Chaque table participe à une même intention: transformer un moment de célébration en soutien concret aux programmes environnementaux portés par la Fondation Prince Albert II de Monaco.</p><a data-wf--main-button--variant="base" href="#questions" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div></div><div class="bg-absolute-gradient"></div>
+<section class="section cpa-about-section"><div class="sticky-title-size is-light"><div class="sticky-title-layout"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">{t.about.eyebrow}</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 sticky-title="true" class="heading is-sticky-title" aria-label={t.about.title}>{t.about.title}</h2><a aria-label={t.about.scrollLabel} data-wf--circle-button--variant="base" href="#about" class="circle-button w-inline-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68ff9a25f97b26132d77585b_arrow_downward_24dp_E2C6BF_FILL0_wght400_GRAD0_opsz24.svg" loading="lazy" alt="" class="circle-button-icon"/></a></div></div><div class="large-top-padding"><div class="container"><div class="sticky-about"><div class="sticky-side-images"><div class="sticky-side-images-wrapper"><div class="sticky-side-image is-1st"><img src="/assets/feeline/plan-de-table.png" loading="lazy" alt={t.alts.plan} class="cover-image"/></div><div class="sticky-side-image is-2nd"></div><div class="sticky-side-image is-3rd"></div></div></div><div id="about" class="sticky-content-wrapper"><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">{t.about.block1Eyebrow}</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">{t.about.block1Title}</h2><p class="paragraph-small">{t.about.block1Text}</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">{t.about.block2Eyebrow}</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">{t.about.block2Title}</h2><p class="paragraph-small">{t.about.block2Text}</p></div><div class="content-flex-block"><div class="text-with-dots"><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div><div class="uppercase-text is-bold">{t.about.block3Eyebrow}</div><div><div data-wf--dot--variant="base" class="dot"><div class="dot-animation"></div></div></div></div><h2 class="heading is-regular">{t.about.block3Title}</h2><p class="paragraph-small">{t.about.block3Text}</p><a data-wf--main-button--variant="base" href="#questions" class="button w-inline-block"><div class="button-text">{t.nav.book}</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a></div></div></div></div></div><div class="bg-absolute-gradient"></div>
 </section>
 
 <section id="questions" class="feeline-faq-section">
   <div class="feeline-faq-container">
     <header class="feeline-faq-header">
-      <p class="feeline-faq-eyebrow">Questions pratiques</p>
-      <h2 class="feeline-faq-heading">Préparer la soirée</h2>
-      <p class="feeline-faq-subtitle">Réservation, horaires, tenue et accès: les informations utiles pour aborder la soirée avec sérénité.</p>
+      <p class="feeline-faq-eyebrow">{t.faq.eyebrow}</p>
+      <h2 class="feeline-faq-heading">{t.faq.heading}</h2>
+      <p class="feeline-faq-subtitle">{t.faq.subtitle}</p>
     </header>
     <div class="feeline-faq-list">
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">I</span>
-          <span class="feeline-faq-question">Comment réserver sa place ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">Les réservations se font en ligne via la plateforme officielle de la Fondation Prince Albert II de Monaco. Le bouton <a href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener">Réserver</a> vous y conduit directement. Pour une demande particulière, écrivez-nous à <a href="mailto:info@e20sanremo.it">info@e20sanremo.it</a>.</p>
-        </div>
-      </details>
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">II</span>
-          <span class="feeline-faq-question">Quelle tenue est attendue ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">Tenue de soirée exigée. Costume sombre ou smoking pour les messieurs, robe longue ou robe de cocktail pour les dames. Le noir convient naturellement à l'esprit du lieu, sans être imposé.</p>
-        </div>
-      </details>
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">III</span>
-          <span class="feeline-faq-question">À quelle heure arriver ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">L'accueil commence à 20 h avec un cocktail. Le dîner signé Christian Garcia est servi à partir de 21 h dans la salle privée. Une arrivée entre 19 h 45 et 20 h 15 est recommandée.</p>
-        </div>
-      </details>
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">IV</span>
-          <span class="feeline-faq-question">Le menu peut-il être adapté ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">Allergies, intolérances et régimes particuliers peuvent être signalés au moment de la réservation. Pour faciliter l'organisation en cuisine, merci de transmettre toute contrainte au plus tard quinze jours avant l'événement.</p>
-        </div>
-      </details>
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">V</span>
-          <span class="feeline-faq-question">Comment rejoindre le Casino di Sanremo ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">Le Casino se situe au Corso degli Inglesi 18, à Sanremo. Un service voiturier est prévu pour la soirée. Des stationnements publics et des accès piétons se trouvent à proximité immédiate.</p>
-        </div>
-      </details>
-      <details class="feeline-faq-item">
-        <summary>
-          <span class="feeline-faq-numeral">VI</span>
-          <span class="feeline-faq-question">Quelle cause la soirée soutient-elle ?</span>
-          <span class="feeline-faq-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="feeline-faq-answer-wrap">
-          <p class="feeline-faq-answer">Les bénéfices de Cena a Palazzo sont reversés à la Fondation Prince Albert II de Monaco, qui agit pour le climat, la biodiversité, l'océan et les ressources en eau.</p>
-        </div>
-      </details>
+      {t.faq.questions.map((item, index) => (
+        <details class="feeline-faq-item">
+          <summary>
+            <span class="feeline-faq-numeral">{['I', 'II', 'III', 'IV', 'V', 'VI'][index]}</span>
+            <span class="feeline-faq-question">{item.question}</span>
+            <span class="feeline-faq-toggle" aria-hidden="true" data-open={t.faq.open} data-close={t.faq.close}></span>
+          </summary>
+          <div class="feeline-faq-answer-wrap">
+            {'answerPrefix' in item ? (
+              <p class="feeline-faq-answer">{item.answerPrefix} <a href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener">{item.answerLink}</a> {item.answerSuffix} <a href="mailto:info@e20sanremo.it">info@e20sanremo.it</a>.</p>
+            ) : (
+              <p class="feeline-faq-answer">{item.answer}</p>
+            )}
+          </div>
+        </details>
+      ))}
     </div>
   </div>
 </section>
 <footer data-wf--footer--variant="without-cta-section" class="footer cpa-footer w-variant-9e1ace6d-c75b-5545-6ebb-a57b4047c37a">
   <div class="cpa-footer-cta">
     <div>
-      <p class="cpa-footer-eyebrow">Dernière étape</p>
-      <h2 class="cpa-footer-title">Réserver sa place</h2>
-      <p class="cpa-footer-copy">Cena a Palazzo accueille un nombre limité de convives dans la salle privée du Casino di Sanremo. La réservation se fait sur la plateforme officielle de la Fondation Prince Albert II de Monaco.</p>
+      <p class="cpa-footer-eyebrow">{t.footer.eyebrow}</p>
+      <h2 class="cpa-footer-title">{t.footer.title}</h2>
+      <p class="cpa-footer-copy">{t.footer.copy}</p>
     </div>
-    <a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">Réserver</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a>
+    <a data-wf--main-button--variant="base" href="https://www.fpa2.org/fr/evenements/cena-a-palazzo-028" target="_blank" rel="noopener" class="button w-inline-block"><div class="button-text">{t.nav.book}</div><div class="button-bg"></div><div class="button-icon-block"><img src="https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/68e5494733197fb0b4bf700d_arrow-icon-11.svg" loading="lazy" alt="" class="button-icon"/></div></a>
   </div>
   <div class="cpa-footer-main">
     <div class="cpa-footer-block">
-      <p class="cpa-footer-label">Date</p>
-      <p class="cpa-footer-value">22 juin 2026</p>
-      <p class="cpa-footer-text">Accueil à 20 h, dîner à 21 h.</p>
+      <p class="cpa-footer-label">{t.footer.dateLabel}</p>
+      <p class="cpa-footer-value">{t.footer.dateValue}</p>
+      <p class="cpa-footer-text">{t.footer.dateText}</p>
     </div>
     <div class="cpa-footer-block">
-      <p class="cpa-footer-label">Lieu</p>
+      <p class="cpa-footer-label">{t.footer.placeLabel}</p>
       <p class="cpa-footer-value">Casino di Sanremo</p>
-      <p class="cpa-footer-text">Corso degli Inglesi 18, Sanremo. Service voiturier prévu pour la soirée.</p>
-      <div class="cpa-footer-links"><a href="https://maps.app.goo.gl/2tFXgU14e7zvbi9Y9" target="_blank" rel="noopener" class="cpa-footer-link">Itinéraire</a></div>
+      <p class="cpa-footer-text">{t.footer.placeText}</p>
+      <div class="cpa-footer-links"><a href="https://maps.app.goo.gl/2tFXgU14e7zvbi9Y9" target="_blank" rel="noopener" class="cpa-footer-link">{t.footer.route}</a></div>
     </div>
     <div class="cpa-footer-block">
       <p class="cpa-footer-label">Contact</p>
       <p class="cpa-footer-value">E20Sanremo</p>
-      <p class="cpa-footer-text">Pour une demande particulière ou une précision avant réservation.</p>
+      <p class="cpa-footer-text">{t.footer.contactText}</p>
       <div class="cpa-footer-links"><a href="mailto:info@e20sanremo.it" class="cpa-footer-link">info@e20sanremo.it</a></div>
     </div>
   </div>
   <div class="cpa-footer-bottom">
     <span>© 2026 Cena a Palazzo</span>
-    <span>Au bénéfice de la Fondation Prince Albert II de Monaco</span>
-    <span>Crédit Féeline Création</span>
+    <span>{t.footer.cause}</span>
+    <span>{t.footer.credit}</span>
   </div>
 </footer></main></div>
     <!-- =================================================================
