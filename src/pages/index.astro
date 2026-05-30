@@ -480,6 +480,84 @@
           padding-top: clamp(5rem, 8vw, 8rem) !important;
         }
       }
+      /* Mobile : Velour laisse sticky-title-size a 100svh + sticky-content-wrapper
+         a padding-top:5rem + image plan-de-table coincee hors ecran (scale 0.5,
+         translate -80vw, GSAP n'animant pas en mobile portrait). Resultat : vide
+         vertical enorme et thumbnail orpheline. On corrige sans toucher au desktop. */
+      @media (max-width: 767px) {
+        .cpa-about-section > .sticky-title-size {
+          min-height: auto !important;
+          padding-block: clamp(3.5rem, 12vw, 5rem) clamp(0.5rem, 2vw, 1.25rem) !important;
+        }
+        .cpa-about-section > .large-top-padding {
+          padding-top: 0 !important;
+        }
+        .cpa-about-section .sticky-content-wrapper {
+          padding-top: clamp(2rem, 6vw, 3.5rem) !important;
+          padding-bottom: clamp(2rem, 6vw, 3.5rem) !important;
+        }
+        .cpa-about-section .sticky-side-images {
+          display: none !important;
+        }
+
+        /* cta-collage : Velour cale les 4 images en absolute aux coins d'un
+           layout sticky 200lvh. Sur mobile etroit, le titre central est
+           recouvert par les images et le scroll parallax fait passer les
+           images sur le texte. On stack tout proprement. */
+        #reservation .cta-collage {
+          min-height: auto !important;
+          padding: 4rem 1.25rem !important;
+          overflow: visible !important;
+        }
+        #reservation .cta-collage-layout {
+          position: static !important;
+          min-height: auto !important;
+          flex-direction: column !important;
+          gap: 2.5rem !important;
+        }
+        #reservation .cta-collage-content {
+          max-width: 100% !important;
+          z-index: 30 !important;
+        }
+        #reservation .cta-collage-images {
+          position: relative !important;
+          display: grid !important;
+          grid-template-columns: 1fr 1fr !important;
+          gap: 0.75rem !important;
+          width: 100% !important;
+        }
+        #reservation .cta-collage-images > div[class^="collage-image-"] {
+          position: static !important;
+          inset: auto !important;
+          width: 100% !important;
+          height: 28vh !important;
+          min-height: 180px !important;
+        }
+        #reservation .collage-blurry-bg {
+          display: none !important;
+        }
+
+        /* Certaines reveals GSAP ne se declenchent pas sur mobile (le
+           sticky-pin original a 200lvh n'existe plus une fois la section
+           restructuree en stack). Sans ce fallback, le titre cta-collage
+           reste a opacity 0 et translateY -48px. On force l'etat final.
+           :global() necessaire car les .gsap_split_* sont generes au
+           runtime sans le data-astro-cid de scoping Astro. */
+        :global(.gsap_split_word),
+        :global(.gsap_split_letter) {
+          opacity: 1 !important;
+          transform: none !important;
+          translate: none !important;
+        }
+        /* Le bouton Reserver dans cta-collage etait aussi stuck a opacity 0
+           + translateY(32px) : GSAP avait set l'etat initial, mais le scroll
+           reveal lie au sticky-pin n'existe plus apres restructuration. */
+        :global(#reservation .cta-collage-content .button) {
+          opacity: 1 !important;
+          transform: none !important;
+          translate: none !important;
+        }
+      }
       .cpa-about-section .heading.is-sticky-title,
       .cpa-about-section .sticky-side-image,
       .cpa-about-section .cover-image,
