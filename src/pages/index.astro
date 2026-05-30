@@ -1214,6 +1214,19 @@
         background: #FFFFFF;
       }
 
+      @media (max-width: 767px) {
+        html.w-mod-js #reservation .heading.is-cta-collage-title {
+          visibility: hidden;
+        }
+        html.w-mod-js #reservation .heading.is-cta-collage-title:has(.gsap_split_letter) {
+          visibility: visible;
+        }
+        html.w-mod-js #reservation .heading.is-cta-collage-title .gsap_split_letter {
+          opacity: 0;
+          transform: translate3d(0, -3rem, 0);
+        }
+      }
+
       /* Footer · bg champagne Féeline sur toute la hauteur, texte encre */
       .footer,
       .footer-cta,
