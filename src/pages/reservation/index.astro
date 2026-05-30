@@ -13,12 +13,13 @@ const translations = {
       firstName: 'Prénom',
       lastName: 'Nom',
       email: 'Adresse e-mail',
-      phone: 'Numéro de téléphone',
+      phone: 'Numéro de téléphone avec indicatif',
       guests: 'Nombre de personnes à réserver',
       allergies: 'Allergies ou intolérances alimentaires',
       vehicle: "Numéro d'immatriculation du véhicule",
       vehicleHint: 'À renseigner uniquement si vous venez en voiture.',
-      allergiesPlaceholder: 'Indiquez les allergies, intolérances ou écrivez aucune.',
+      phonePlaceholder: 'Exemple: +33 6 12 34 56 78',
+      allergiesPlaceholder: "Indiquez les allergies, intolérances alimentaires ou toute information que l'organisation devrait connaître.",
       vehiclePlaceholder: 'Exemple: AB 123 CD',
     },
     submit: 'Envoyer la demande',
@@ -40,12 +41,13 @@ const translations = {
       firstName: 'First name',
       lastName: 'Last name',
       email: 'Email address',
-      phone: 'Phone number',
+      phone: 'Phone number with country code',
       guests: 'Number of guests to reserve',
       allergies: 'Food allergies or intolerances',
       vehicle: 'Vehicle registration number',
       vehicleHint: 'Only fill this in if you are coming by car.',
-      allergiesPlaceholder: 'List allergies, intolerances or write none.',
+      phonePlaceholder: 'Example: +44 7 1234 5678',
+      allergiesPlaceholder: 'List food allergies, intolerances or any information the organization should know.',
       vehiclePlaceholder: 'Example: AB 123 CD',
     },
     submit: 'Send request',
@@ -67,12 +69,13 @@ const translations = {
       firstName: 'Nome',
       lastName: 'Cognome',
       email: 'Indirizzo e-mail',
-      phone: 'Numero di telefono',
+      phone: 'Numero di telefono con prefisso internazionale',
       guests: 'Numero di persone da prenotare',
       allergies: 'Allergie o intolleranze alimentari',
       vehicle: 'Numero di targa del veicolo',
       vehicleHint: 'Da compilare solo se arrivate in auto.',
-      allergiesPlaceholder: 'Indicate allergie, intolleranze oppure scrivete nessuna.',
+      phonePlaceholder: 'Esempio: +39 333 123 4567',
+      allergiesPlaceholder: "Indicate allergie, intolleranze alimentari o qualsiasi informazione utile per l'organizzazione.",
       vehiclePlaceholder: 'Esempio: AB 123 CD',
     },
     submit: 'Inviare la richiesta',
@@ -370,7 +373,7 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
               </div>
               <div class="field">
                 <label for="phone">{t.fields.phone}</label>
-                <input id="phone" name={t.fields.phone} type="tel" autocomplete="tel" required aria-required="true" title={t.required} />
+                <input id="phone" name={t.fields.phone} type="tel" autocomplete="tel" placeholder={t.fields.phonePlaceholder} required aria-required="true" title={t.required} />
               </div>
               <div class="field is-wide">
                 <label for="guests">{t.fields.guests}</label>
@@ -378,7 +381,7 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
               </div>
               <div class="field is-wide">
                 <label for="allergies">{t.fields.allergies}</label>
-                <textarea id="allergies" name={t.fields.allergies} placeholder={t.fields.allergiesPlaceholder}></textarea>
+                <textarea id="allergies" name={t.fields.allergies} placeholder={t.fields.allergiesPlaceholder} required aria-required="true" title={t.required}></textarea>
               </div>
               <div class="field is-wide">
                 <label for="vehicle">{t.fields.vehicle}</label>
