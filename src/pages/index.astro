@@ -462,6 +462,18 @@
       .cpa-about-section > .large-top-padding {
         padding-top: clamp(2.5rem, 5vw, 4.5rem);
       }
+      /* Desktop · resserre l'écart vertical entre le titre sticky
+         "L'expérience / Au coeur du Casino…" et le bloc "Le lieu / Le geste
+         culinaire / Le sens de la soirée" qui le suit. */
+      @media (min-width: 768px) {
+        .cpa-about-section > .sticky-title-size {
+          min-height: auto !important;
+          padding-block: clamp(5rem, 9vw, 8rem) !important;
+        }
+        .cpa-about-section > .large-top-padding {
+          padding-top: clamp(0.5rem, 1.5vw, 1.5rem);
+        }
+      }
       .cpa-about-section .heading.is-sticky-title,
       .cpa-about-section .sticky-side-image,
       .cpa-about-section .cover-image,
@@ -1190,10 +1202,10 @@
       .cpa-footer-cta {
         position: relative;
         z-index: 1;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        gap: clamp(2rem, 6vw, 6rem);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(1.75rem, 3vw, 2.75rem);
         max-width: 1180px;
         margin: 0 auto clamp(4rem, 8vw, 7rem);
       }
@@ -1290,12 +1302,8 @@
         text-transform: uppercase;
       }
       @media (max-width: 900px) {
-        .cpa-footer-cta,
         .cpa-footer-main {
           grid-template-columns: 1fr;
-        }
-        .cpa-footer-cta {
-          align-items: start;
         }
       }
       @media (max-width: 600px) {
