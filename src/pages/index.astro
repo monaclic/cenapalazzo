@@ -317,21 +317,34 @@
       @media (max-width: 760px) {
         .cpa-poster-hero {
           align-items: flex-end;
-          padding: 7rem 1.25rem 3.25rem;
+          padding: 6rem 1.25rem 3.25rem;
         }
         .cpa-poster-hero::after {
           inset: 0.75rem;
         }
         .cpa-poster-hero::before {
           background:
-            linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.78) 34%, rgba(255, 255, 255, 0.08) 76%);
+            linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.88) 40%, rgba(255, 255, 255, 0.18) 78%);
         }
+        /* Illustration centree en haut, contenue entierement dans le viewport.
+           L'ancien right:-52%; width:118vw croppait le batiment de facon
+           disgracieuse. On la pose proprement, decorative au-dessus du texte. */
         .cpa-poster-hero-image {
-          top: 18%;
-          right: -52%;
-          width: 118vw;
-          height: 44vh;
-          opacity: 0.88;
+          top: 4.5rem;
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%);
+          width: min(92vw, 460px);
+          height: auto;
+          max-height: 34vh;
+          object-fit: contain;
+          object-position: center top;
+          opacity: 0.95;
+          filter: drop-shadow(0 14px 32px rgba(138, 117, 48, 0.14));
+        }
+        .cpa-poster-hero-content {
+          margin-top: auto;
+          padding-top: clamp(36vh, 44vw, 40vh);
         }
         .cpa-poster-hero-title {
           font-size: clamp(4rem, 19vw, 5.8rem);
@@ -556,6 +569,16 @@
           opacity: 1 !important;
           transform: none !important;
           translate: none !important;
+        }
+        /* GSAP applique encore des translate3d(+/-1.99vw, ...) sur les
+           collage-image-* (parallax prevu pour le layout absolute originel).
+           Sur la grille 2x2 mobile, ces transforms font deborder les images
+           de droite hors viewport. On neutralise. */
+        :global(#reservation .cta-collage-images > div[class^="collage-image-"]),
+        :global(#reservation .cta-collage-images .collage-image) {
+          transform: none !important;
+          translate: none !important;
+          scale: 1 !important;
         }
       }
       .cpa-about-section .heading.is-sticky-title,
@@ -1430,6 +1453,15 @@
         overflow: hidden !important;
         visibility: hidden !important;
         pointer-events: none !important;
+      }
+      /* Sur mobile, la section #experience laissait une photo wide du salon
+         (hero-cover-image-2) orpheline entre le hero et la section Casino.
+         La section entiere est masquee : son contenu titre/CTA est deja
+         hidden et les 3 photos parallax n'apportent rien en mobile. */
+      @media (max-width: 767px) {
+        #experience.section {
+          display: none !important;
+        }
       }
     </style>
 
