@@ -25,7 +25,12 @@ const translations = {
     submit: 'Envoyer la demande',
     mailSubject: 'Demande de réservation Cena a Palazzo',
     mailIntro: 'Bonjour, voici une nouvelle demande de réservation pour Cena a Palazzo.',
-    status: "Votre messagerie va s'ouvrir avec la demande préremplie. Envoyez l'e-mail à info@e20sanremo.it pour finaliser la demande.",
+    pending: 'Préparation de votre demande...',
+    successTitle: 'Merci pour votre demande',
+    successMessage: "Votre demande est prête. Votre messagerie va s'ouvrir avec un e-mail prérempli à envoyer à info@e20sanremo.it. L'équipe Cena a Palazzo reviendra vers vous par e-mail.",
+    errorMessage: 'Merci de vérifier les champs obligatoires avant envoi.',
+    spamMessage: 'Votre demande n’a pas pu être envoyée.',
+    honeypot: 'Site internet',
     required: 'Champ obligatoire',
   },
   en: {
@@ -53,7 +58,12 @@ const translations = {
     submit: 'Send request',
     mailSubject: 'Cena a Palazzo booking request',
     mailIntro: 'Hello, here is a new booking request for Cena a Palazzo.',
-    status: 'Your email app will open with the request filled in. Send the email to info@e20sanremo.it to complete the request.',
+    pending: 'Preparing your request...',
+    successTitle: 'Thank you for your request',
+    successMessage: 'Your request is ready. Your email app will open with a prefilled message to send to info@e20sanremo.it. The Cena a Palazzo team will get back to you by email.',
+    errorMessage: 'Please check the required fields before sending.',
+    spamMessage: 'Your request could not be sent.',
+    honeypot: 'Website',
     required: 'Required field',
   },
   it: {
@@ -81,7 +91,12 @@ const translations = {
     submit: 'Inviare la richiesta',
     mailSubject: 'Richiesta di prenotazione Cena a Palazzo',
     mailIntro: 'Buongiorno, ecco una nuova richiesta di prenotazione per Cena a Palazzo.',
-    status: "La vostra app e-mail si aprirà con la richiesta precompilata. Inviate l'e-mail a info@e20sanremo.it per completare la richiesta.",
+    pending: 'Preparazione della richiesta...',
+    successTitle: 'Grazie per la richiesta',
+    successMessage: "La richiesta è pronta. La vostra app e-mail si aprirà con un messaggio precompilato da inviare a info@e20sanremo.it. Il team Cena a Palazzo vi ricontatterà via e-mail.",
+    errorMessage: "Controllate i campi obbligatori prima dell'invio.",
+    spamMessage: 'La richiesta non è stata inviata.',
+    honeypot: 'Sito internet',
     required: 'Campo obbligatorio',
   },
 } as const;
@@ -95,6 +110,7 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
   { lang: 'en', label: 'EN', href: '/en/reservation/' },
   { lang: 'it', label: 'IT', href: '/it/reservation/' },
 ];
+const phonePattern = String.raw`\+[0-9][0-9\s().-]{6,}`;
 ---
 
 <!doctype html>
@@ -241,6 +257,14 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
       .field.is-wide {
         grid-column: 1 / -1;
       }
+      .field.is-trap {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        overflow: hidden;
+      }
       label {
         color: #5f4f20;
         font-size: 0.68rem;
@@ -295,12 +319,46 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
         background: rgba(212, 175, 55, 0.08);
         border-color: var(--gold-strong);
       }
+      .submit-button:disabled {
+        cursor: wait;
+        opacity: 0.62;
+      }
       .form-status {
         min-height: 1.4rem;
         margin: 0.4rem 0 0;
         color: #6f5d25;
         font-size: 0.9rem;
         line-height: 1.5;
+      }
+      .form-status.is-error {
+        color: #8b1e1e;
+      }
+      .reservation-success {
+        display: grid;
+        gap: 0.8rem;
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border: 1px solid rgba(191, 164, 106, 0.34);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 1.6rem 4rem rgba(42, 42, 42, 0.08);
+      }
+      .reservation-success.is-hidden,
+      .reservation-form.is-hidden {
+        display: none;
+      }
+      .reservation-success-title {
+        margin: 0;
+        color: #5f4f20;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-style: italic;
+        font-weight: 500;
+        line-height: 1;
+      }
+      .reservation-success-text {
+        margin: 0;
+        color: rgba(42, 42, 42, 0.72);
+        font-size: 0.98rem;
+        line-height: 1.7;
       }
       @media (max-width: 900px) {
         .reservation-layout,
@@ -357,41 +415,49 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
 
           </section>
 
-          <form class="reservation-form" id="reservation-form" action="mailto:info@e20sanremo.it" method="post" enctype="text/plain" data-locale={locale} data-subject={t.mailSubject} data-intro={t.mailIntro} data-status={t.status}>
+          <form class="reservation-form" id="reservation-form" action="mailto:info@e20sanremo.it" method="post" enctype="text/plain" data-locale={locale} data-subject={t.mailSubject} data-intro={t.mailIntro} data-pending={t.pending} data-error={t.errorMessage} data-spam={t.spamMessage}>
             <div class="form-grid">
+              <div class="field is-trap" aria-hidden="true">
+                <label for="website">{t.honeypot}</label>
+                <input id="website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="field">
                 <label for="firstName">{t.fields.firstName}</label>
-                <input id="firstName" name={t.fields.firstName} autocomplete="given-name" required aria-required="true" title={t.required} />
+                <input id="firstName" name={t.fields.firstName} autocomplete="given-name" minlength="2" maxlength="80" required aria-required="true" title={t.required} />
               </div>
               <div class="field">
                 <label for="lastName">{t.fields.lastName}</label>
-                <input id="lastName" name={t.fields.lastName} autocomplete="family-name" required aria-required="true" title={t.required} />
+                <input id="lastName" name={t.fields.lastName} autocomplete="family-name" minlength="2" maxlength="80" required aria-required="true" title={t.required} />
               </div>
               <div class="field">
                 <label for="email">{t.fields.email}</label>
-                <input id="email" name={t.fields.email} type="email" autocomplete="email" required aria-required="true" title={t.required} />
+                <input id="email" name={t.fields.email} type="email" autocomplete="email" maxlength="140" required aria-required="true" title={t.required} />
               </div>
               <div class="field">
                 <label for="phone">{t.fields.phone}</label>
-                <input id="phone" name={t.fields.phone} type="tel" autocomplete="tel" placeholder={t.fields.phonePlaceholder} required aria-required="true" title={t.required} />
+                <input id="phone" name={t.fields.phone} type="tel" autocomplete="tel" placeholder={t.fields.phonePlaceholder} pattern={phonePattern} maxlength="32" required aria-required="true" title={t.required} />
               </div>
               <div class="field is-wide">
                 <label for="guests">{t.fields.guests}</label>
-                <input id="guests" name={t.fields.guests} type="number" min="1" step="1" inputmode="numeric" required aria-required="true" title={t.required} />
+                <input id="guests" name={t.fields.guests} type="number" min="1" max="20" step="1" inputmode="numeric" required aria-required="true" title={t.required} />
               </div>
               <div class="field is-wide">
                 <label for="allergies">{t.fields.allergies}</label>
-                <textarea id="allergies" name={t.fields.allergies} placeholder={t.fields.allergiesPlaceholder} required aria-required="true" title={t.required}></textarea>
+                <textarea id="allergies" name={t.fields.allergies} placeholder={t.fields.allergiesPlaceholder} minlength="2" maxlength="600" required aria-required="true" title={t.required}></textarea>
               </div>
               <div class="field is-wide">
                 <label for="vehicle">{t.fields.vehicle}</label>
-                <input id="vehicle" name={t.fields.vehicle} placeholder={t.fields.vehiclePlaceholder} />
+                <input id="vehicle" name={t.fields.vehicle} placeholder={t.fields.vehiclePlaceholder} maxlength="40" />
                 <p class="hint">{t.fields.vehicleHint}</p>
               </div>
             </div>
             <button type="submit" class="submit-button">{t.submit}</button>
             <p class="form-status" id="form-status" aria-live="polite"></p>
           </form>
+          <div class="reservation-success is-hidden" id="reservation-success" role="status" aria-live="polite">
+            <h2 class="reservation-success-title">{t.successTitle}</h2>
+            <p class="reservation-success-text">{t.successMessage}</p>
+          </div>
         </div>
       </div>
     </main>
@@ -400,25 +466,57 @@ const languageOptions: Array<{ lang: Locale; label: string; href: string }> = [
       (function () {
         var form = document.getElementById('reservation-form');
         var status = document.getElementById('form-status');
+        var success = document.getElementById('reservation-success');
+        var startedAt = Date.now();
         if (!form) return;
 
         form.addEventListener('submit', function (event) {
           event.preventDefault();
+          var submitButton = form.querySelector('button[type="submit"]');
+          var trap = form.querySelector('input[name="website"]');
+          if (status) {
+            status.textContent = '';
+            status.classList.remove('is-error');
+          }
+          if (trap && trap.value.trim() !== '') {
+            if (status) {
+              status.textContent = form.dataset.spam || '';
+              status.classList.add('is-error');
+            }
+            return;
+          }
+          if (Date.now() - startedAt < 900) {
+            if (status) {
+              status.textContent = form.dataset.error || '';
+              status.classList.add('is-error');
+            }
+            return;
+          }
           if (!form.checkValidity()) {
+            if (status) {
+              status.textContent = form.dataset.error || '';
+              status.classList.add('is-error');
+            }
             form.reportValidity();
             return;
           }
 
+          if (submitButton) submitButton.disabled = true;
+          if (status) status.textContent = form.dataset.pending || '';
           var data = new FormData(form);
           var lines = [form.dataset.intro || '', '', 'Langue / Language / Lingua: ' + (form.dataset.locale || 'fr')];
           data.forEach(function (value, key) {
-            lines.push(key + ': ' + value);
+            var cleanValue = String(value).trim();
+            if (key !== 'website' && cleanValue !== '') {
+              lines.push(key + ': ' + cleanValue);
+            }
           });
 
           var subject = encodeURIComponent(form.dataset.subject || 'Cena a Palazzo');
           var body = encodeURIComponent(lines.join('\n'));
           window.location.href = 'mailto:info@e20sanremo.it?subject=' + subject + '&body=' + body;
-          if (status) status.textContent = form.dataset.status || '';
+          form.classList.add('is-hidden');
+          if (success) success.classList.remove('is-hidden');
         });
       })();
     </script>
